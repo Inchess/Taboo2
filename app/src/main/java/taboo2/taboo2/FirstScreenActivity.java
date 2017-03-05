@@ -19,7 +19,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     // margin from border is ("phone width" / paramMarginBorder)
     private byte paramMarginBorder = 8;
     private byte textHeight = 16;
-    private short buttonsHeight = 10;
+    private short buttonsHeight = 150;
     private short marginsTopBottom = 100;
 
     //===========================================
@@ -76,6 +76,8 @@ public class FirstScreenActivity extends AppCompatActivity {
         for(Button button: startButtons) {
             button.setBackgroundColor(Color.RED);
             // text height
+            button.setMinimumHeight(0);
+            button.setMinHeight(0);
             button.setHeight(buttonsHeight);
             // field width = phone width - margins
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) button
