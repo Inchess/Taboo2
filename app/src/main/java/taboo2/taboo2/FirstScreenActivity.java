@@ -7,16 +7,27 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class FirstScreenActivity extends AppCompatActivity {
 
+    //===========================================
+    //-----PARAMS TO CHANGE ELEMENT LOCATION-----
+    //===========================================
+
     // Change margin parameter to change margin from top to the first textView
     private float marginParameter = 1/5f;
+    // margin from border is ("phone width" / paramMarginBorder)
+    private byte paramMarginBorder = 8;
+    private byte textHeight = 16;
+    private short buttonsHeight = 10;
+    private short marginsTopBottom = 100;
+
+    //===========================================
+    //-----------------VARIABLES-----------------
+    //===========================================
     private int marginFromTop;
     private int phoneHeight;
     private int phoneWidth;
-    private short marginsTopBottom = 100;
     private Global global;
     private LinearLayout firstLayout;
     private Button startGame;
@@ -37,6 +48,10 @@ public class FirstScreenActivity extends AppCompatActivity {
         addTextAndDesignToButtons();
     }
 
+    //===========================================
+    //------------------METHODS------------------
+    //===========================================
+
     private void init() {
         global = new Global();
         phoneHeight = global.getPhoneHeight();
@@ -56,12 +71,12 @@ public class FirstScreenActivity extends AppCompatActivity {
 
     private void adjustFieldsSize() {
 
-        int marginsFromBorders = phoneWidth / 8;
+        int marginsFromBorders = phoneWidth / paramMarginBorder;
 
         for(Button button: startButtons) {
             button.setBackgroundColor(Color.RED);
             // text height
-            button.setHeight(160);
+            button.setHeight(buttonsHeight);
             // field width = phone width - margins
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) button
                     .getLayoutParams();
@@ -84,11 +99,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     private void textHeightAndLocation() {
         for(Button button: startButtons) {
             button.setGravity(Gravity.CENTER);
-            button.setTextSize(18);
+            button.setTextSize(textHeight);
         }
     }
 
     private void addTextAndDesignToButtons() {
-        
+
     }
 }
