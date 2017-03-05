@@ -66,6 +66,9 @@ public class FirstScreenActivity extends AppCompatActivity {
                     .getLayoutParams();
             mlp.setMargins(marginsFromBorders, marginsTopBottom,
                     marginsFromBorders, marginsTopBottom);
+            ViewGroup.MarginLayoutParams params =
+                    (ViewGroup.MarginLayoutParams) startGame.getLayoutParams();
+            params.width = 2000; params.leftMargin = 100; params.topMargin = 200;
         }
     }
 
