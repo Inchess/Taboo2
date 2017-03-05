@@ -14,11 +14,13 @@ public class FirstScreenActivity extends AppCompatActivity {
     //-----PARAMS TO CHANGE ELEMENT LOCATION-----
     //===========================================
 
-    // Change margin parameter to change margin from top to the first textView
-    private float marginParameter = 1/5f;
     // margin from border is ("phone width" / paramMarginBorder)
     private byte paramMarginBorder = 8;
     private byte textHeight = 16;
+    // Change margin parameter to change margin from top to the first textView
+    private float marginParameter = 1/5f;
+    // Each parameter takes value from 0 to 255
+    private int buttonsColor = Color.rgb(120, 120, 120);
     private short buttonsHeight = 150;
     private short marginsTopBottom = 100;
 
@@ -45,7 +47,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         adjustFieldsSize();
         addTextToFields();
         textHeightAndLocation();
-        addTextAndDesignToButtons();
+        addDesignToButtons();
     }
 
     //===========================================
@@ -74,7 +76,6 @@ public class FirstScreenActivity extends AppCompatActivity {
         int marginsFromBorders = phoneWidth / paramMarginBorder;
 
         for(Button button: startButtons) {
-            button.setBackgroundColor(Color.RED);
             // text height
             button.setMinimumHeight(0);
             button.setMinHeight(0);
@@ -105,7 +106,10 @@ public class FirstScreenActivity extends AppCompatActivity {
         }
     }
 
-    private void addTextAndDesignToButtons() {
+    private void addDesignToButtons() {
 
+        for(Button button: startButtons) {
+            button.setBackgroundColor(buttonsColor);
+        }
     }
 }
