@@ -1,6 +1,8 @@
 package taboo2.taboo2;
 
 import android.graphics.Color;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,9 +12,9 @@ import android.widget.LinearLayout;
 
 public class FirstScreenActivity extends AppCompatActivity {
 
-    //===========================================
-    //-----PARAMS TO CHANGE ELEMENT LOCATION-----
-    //===========================================
+    /* ==========================================
+    ------PARAMS TO CHANGE ELEMENT LOCATION------
+    ========================================== */
 
     // margin from border is ("phone width" / paramMarginBorder)
     private byte paramMarginBorder = 8;
@@ -22,11 +24,12 @@ public class FirstScreenActivity extends AppCompatActivity {
     // Each parameter takes value from 0 to 255
     private int buttonsColor = Color.rgb(120, 120, 120);
     private short buttonsHeight = 150;
-    private short marginsTopBottom = 100;
+    private short marginsTopBottom = 120;
+    private short radius = 100;
 
-    //===========================================
-    //-----------------VARIABLES-----------------
-    //===========================================
+    /* ==========================================
+    ------------------VARIABLES------------------
+    ========================================== */
     private int marginFromTop;
     private int phoneHeight;
     private int phoneWidth;
@@ -50,9 +53,9 @@ public class FirstScreenActivity extends AppCompatActivity {
         addDesignToButtons();
     }
 
-    //===========================================
-    //------------------METHODS------------------
-    //===========================================
+    /* ==========================================
+    -------------------METHODS-------------------
+    ========================================== */
 
     private void init() {
         global = new Global();
@@ -109,7 +112,17 @@ public class FirstScreenActivity extends AppCompatActivity {
     private void addDesignToButtons() {
 
         for(Button button: startButtons) {
-            button.setBackgroundColor(buttonsColor);
+            RoundRectShape rect = new RoundRectShape(
+                    new float[] {radius,radius, radius,radius, radius,radius, radius,radius},
+                    null,
+                    null);
+            ShapeDrawable bg = new ShapeDrawable(rect);
+            bg.getPaint().setColor(buttonsColor);
+            if (android.os.Build.VERSION.SDK_INT >= 16)
+                button.setBackground(bg);
+            else {
+                button.setBackgroundDrawable(bg);
+            }
         }
     }
 }
