@@ -1,12 +1,15 @@
 package taboo2.taboo2;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -24,40 +27,22 @@ public class FirstScreenActivity extends AppCompatActivity {
      */
 
     // margin from border is ("phone width" / paramMarginBorder)
-    private byte paramMarginBorder240_600 = 20;
-    private byte paramMarginBorder601_800 = 8;
-    private byte paramMarginBorder801_inf = 4;
-    private byte textHeight240_600 = 20;
-    private byte textHeight601_800 = 16;
-    private byte textHeight801_inf = 16;
+    private int paramMarginBorder = 1;
+    private int textHeight = 20;
     // Change margin parameter to change margin from top to the first textView
-    private float marginParameter240_600 = 1/10f;
-    private float marginParameter601_800 = 1/5f;
-    private float marginParameter801_inf = 1/15f;
+    private int marginParameter = 70;
     // Each parameter takes value from 0 to 255
     private int buttonsColor = Color.rgb(120, 120, 120);
-    private short buttonsHeight240_600 = 70;
-    private short buttonsHeight601_800 = 150;
-    private short buttonsHeight801_inf = 100;
-    private short marginsTopBottom240_600 = 30;
-    private short marginsTopBottom601_800 = 120;
-    private short marginsTopBottom801_inf = 20;
-    private short radius240_600 = 30;
-    private short radius601_800 = 100;
-    private short radius801_inf = 100;
+    private int buttonsHeight = 55;
+    private int marginsTopBottom = 25;
+    private int radius = 10;
 
     /* ==========================================
     ------------------VARIABLES------------------
     ========================================== */
-    private byte paramMarginBorder;
-    private byte textHeight;
-    private float marginParameter;
     private int marginFromTop;
     private int phoneHeight;
     private int phoneWidth;
-    private short buttonsHeight;
-    private short marginsTopBottom;
-    private short radius;
     private Global global;
     private LinearLayout firstLayout;
     private Button startGame;
@@ -71,7 +56,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
         init();
-        setVariableValues();
+        changeDpToPx();
         fieldLocationFromTop();
         adjustFieldsSize();
         addTextToFields();
@@ -95,34 +80,18 @@ public class FirstScreenActivity extends AppCompatActivity {
         firstLayout = (LinearLayout) findViewById(R.id.activity_first_screen);
     }
 
-    private void setVariableValues() {
-        if(240 <= phoneWidth && phoneWidth <= 600) {
-            paramMarginBorder = paramMarginBorder240_600;
-            textHeight = textHeight240_600;
-            marginParameter = marginParameter240_600;
-            buttonsHeight = buttonsHeight240_600;
-            marginsTopBottom = marginsTopBottom240_600;
-            radius = radius240_600;
-        } else if(600 < phoneWidth && phoneWidth <= 800) {
-            paramMarginBorder = paramMarginBorder601_800;
-            textHeight = textHeight601_800;
-            marginParameter = marginParameter601_800;
-            buttonsHeight = buttonsHeight240_600;
-            marginsTopBottom = marginsTopBottom601_800;
-            radius = radius601_800;
-        } else if(800 < phoneWidth) {
-            paramMarginBorder = paramMarginBorder801_inf;
-            textHeight = textHeight801_inf;
-            marginParameter = marginParameter801_inf;
-            buttonsHeight = buttonsHeight801_inf;
-            marginsTopBottom = marginsTopBottom801_inf;
-            radius = radius801_inf;
-        }
+    private void changeDpToPx() {
+        paramMarginBorder = global.dpToPx(paramMarginBorder);
+        textHeight = global.dpToPx(textHeight);
+        marginParameter = global.dpToPx(marginParameter);
+        buttonsHeight = global.dpToPx(buttonsHeight);
+        marginsTopBottom = global.dpToPx(marginsTopBottom);
+        radius = global.dpToPx(radius);
     }
 
     private void fieldLocationFromTop() {
         int totalButtonHeights = startButtons.length*2*marginsTopBottom;
-        marginFromTop = (int)(marginParameter*(phoneHeight-totalButtonHeights));
+        marginFromTop = marginParameter;
     }
 
     private void adjustFieldsSize() {
@@ -176,4 +145,10 @@ public class FirstScreenActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void startGame(View view) {
+        Intent teamNamesIntent = new Intent(this, PlayGameActivity.class);
+        startActivity(teamNamesIntent);
+    }
+
 }
