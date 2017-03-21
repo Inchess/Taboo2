@@ -24,6 +24,7 @@ public class Global {
         int height = Resources.getSystem().getDisplayMetrics().heightPixels;
         phoneWidth = pxToDp(width);
         phoneHeight = pxToDp(height);
+        
     }
 
     /* ===============================================

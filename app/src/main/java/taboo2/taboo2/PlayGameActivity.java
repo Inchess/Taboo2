@@ -5,6 +5,10 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +57,10 @@ public class PlayGameActivity extends AppCompatActivity {
     private void addDesignToButtons() {
 
         for(TextView textView: textViews) {
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) textView
+                    .getLayoutParams();
+            mlp.setMargins(20, 50, 20, 50);
+            textView.setHeight(150);
             RoundRectShape rect = new RoundRectShape(
                     new float[] {10,10 , 10,10 , 10,10 , 10,10},
                     null,
@@ -64,6 +72,8 @@ public class PlayGameActivity extends AppCompatActivity {
             else {
                 textView.setBackgroundDrawable(bg);
             }
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100);
         }
     }
 
