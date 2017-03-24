@@ -1,5 +1,7 @@
 package taboo2.taboo2;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
@@ -41,6 +43,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private int buttonsColor = Color.rgb(120, 120, 120);
     private Global global;
+    private Button correctAnswer;
     private JSONObject obj;
     private TextView searchingWord;
     private TextView word1;
@@ -62,6 +65,7 @@ public class PlayGameActivity extends AppCompatActivity {
         word3 = (TextView) findViewById(R.id.word3);
         word4 = (TextView) findViewById(R.id.word4);
         word5 = (TextView) findViewById(R.id.word5);
+        correctAnswer = (Button) findViewById(R.id.correct_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
 
     }
@@ -129,15 +133,14 @@ public class PlayGameActivity extends AppCompatActivity {
                 String forbiddenWordNum = "word" + random;
                 field.setText(job.getString(forbiddenWordNum));
             }
-
-
-/*            String ab = job.getString("word2");
-            word1.setText(ab);
-            word2.setText(Integer.toString(job.length()));
-            word3.setText(Integer.toString(textViews.length));*/
+            correctAnswer.setText("OK");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void nextWord(View view) {
+        super.recreate();
     }
 
 }
