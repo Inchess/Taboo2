@@ -121,7 +121,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addSearchedWord() {
-        
+
     }
 
     public void addTextToFields() {
