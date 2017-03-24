@@ -14,6 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class FirstScreenActivity extends AppCompatActivity {
 
     /* ==========================================
@@ -62,6 +69,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         addTextToFields();
         textHeightAndLocation();
         addDesignToButtons();
+
     }
 
     /* ==========================================
@@ -150,5 +158,6 @@ public class FirstScreenActivity extends AppCompatActivity {
         Intent teamNamesIntent = new Intent(this, PlayGameActivity.class);
         startActivity(teamNamesIntent);
     }
+
 
 }

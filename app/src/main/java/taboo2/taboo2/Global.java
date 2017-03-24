@@ -1,10 +1,14 @@
 package taboo2.taboo2;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by y50-70 on 02.03.2017.

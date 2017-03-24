@@ -13,7 +13,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -23,6 +31,8 @@ public class PlayGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_game);
         init();
         addDesignToButtons();
+        createJSONObject();
+        addTextToFields();
     }
 
     /* ==========================================
@@ -31,6 +41,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private int buttonsColor = Color.rgb(120, 120, 120);
     private Global global;
+    private JSONObject obj;
     private TextView searchingWord;
     private TextView word1;
     private TextView word2;
@@ -51,7 +62,8 @@ public class PlayGameActivity extends AppCompatActivity {
         word3 = (TextView) findViewById(R.id.word3);
         word4 = (TextView) findViewById(R.id.word4);
         word5 = (TextView) findViewById(R.id.word5);
-        textViews = new TextView[]{searchingWord, word1, word2, word3, word4, word5};
+        textViews = new TextView[]{word1, word2, word3, word4, word5};
+
     }
 
     private void addDesignToButtons() {
@@ -74,6 +86,57 @@ public class PlayGameActivity extends AppCompatActivity {
             }
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100);
+        }
+    }
+
+    public void createJSONObject() {
+        try {
+            obj = new JSONObject(loadJSONFromAsset());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("Noc.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    public void addTextToFields() {
+        try {
+            JSONArray ar = obj.getJSONArray("Noc");
+            JSONObject job = ar.getJSONObject(0);
+            int numOfForbiddenWords = job.length();
+            List<Integer> usedWords = new ArrayList<Integer>();
+            for(TextView field: textViews) {
+                int random;
+                do {
+                    random = (int) (Math.random() * numOfForbiddenWords) + 1;
+                } while (usedWords.contains(random));
+                usedWords.add(random);
+                String forbiddenWordNum = "word" + random;
+                field.setText(job.getString(forbiddenWordNum));
+            }
+
+
+/*            String ab = job.getString("word2");
+            word1.setText(ab);
+            word2.setText(Integer.toString(job.length()));
+            word3.setText(Integer.toString(textViews.length));*/
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
