@@ -34,6 +34,7 @@ public class PlayGameActivity extends AppCompatActivity {
         init();
         addDesignToButtons();
         createJSONObject();
+        addSearchedWord();
         addTextToFields();
     }
 
@@ -52,6 +53,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView word4;
     private TextView word5;
     private TextView[] textViews;
+    private String fileName = "Noc.json";
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -105,7 +107,7 @@ public class PlayGameActivity extends AppCompatActivity {
     public String loadJSONFromAsset() {
         String json = null;
         try {
-            InputStream is = getAssets().open("Noc.json");
+            InputStream is = getAssets().open(fileName);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -116,6 +118,10 @@ public class PlayGameActivity extends AppCompatActivity {
             return null;
         }
         return json;
+    }
+
+    public void addSearchedWord() {
+        
     }
 
     public void addTextToFields() {
