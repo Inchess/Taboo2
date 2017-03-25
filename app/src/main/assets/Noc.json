@@ -12,7 +12,7 @@
       }
     },
     {
-      "Dzi": {
+      "Dzień": {
         "word1": "A",
         "word2": "B",
         "word3": "C",
@@ -23,7 +23,7 @@
       }
     },
     {
-      "Ok": {
+      "Imiona": {
         "word1": "Kasia",
         "word2": "Tomek",
         "word3": "Ania",
@@ -31,6 +31,26 @@
         "word5": "Magda",
         "word6": "Adam",
         "word7": "Tomunio"
+      }
+    },
+    {
+      "Kasia": {
+        "word1": "Kochana",
+        "word2": "Moja",
+        "word3": "Kubit",
+        "word4": "Pysień",
+        "word5": "Liii",
+        "word6": "Kiki"
+      }
+    },
+    {
+      "AAA": {
+        "word1": "BBB",
+        "word2": "CC",
+        "word3": "D",
+        "word4": "a",
+        "word5": "EEE",
+        "word6": "assagfasga"
       }
     }
   ]

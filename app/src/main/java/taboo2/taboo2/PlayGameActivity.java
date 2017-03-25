@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class PlayGameActivity extends AppCompatActivity {
         init();
         addDesignToButtons();
         createJSONObject();
+        createJSONArray();
         addSearchedWord();
         addTextToFields();
     }
@@ -43,9 +45,13 @@ public class PlayGameActivity extends AppCompatActivity {
     ========================================== */
 
     private int buttonsColor = Color.rgb(120, 120, 120);
+    private int searchedWordNum;
+    private String searchedWord;
     private Global global;
     private Button correctAnswer;
     private JSONObject obj;
+    private JSONObject job;
+    private Random random;
     private TextView searchingWord;
     private TextView word1;
     private TextView word2;
@@ -54,6 +60,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView word5;
     private TextView[] textViews;
     private String fileName = "Noc.json";
+    private static JSONArray ar;
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -69,6 +76,7 @@ public class PlayGameActivity extends AppCompatActivity {
         word5 = (TextView) findViewById(R.id.word5);
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
+        random = new Random();
 
     }
 
@@ -104,6 +112,14 @@ public class PlayGameActivity extends AppCompatActivity {
 
     }
 
+    public void createJSONArray() {
+        try {
+            ar = obj.getJSONArray("Taboo");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public String loadJSONFromAsset() {
         String json = null;
         try {
@@ -121,17 +137,20 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addSearchedWord() {
-
+        int numOfSearcherWords = ar.length();
+        searchedWordNum = random.nextInt(numOfSearcherWords);
+        try {
+            job = ar.getJSONObject(searchedWordNum);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        searchedWord = job.keys().next();
     }
 
     public void addTextToFields() {
         try {
-            JSONArray ar = obj.getJSONArray("Taboo");
-            int b = ar.length();
-            JSONObject job = ar.getJSONObject(2);
-            String a = job.keys().next();
-            JSONObject searchedWord = job.getJSONObject(a);
-            int numOfForbiddenWords = searchedWord.length();
+            JSONObject jsonSearchedWord = job.getJSONObject(searchedWord);
+            int numOfForbiddenWords = jsonSearchedWord.length();
             List<Integer> usedWords = new ArrayList<Integer>();
             for(TextView field: textViews) {
                 int random;
@@ -140,10 +159,10 @@ public class PlayGameActivity extends AppCompatActivity {
                 } while (usedWords.contains(random));
                 usedWords.add(random);
                 String forbiddenWordNum = "word" + random;
-                field.setText(searchedWord.getString(forbiddenWordNum));
+                field.setText(jsonSearchedWord.getString(forbiddenWordNum));
             }
-            searchingWord.setText(a);
-            correctAnswer.setText(Integer.toString(b));
+            searchingWord.setText(searchedWord);
+            correctAnswer.setText("OK");
         } catch (JSONException e) {
             e.printStackTrace();
         }
