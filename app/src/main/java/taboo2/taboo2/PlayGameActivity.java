@@ -127,9 +127,10 @@ public class PlayGameActivity extends AppCompatActivity {
     public void addTextToFields() {
         try {
             JSONArray ar = obj.getJSONArray("Taboo");
-            JSONObject job = ar.getJSONObject(0);
-            JSONObject searchedWord = job.getJSONObject("Dzi");
+            int b = ar.length();
+            JSONObject job = ar.getJSONObject(2);
             String a = job.keys().next();
+            JSONObject searchedWord = job.getJSONObject(a);
             int numOfForbiddenWords = searchedWord.length();
             List<Integer> usedWords = new ArrayList<Integer>();
             for(TextView field: textViews) {
@@ -141,7 +142,8 @@ public class PlayGameActivity extends AppCompatActivity {
                 String forbiddenWordNum = "word" + random;
                 field.setText(searchedWord.getString(forbiddenWordNum));
             }
-            searchingWord.setText(searchedWord.toString());
+            searchingWord.setText(a);
+            correctAnswer.setText(Integer.toString(b));
         } catch (JSONException e) {
             e.printStackTrace();
         }

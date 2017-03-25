@@ -9,7 +9,9 @@
         "word5": "Słońce",
         "word6": "Łóżko",
         "word7": "Duch"
-      },
+      }
+    },
+    {
       "Dzi": {
         "word1": "A",
         "word2": "B",
@@ -18,6 +20,17 @@
         "word5": "E",
         "word6": "F",
         "word7": "G"
+      }
+    },
+    {
+      "Ok": {
+        "word1": "Kasia",
+        "word2": "Tomek",
+        "word3": "Ania",
+        "word4": "Maciek",
+        "word5": "Magda",
+        "word6": "Adam",
+        "word7": "Tomunio"
       }
     }
   ]
