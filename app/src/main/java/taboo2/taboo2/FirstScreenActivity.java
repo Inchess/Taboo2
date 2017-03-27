@@ -127,7 +127,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void addDesignToButtons() {
-        designs.views_addColor(startButtons, buttonsColor, radius);
+        designs.views_addColorAndRadius(startButtons, buttonsColor, radius);
     }
 
     public void startGame(View view) {

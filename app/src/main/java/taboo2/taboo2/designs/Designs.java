@@ -19,7 +19,7 @@ public class Designs {
 
     //================================== Add color to views
 
-    public void views_addColor(List<View> views, int color, int radius) {
+    public void views_addColorAndRadius(List<View> views, int color, int radius) {
         for(View view: views) {
             RoundRectShape rect = new RoundRectShape(
                     new float[] {radius,radius, radius,radius, radius,radius, radius,radius},
@@ -35,14 +35,14 @@ public class Designs {
         }
     }
     public void views_addColor(List<View> views, int color) {
-        views_addColor(views, color, 0);
+        views_addColorAndRadius(views, color, 0);
     }
-    public void views_addColor(View[] viewsArray, int color, int radius) {
+    public void views_addColorAndRadius(View[] viewsArray, int color, int radius) {
         List<View> views = Arrays.asList(viewsArray);
-        views_addColor(views, color, radius);
+        views_addColorAndRadius(views, color, radius);
     }
     public void views_addColor(View[] viewsArray, int color) {
-        views_addColor(viewsArray, color, 0);
+        views_addColorAndRadius(viewsArray, color, 0);
     }
 
     //================================== Add text height and location to buttons

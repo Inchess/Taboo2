@@ -1,8 +1,6 @@
 package taboo2.taboo2;
 
 import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
@@ -32,6 +30,7 @@ public class PlayGameActivity extends AppCompatActivity {
         init();
         addDesignToButtons();
         addMarginsToTextViews();
+        addColorAndRadius();
         createJSONObject();
         createJSONArray();
         addSearchedWord();
@@ -42,10 +41,11 @@ public class PlayGameActivity extends AppCompatActivity {
     --------------HARDCODE VARIABLES-------------
     ========================================== */
 
-    private int buttonsColor = Color.rgb(120, 120, 120);
+    private int fieldsColor = Color.rgb(120, 120, 120);
     private int all_marginTop = 20;
     private int all_marginBottom = 30;
     private int all_marginSide = 50;
+    private int radius = 10;
 
     /* ==========================================
     ------------------VARIABLES------------------
@@ -92,17 +92,6 @@ public class PlayGameActivity extends AppCompatActivity {
 
         for(TextView textView: textViews) {
             textView.setHeight(150);
-            RoundRectShape rect = new RoundRectShape(
-                    new float[] {10,10 , 10,10 , 10,10 , 10,10},
-                    null,
-                    null);
-            ShapeDrawable bg = new ShapeDrawable(rect);
-            bg.getPaint().setColor(buttonsColor);
-            if (android.os.Build.VERSION.SDK_INT >= 16)
-                textView.setBackground(bg);
-            else {
-                textView.setBackgroundDrawable(bg);
-            }
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100);
         }
@@ -110,6 +99,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void addMarginsToTextViews() {
         designs.views_setMargins(textViews, all_marginTop, all_marginSide);
+    }
+
+    public void addColorAndRadius() {
+        designs.views_addColorAndRadius(textViews, fieldsColor, radius);
     }
 
     public void createJSONObject() {
