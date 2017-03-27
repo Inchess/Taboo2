@@ -108,11 +108,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void setButtonsMargins() {
-        designs.buttons_setMargins(startButtons, marginsTopBottom, marginsFromBorders);
+        designs.views_setMargins(startButtons, marginsTopBottom, marginsFromBorders);
     }
 
     private void setMarginToFirstButton() {
-        designs.setMarginToOneButton(startGame, marginFromTop, marginsTopBottom, marginsFromBorders);
+        designs.setMarginToOneView(startGame, marginFromTop, marginsTopBottom, marginsFromBorders);
     }
 
     private void addTextToFields() {

@@ -4,6 +4,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -69,27 +70,27 @@ public class Designs {
         buttons_textHeight(buttons, textHeight);
     }
 
-    //================================== Add margins to buttons
+    //================================== Add margins to views
 
-    public void buttons_setMargins(List<Button> buttons, int marginTopBottom, int marginSide) {
-        for(Button button: buttons) {
-            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) button
+    public void views_setMargins(List<View> views, int marginTopBottom, int marginSide) {
+        for(View view: views) {
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) view
                     .getLayoutParams();
             mlp.setMargins(marginSide, marginTopBottom,
                     marginSide, marginTopBottom);
         }
     }
-    public void buttons_setMargins(Button[] buttonsArray, int marginTopBottom, int marginSide) {
-        List<Button> buttons = Arrays.asList(buttonsArray);
-        buttons_setMargins(buttons, marginTopBottom, marginSide);
+    public void views_setMargins(View[] viewsArray, int marginTopBottom, int marginSide) {
+        List<View> views = Arrays.asList(viewsArray);
+        views_setMargins(views, marginTopBottom, marginSide);
     }
 
-    //================================== Add margin to only one button
+    //================================== Add margin to only one view
 
-    public void setMarginToOneButton(Button button, int marginTop,
+    public void setMarginToOneView(View view, int marginTop,
                                      int marginBottom, int marginSide) {
         ViewGroup.MarginLayoutParams params =
-                (ViewGroup.MarginLayoutParams) button.getLayoutParams();
+                (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         params.setMargins(marginSide, marginTop,
                 marginSide, marginBottom);
     }
