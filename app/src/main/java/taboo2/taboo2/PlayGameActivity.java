@@ -31,6 +31,7 @@ public class PlayGameActivity extends AppCompatActivity {
         addDesignToButtons();
         addMarginsToTextViews();
         addColorAndRadius();
+        setTextHeight();
         createJSONObject();
         createJSONArray();
         addSearchedWord();
@@ -46,6 +47,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private int all_marginBottom = 30;
     private int all_marginSide = 50;
     private int radius = 10;
+    private int textHeight = 150;
 
     /* ==========================================
     ------------------VARIABLES------------------
@@ -91,7 +93,6 @@ public class PlayGameActivity extends AppCompatActivity {
     private void addDesignToButtons() {
 
         for(TextView textView: textViews) {
-            textView.setHeight(150);
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100);
         }
@@ -103,6 +104,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void addColorAndRadius() {
         designs.views_addColorAndRadius(textViews, fieldsColor, radius);
+    }
+
+    public void setTextHeight() {
+        designs.textViews_textHeight(textViews, textHeight);
     }
 
     public void createJSONObject() {
