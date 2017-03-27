@@ -2,11 +2,8 @@ package taboo2.taboo2;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -14,12 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
+import taboo2.taboo2.designs.Designs;
 
 public class FirstScreenActivity extends AppCompatActivity {
 
@@ -47,10 +39,13 @@ public class FirstScreenActivity extends AppCompatActivity {
     /* ==========================================
     ------------------VARIABLES------------------
     ========================================== */
+
+    private Designs designs;
+    private Global global;
+
     private int marginFromTop;
     private int phoneHeight;
     private int phoneWidth;
-    private Global global;
     private LinearLayout firstLayout;
     private Button startGame;
     private Button gameRules;
@@ -78,6 +73,7 @@ public class FirstScreenActivity extends AppCompatActivity {
 
     private void init() {
         global = new Global();
+        designs = new Designs();
         phoneHeight = global.getPhoneHeight();
         phoneWidth = global.getPhoneWidth();
         startGame = (Button) findViewById(R.id.startGame);
@@ -138,20 +134,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void addDesignToButtons() {
-
-        for(Button button: startButtons) {
-            RoundRectShape rect = new RoundRectShape(
-                    new float[] {radius,radius, radius,radius, radius,radius, radius,radius},
-                    null,
-                    null);
-            ShapeDrawable bg = new ShapeDrawable(rect);
-            bg.getPaint().setColor(buttonsColor);
-            if (android.os.Build.VERSION.SDK_INT >= 16)
-                button.setBackground(bg);
-            else {
-                button.setBackgroundDrawable(bg);
-            }
-        }
+        designs.addColorToButtons(startButtons, buttonsColor, radius);
     }
 
     public void startGame(View view) {
