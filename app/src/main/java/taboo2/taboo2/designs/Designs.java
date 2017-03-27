@@ -17,10 +17,10 @@ import java.util.List;
 
 public class Designs {
 
-    //================================== Add color to buttons
+    //================================== Add color to views
 
-    public void buttons_addColor(List<Button> buttons, int color, int radius) {
-        for(Button button: buttons) {
+    public void views_addColor(List<View> views, int color, int radius) {
+        for(View view: views) {
             RoundRectShape rect = new RoundRectShape(
                     new float[] {radius,radius, radius,radius, radius,radius, radius,radius},
                     null,
@@ -28,21 +28,21 @@ public class Designs {
             ShapeDrawable bg = new ShapeDrawable(rect);
             bg.getPaint().setColor(color);
             if (android.os.Build.VERSION.SDK_INT >= 16)
-                button.setBackground(bg);
+                view.setBackground(bg);
             else {
-                button.setBackgroundDrawable(bg);
+                view.setBackgroundDrawable(bg);
             }
         }
     }
-    public void buttons_addColor(List<Button> buttons, int color) {
-        buttons_addColor(buttons, color, 0);
+    public void views_addColor(List<View> views, int color) {
+        views_addColor(views, color, 0);
     }
-    public void buttons_addColor(Button[] buttonsArray, int color, int radius) {
-        List<Button> buttons = Arrays.asList(buttonsArray);
-        buttons_addColor(buttons, color, radius);
+    public void views_addColor(View[] viewsArray, int color, int radius) {
+        List<View> views = Arrays.asList(viewsArray);
+        views_addColor(views, color, radius);
     }
-    public void buttons_addColor(Button[] buttonsArray, int color) {
-        buttons_addColor(buttonsArray, color, 0);
+    public void views_addColor(View[] viewsArray, int color) {
+        views_addColor(viewsArray, color, 0);
     }
 
     //================================== Add text height and location to buttons
