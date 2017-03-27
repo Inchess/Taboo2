@@ -51,6 +51,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     private Button about;
     private Button[] startButtons;
 
+    private String string_startGame = "Rozpocznij grę";
+    private String string_gameRules = "Zasady gry";
+    private String string_settings = "Ustawienia";
+    private String string_about = "O autorze";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,10 +122,10 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void addTextToFields() {
-        startGame.setText("Rozpocznij grę");
-        gameRules.setText("Zasady gry");
-        settings.setText("Ustawienia");
-        about.setText("O autorze");
+        startGame.setText(string_startGame);
+        gameRules.setText(string_gameRules);
+        settings.setText(string_settings);
+        about.setText(string_about);
     }
 
     private void textHeightAndLocation() {
