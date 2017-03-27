@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -66,7 +65,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         fieldLocationFromTop();
         setButtonTextHeight();
         setButtonsMargins();
-        adjustFieldsSize();
+        setMarginToFirstButton();
         addTextToFields();
         textHeightAndLocation();
         addDesignToButtons();
@@ -112,16 +111,8 @@ public class FirstScreenActivity extends AppCompatActivity {
         designs.buttons_setMargins(startButtons, marginsTopBottom, marginsFromBorders);
     }
 
-    private void adjustFieldsSize() {
-
-
-        for(Button button: startButtons) {
-
-            ViewGroup.MarginLayoutParams params =
-                    (ViewGroup.MarginLayoutParams) startGame.getLayoutParams();
-            params.setMargins(marginsFromBorders, marginFromTop,
-                    marginsFromBorders, marginsTopBottom);
-        }
+    private void setMarginToFirstButton() {
+        designs.setMarginToOneButton(startGame, marginFromTop, marginsTopBottom, marginsFromBorders);
     }
 
     private void addTextToFields() {

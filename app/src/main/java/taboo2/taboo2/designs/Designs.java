@@ -84,7 +84,15 @@ public class Designs {
         buttons_setMargins(buttons, marginTopBottom, marginSide);
     }
 
-    //==================================
+    //================================== Add margin to only one button
+
+    public void setMarginToOneButton(Button button, int marginTop,
+                                     int marginBottom, int marginSide) {
+        ViewGroup.MarginLayoutParams params =
+                (ViewGroup.MarginLayoutParams) button.getLayoutParams();
+        params.setMargins(marginSide, marginTop,
+                marginSide, marginBottom);
+    }
 
     //==================================
 
