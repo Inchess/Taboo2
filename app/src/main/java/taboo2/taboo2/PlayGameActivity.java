@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import taboo2.taboo2.designs.Designs;
+
 public class PlayGameActivity extends AppCompatActivity {
 
     @Override
@@ -30,6 +31,7 @@ public class PlayGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_game);
         init();
         addDesignToButtons();
+        addMarginsToTextViews();
         createJSONObject();
         createJSONArray();
         addSearchedWord();
@@ -52,6 +54,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private int searchedWordNum;
     private String searchedWord;
     private Global global;
+    private Designs designs;
     private Button correctAnswer;
     private JSONObject obj;
     private JSONObject job;
@@ -81,15 +84,13 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         random = new Random();
+        designs = new Designs();
 
     }
 
     private void addDesignToButtons() {
 
         for(TextView textView: textViews) {
-            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) textView
-                    .getLayoutParams();
-            mlp.setMargins(20, 50, 20, 50);
             textView.setHeight(150);
             RoundRectShape rect = new RoundRectShape(
                     new float[] {10,10 , 10,10 , 10,10 , 10,10},
@@ -105,6 +106,10 @@ public class PlayGameActivity extends AppCompatActivity {
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100);
         }
+    }
+
+    public void addMarginsToTextViews() {
+        designs.views_setMargins(textViews, all_marginTop, all_marginSide);
     }
 
     public void createJSONObject() {
