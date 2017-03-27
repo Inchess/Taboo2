@@ -41,6 +41,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     private Designs designs;
     private Global global;
 
+    private int marginsFromBorders;
     private int marginFromTop;
     private int phoneHeight;
     private int phoneWidth;
@@ -64,6 +65,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         changeDpToPx();
         fieldLocationFromTop();
         setButtonTextHeight();
+        setButtonsMargins();
         adjustFieldsSize();
         addTextToFields();
         textHeightAndLocation();
@@ -95,6 +97,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         buttonsHeight = global.dpToPx(buttonsHeight);
         marginsTopBottom = global.dpToPx(marginsTopBottom);
         radius = global.dpToPx(radius);
+        marginsFromBorders = phoneWidth / paramMarginBorder;
     }
 
     private void fieldLocationFromTop() {
@@ -102,19 +105,18 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void setButtonTextHeight() {
-        designs.setButtonTextHeight(startButtons, buttonsHeight);
+        designs.buttons_textHeight(startButtons, buttonsHeight);
+    }
+
+    private void setButtonsMargins() {
+        designs.buttons_setMargins(startButtons, marginsTopBottom, marginsFromBorders);
     }
 
     private void adjustFieldsSize() {
 
-        int marginsFromBorders = phoneWidth / paramMarginBorder;
 
         for(Button button: startButtons) {
-            // field width = phone width - margins
-            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) button
-                    .getLayoutParams();
-            mlp.setMargins(marginsFromBorders, marginsTopBottom,
-                    marginsFromBorders, marginsTopBottom);
+
             ViewGroup.MarginLayoutParams params =
                     (ViewGroup.MarginLayoutParams) startGame.getLayoutParams();
             params.setMargins(marginsFromBorders, marginFromTop,
@@ -130,11 +132,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void textHeightAndLocation() {
-        designs.textHeightAndLocation(startButtons, textHeight);
+        designs.buttons_textHeightAndLocation(startButtons, textHeight);
     }
 
     private void addDesignToButtons() {
-        designs.addColorToButtons(startButtons, buttonsColor, radius);
+        designs.buttons_addColor(startButtons, buttonsColor, radius);
     }
 
     public void startGame(View view) {
