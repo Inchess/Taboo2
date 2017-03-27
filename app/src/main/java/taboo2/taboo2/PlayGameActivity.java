@@ -1,24 +1,20 @@
 package taboo2.taboo2;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,10 +37,18 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     /* ==========================================
-    ------------------VARIABLES------------------
+    --------------HARDCODE VARIABLES-------------
     ========================================== */
 
     private int buttonsColor = Color.rgb(120, 120, 120);
+    private int all_marginTop = 20;
+    private int all_marginBottom = 30;
+    private int all_marginSide = 50;
+
+    /* ==========================================
+    ------------------VARIABLES------------------
+    ========================================== */
+
     private int searchedWordNum;
     private String searchedWord;
     private Global global;
