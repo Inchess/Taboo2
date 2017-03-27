@@ -56,4 +56,14 @@ public class Designs {
 
     //==================================
 
+    public void setButtonTextHeight(List<Button> buttons, int textHeight) {
+        for(Button button: buttons) {
+            button.setHeight(textHeight);
+        }
+    }
+    public void setButtonTextHeight(Button[] buttonsArray, int textHeight) {
+        List<Button> buttons = Arrays.asList(buttonsArray);
+        setButtonTextHeight(buttons, textHeight);
+    }
+
 }

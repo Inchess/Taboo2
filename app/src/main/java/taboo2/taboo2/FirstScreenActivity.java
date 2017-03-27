@@ -63,6 +63,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         init();
         changeDpToPx();
         fieldLocationFromTop();
+        setButtonTextHeight();
         adjustFieldsSize();
         addTextToFields();
         textHeightAndLocation();
@@ -97,8 +98,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void fieldLocationFromTop() {
-        int totalButtonHeights = startButtons.length*2*marginsTopBottom;
         marginFromTop = marginParameter;
+    }
+
+    private void setButtonTextHeight() {
+        designs.setButtonTextHeight(startButtons, buttonsHeight);
     }
 
     private void adjustFieldsSize() {
@@ -106,9 +110,6 @@ public class FirstScreenActivity extends AppCompatActivity {
         int marginsFromBorders = phoneWidth / paramMarginBorder;
 
         for(Button button: startButtons) {
-            // text height
-
-            button.setHeight(buttonsHeight);
             // field width = phone width - margins
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) button
                     .getLayoutParams();
