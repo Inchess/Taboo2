@@ -2,6 +2,8 @@ package taboo2.taboo2.designs;
 
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.widget.Button;
 
 import java.util.Arrays;
@@ -14,7 +16,6 @@ import java.util.List;
 public class Designs {
 
     public void addColorToButtons(List<Button> buttons, int color, int radius) {
-
         for(Button button: buttons) {
             RoundRectShape rect = new RoundRectShape(
                     new float[] {radius,radius, radius,radius, radius,radius, radius,radius},
@@ -39,5 +40,20 @@ public class Designs {
     public void addColorToButtons(Button[] buttonsArray, int color) {
         addColorToButtons(buttonsArray, color, 0);
     }
+
+    //==================================
+
+    public void textHeightAndLocation(List<Button> buttons, int height) {
+        for(Button button: buttons) {
+            button.setGravity(Gravity.CENTER);
+            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
+        }
+    }
+    public void textHeightAndLocation(Button[] buttonsArray, int height) {
+        List<Button> buttons = Arrays.asList(buttonsArray);
+        textHeightAndLocation(buttons, height);
+    }
+
+    //==================================
 
 }

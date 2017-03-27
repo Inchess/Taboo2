@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -104,8 +102,7 @@ public class FirstScreenActivity extends AppCompatActivity {
 
         for(Button button: startButtons) {
             // text height
-            button.setMinimumHeight(0);
-            button.setMinHeight(0);
+
             button.setHeight(buttonsHeight);
             // field width = phone width - margins
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) button
@@ -127,10 +124,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void textHeightAndLocation() {
-        for(Button button: startButtons) {
-            button.setGravity(Gravity.CENTER);
-            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, textHeight);
-        }
+        designs.textHeightAndLocation(startButtons, textHeight);
     }
 
     private void addDesignToButtons() {
