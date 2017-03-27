@@ -104,7 +104,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void setButtonTextHeight() {
-        designs.buttons_textHeight(startButtons, buttonsHeight);
+        designs.textViews_textHeight(startButtons, buttonsHeight);
     }
 
     private void setButtonsMargins() {

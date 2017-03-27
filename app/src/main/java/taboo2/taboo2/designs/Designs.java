@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,16 +59,16 @@ public class Designs {
         buttons_textHeightAndLocation(buttons, height);
     }
 
-    //================================== Set buttons text height
+    //================================== Set textViews text height
 
-    public void buttons_textHeight(List<Button> buttons, int textHeight) {
-        for(Button button: buttons) {
-            button.setHeight(textHeight);
+    public void textViews_textHeight(List<TextView> textViews, int textHeight) {
+        for(TextView textView: textViews) {
+            textView.setHeight(textHeight);
         }
     }
-    public void buttons_textHeight(Button[] buttonsArray, int textHeight) {
-        List<Button> buttons = Arrays.asList(buttonsArray);
-        buttons_textHeight(buttons, textHeight);
+    public void textViews_textHeight(TextView[] textViewsArray, int textHeight) {
+        List<TextView> textViews = Arrays.asList(textViewsArray);
+        textViews_textHeight(textViews, textHeight);
     }
 
     //================================== Add margins to views
