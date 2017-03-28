@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import taboo2.taboo2.designs.Designs;
+import taboo2.taboo2.phone_params.Global;
 
 public class FirstScreenActivity extends AppCompatActivity {
 

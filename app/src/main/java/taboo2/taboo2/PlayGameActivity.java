@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 import taboo2.taboo2.designs.Designs;
+import taboo2.taboo2.phone_params.Global;
 
 public class PlayGameActivity extends AppCompatActivity {
 
