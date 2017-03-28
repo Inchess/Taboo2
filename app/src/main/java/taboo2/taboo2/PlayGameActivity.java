@@ -3,8 +3,6 @@ package taboo2.taboo2;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,7 +26,7 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
         init();
-        addDesignToButtons();
+        addTextHeightAndLocationToTextViews();
         addMarginsToTextViews();
         addColorAndRadius();
         setTextHeight();
@@ -47,7 +45,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private int all_marginBottom = 30;
     private int all_marginSide = 50;
     private int radius = 10;
-    private int textHeight = 150;
+    private int fieldHeight = 150;
+    private int textHeight = 80;
 
     /* ==========================================
     ------------------VARIABLES------------------
@@ -90,12 +89,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
     }
 
-    private void addDesignToButtons() {
-
-        for(TextView textView: textViews) {
-            textView.setGravity(Gravity.CENTER);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100);
-        }
+    private void addTextHeightAndLocationToTextViews() {
+        designs.views_textHeightAndLocation(textViews, textHeight);
     }
 
     public void addMarginsToTextViews() {
@@ -107,7 +102,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void setTextHeight() {
-        designs.textViews_textHeight(textViews, textHeight);
+        designs.textViews_textHeight(textViews, fieldHeight);
     }
 
     public void createJSONObject() {

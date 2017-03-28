@@ -6,7 +6,6 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -46,17 +45,17 @@ public class Designs {
         views_addColorAndRadius(viewsArray, color, 0);
     }
 
-    //================================== Add text height and location to buttons
+    //================================== Add text height and location to textViews
 
-    public void buttons_textHeightAndLocation(List<Button> buttons, int height) {
-        for(Button button: buttons) {
-            button.setGravity(Gravity.CENTER);
-            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
+    public void views_textHeightAndLocation(List<TextView> views, int height) {
+        for(TextView view: views) {
+            view.setGravity(Gravity.CENTER);
+            view.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
         }
     }
-    public void buttons_textHeightAndLocation(Button[] buttonsArray, int height) {
-        List<Button> buttons = Arrays.asList(buttonsArray);
-        buttons_textHeightAndLocation(buttons, height);
+    public void views_textHeightAndLocation(TextView[] viewsArray, int height) {
+        List<TextView> views = Arrays.asList(viewsArray);
+        views_textHeightAndLocation(views, height);
     }
 
     //================================== Set textViews text height

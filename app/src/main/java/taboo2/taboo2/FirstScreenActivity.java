@@ -123,7 +123,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void textHeightAndLocation() {
-        designs.buttons_textHeightAndLocation(startButtons, textHeight);
+        designs.views_textHeightAndLocation(startButtons, textHeight);
     }
 
     private void addDesignToButtons() {
