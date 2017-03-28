@@ -1,5 +1,6 @@
 package taboo2.taboo2.activities;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import java.util.Random;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
+import taboo2.taboo2.json_methods.JSONMethods;
 import taboo2.taboo2.phone_params.Global;
 
 public class PlayGameActivity extends AppCompatActivity {
@@ -32,9 +34,6 @@ public class PlayGameActivity extends AppCompatActivity {
         addMarginsToTextViews();
         addColorAndRadius();
         setTextHeight();
-        createJSONObject();
-        createJSONArray();
-        addSearchedWord();
         addTextToFields();
     }
 
@@ -59,8 +58,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private Global global;
     private Designs designs;
     private Button correctAnswer;
-    private JSONObject obj;
-    private JSONObject job;
+    private JSONMethods jsonMethods;
     private Random random;
     private TextView searchingWord;
     private TextView word1;
@@ -69,8 +67,6 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView word4;
     private TextView word5;
     private TextView[] textViews;
-    private String fileName = "Noc.json";
-    private static JSONArray ar;
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -88,6 +84,8 @@ public class PlayGameActivity extends AppCompatActivity {
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         random = new Random();
         designs = new Designs();
+        jsonMethods = new JSONMethods(this);
+        correctAnswer.setText("OK");
 
     }
 
@@ -107,73 +105,12 @@ public class PlayGameActivity extends AppCompatActivity {
         designs.textViews_textHeight(textViews, fieldHeight);
     }
 
-    public void createJSONObject() {
-        try {
-            obj = new JSONObject(loadJSONFromAsset());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void createJSONArray() {
-        try {
-            ar = obj.getJSONArray("Taboo");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open(fileName);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    public void addSearchedWord() {
-        int numOfSearcherWords = ar.length();
-        searchedWordNum = random.nextInt(numOfSearcherWords);
-        try {
-            job = ar.getJSONObject(searchedWordNum);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        searchedWord = job.keys().next();
+    public void nextWord(View view) {
+        super.recreate();
     }
 
     public void addTextToFields() {
-        try {
-            JSONObject jsonSearchedWord = job.getJSONObject(searchedWord);
-            int numOfForbiddenWords = jsonSearchedWord.length();
-            List<Integer> usedWords = new ArrayList<Integer>();
-            for(TextView field: textViews) {
-                int random;
-                do {
-                    random = (int) (Math.random() * numOfForbiddenWords) + 1;
-                } while (usedWords.contains(random));
-                usedWords.add(random);
-                String forbiddenWordNum = "word" + random;
-                field.setText(jsonSearchedWord.getString(forbiddenWordNum));
-            }
-            searchingWord.setText(searchedWord);
-            correctAnswer.setText("OK");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void nextWord(View view) {
-        super.recreate();
+        jsonMethods.addTextToFields(searchingWord, textViews);
     }
 
 }
