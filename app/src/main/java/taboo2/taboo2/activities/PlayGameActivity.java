@@ -1,4 +1,4 @@
-package taboo2.taboo2;
+package taboo2.taboo2.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.phone_params.Global;
 

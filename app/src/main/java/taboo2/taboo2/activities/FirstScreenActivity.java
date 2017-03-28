@@ -1,4 +1,4 @@
-package taboo2.taboo2;
+package taboo2.taboo2.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.phone_params.Global;
 
