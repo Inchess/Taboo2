@@ -6,7 +6,6 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +29,8 @@ public class JSONMethods {
     private JSONObject obj;
     private JSONObject searchedWordArray;
     private Random random;
-    private String fileName = "Noc.json";
+    private final String fileName = "Noc.json";
+    private final String arrayName = "Taboo";
     private static JSONArray jsonArray;
 
     public JSONMethods(Context context) {
@@ -44,8 +44,10 @@ public class JSONMethods {
 
     public void init() {
         random = new Random();
-        createJSONObject();
-        createJSONArray();
+        if(obj == null) {
+            createJSONObject();
+            createJSONArray();
+        }
         addSearchedWord();
     }
 
@@ -60,7 +62,7 @@ public class JSONMethods {
 
     public void createJSONArray() {
         try {
-            jsonArray = obj.getJSONArray("Taboo");
+            jsonArray = obj.getJSONArray(arrayName);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -78,7 +80,7 @@ public class JSONMethods {
     }
 
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try {
             int size = inputStream.available();
             byte[] buffer = new byte[size];

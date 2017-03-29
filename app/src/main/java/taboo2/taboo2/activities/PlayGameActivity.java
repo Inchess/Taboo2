@@ -1,6 +1,5 @@
 package taboo2.taboo2.activities;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,14 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import taboo2.taboo2.R;
@@ -105,12 +96,12 @@ public class PlayGameActivity extends AppCompatActivity {
         designs.textViews_textHeight(textViews, fieldHeight);
     }
 
-    public void nextWord(View view) {
-        super.recreate();
-    }
-
     public void addTextToFields() {
         jsonMethods.addTextToFields(searchingWord, textViews);
+    }
+
+    public void nextWord(View view) {
+        super.recreate();
     }
 
 }
