@@ -31,9 +31,10 @@ public class JSONMethods {
     private JSONObject searchedWordArray;
     private Random random;
     private static InputStream inputStream;;
-    private final String fileName = "Noc.json";
-    private final String arrayName = "Taboo";
+    private String fileName = "Noc.json";
+    private String arrayName = "Taboo_Easy";
     private static JSONArray jsonArray;
+    private static List<Integer> searchedWordsIndexes;
 
     public JSONMethods(Context context) {
         try {
@@ -47,6 +48,7 @@ public class JSONMethods {
     public void init() {
         random = new Random();
         if(jsonArray == null) {
+            searchedWordsIndexes = new ArrayList<Integer>();
             createJSONObject();
             createJSONArray();
         }
@@ -72,7 +74,10 @@ public class JSONMethods {
 
     public void addSearchedWord() {
         int numOfKeyWords = jsonArray.length();
-        searchedWordNum = random.nextInt(numOfKeyWords);
+        do {
+            searchedWordNum = random.nextInt(numOfKeyWords);
+        } while(checkIfWordWasSearched(searchedWordNum));
+        searchedWordsIndexes.add(searchedWordNum);
         try {
             searchedWordArray = jsonArray.getJSONObject(searchedWordNum);
         } catch (JSONException e) {
@@ -110,10 +115,17 @@ public class JSONMethods {
                 String forbiddenWordNum = "word" + random;
                 field.setText(jsonSearchedWord.getString(forbiddenWordNum));
             }
-            Log.i("", String.valueOf(usedWords));
             searchedWordView.setText(searchedWord);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
+    public boolean checkIfWordWasSearched(int randomNumber) {
+        if(searchedWordsIndexes.contains(randomNumber)) {
+            return true;
+        }
+        return false;
+    }
+
 }
