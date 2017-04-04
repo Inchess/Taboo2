@@ -27,10 +27,10 @@ public class JSONMethods {
 
     private int searchedWordNum;
     private String searchedWord;
-    private InputStream inputStream;
     private JSONObject obj;
     private JSONObject searchedWordArray;
     private Random random;
+    private static InputStream inputStream;;
     private final String fileName = "Noc.json";
     private final String arrayName = "Taboo";
     private static JSONArray jsonArray;
