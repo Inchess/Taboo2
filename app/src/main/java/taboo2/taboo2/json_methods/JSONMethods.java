@@ -126,6 +126,12 @@ public class JSONMethods {
             return true;
         }
         return false;
+
+        /*
+        Dodać opcję, że jeśli wykorzysta się wszystkie słowa to
+        pojawi się informacja że słowa zostały zresetowane
+        i będą wyświetlane od nowa
+         */
     }
 
 }
