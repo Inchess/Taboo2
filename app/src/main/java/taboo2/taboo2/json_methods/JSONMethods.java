@@ -1,6 +1,7 @@
 package taboo2.taboo2.json_methods;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -10,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -44,7 +46,7 @@ public class JSONMethods {
 
     public void init() {
         random = new Random();
-        if(obj == null) {
+        if(jsonArray == null) {
             createJSONObject();
             createJSONArray();
         }
@@ -108,6 +110,7 @@ public class JSONMethods {
                 String forbiddenWordNum = "word" + random;
                 field.setText(jsonSearchedWord.getString(forbiddenWordNum));
             }
+            Log.i("", String.valueOf(usedWords));
             searchedWordView.setText(searchedWord);
         } catch (JSONException e) {
             e.printStackTrace();

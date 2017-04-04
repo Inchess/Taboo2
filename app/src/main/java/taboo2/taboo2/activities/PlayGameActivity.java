@@ -49,7 +49,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private Global global;
     private Designs designs;
     private Button correctAnswer;
-    private JSONMethods jsonMethods;
+    private static JSONMethods jsonMethods;
     private Random random;
     private TextView searchingWord;
     private TextView word1;
