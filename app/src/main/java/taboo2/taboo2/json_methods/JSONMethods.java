@@ -1,7 +1,6 @@
 package taboo2.taboo2.json_methods;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -11,7 +10,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -25,16 +23,16 @@ public class JSONMethods {
     ------------------VARIABLES------------------
     ========================================== */
 
-    private int searchedWordNum;
-    private String searchedWord;
+    private int wordToGuessIndex;
+    private String wordToGuess;
     private JSONObject obj;
-    private JSONObject searchedWordArray;
+    private JSONObject arrayWithSearchedWord;
     private Random random;
     private static InputStream inputStream;;
     private String fileName = "Noc.json";
     private String arrayName = "Taboo_Easy";
-    private static JSONArray jsonArray;
-    private static List<Integer> searchedWordsIndexes;
+    private static JSONArray arrayWithAllWordsToGuess;
+    private static List<Integer> usedWordsToGuessIndexes;
 
     public JSONMethods(Context context) {
         try {
@@ -47,12 +45,12 @@ public class JSONMethods {
 
     public void init() {
         random = new Random();
-        if(jsonArray == null) {
-            searchedWordsIndexes = new ArrayList<Integer>();
+        if(arrayWithAllWordsToGuess == null) {
+            usedWordsToGuessIndexes = new ArrayList<Integer>();
             createJSONObject();
-            createJSONArray();
+            createArrayWithAllWordsToGuess();
         }
-        addSearchedWord();
+        initWordToGuess();
     }
 
     public void createJSONObject() {
@@ -64,26 +62,26 @@ public class JSONMethods {
 
     }
 
-    public void createJSONArray() {
+    public void createArrayWithAllWordsToGuess() {
         try {
-            jsonArray = obj.getJSONArray(arrayName);
+            arrayWithAllWordsToGuess = obj.getJSONArray(arrayName);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void addSearchedWord() {
-        int numOfKeyWords = jsonArray.length();
+    public void initWordToGuess() {
+        int numOfKeyWords = arrayWithAllWordsToGuess.length();
         do {
-            searchedWordNum = random.nextInt(numOfKeyWords);
-        } while(checkIfWordWasSearched(searchedWordNum));
-        searchedWordsIndexes.add(searchedWordNum);
+            wordToGuessIndex = random.nextInt(numOfKeyWords);
+        } while(checkIfWordWasSearched(wordToGuessIndex));
+        usedWordsToGuessIndexes.add(wordToGuessIndex);
         try {
-            searchedWordArray = jsonArray.getJSONObject(searchedWordNum);
+            arrayWithSearchedWord = arrayWithAllWordsToGuess.getJSONObject(wordToGuessIndex);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        searchedWord = searchedWordArray.keys().next();
+        wordToGuess = arrayWithSearchedWord.keys().next();
     }
 
     public String loadJSONFromAsset() {
@@ -103,9 +101,14 @@ public class JSONMethods {
 
     public void addTextToFields(TextView searchedWordView, TextView[] forbiddenWords) {
         try {
-            JSONObject jsonSearchedWord = searchedWordArray.getJSONObject(searchedWord);
+            JSONObject jsonSearchedWord = arrayWithSearchedWord.getJSONObject(wordToGuess);
             int numOfForbiddenWords = jsonSearchedWord.length();
             List<Integer> usedWords = new ArrayList<Integer>();
+            List<String> listOfKeys = new ArrayList<String>();
+            for(int i = 0; i < numOfForbiddenWords; i++) {
+                listOfKeys.add(arrayWithSearchedWord.keys().next());
+                int b = listOfKeys.size();
+            }
             for(TextView field: forbiddenWords) {
                 int random;
                 do {
@@ -115,14 +118,14 @@ public class JSONMethods {
                 String forbiddenWordNum = "word" + random;
                 field.setText(jsonSearchedWord.getString(forbiddenWordNum));
             }
-            searchedWordView.setText(searchedWord);
+            searchedWordView.setText(wordToGuess);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public boolean checkIfWordWasSearched(int randomNumber) {
-        if(searchedWordsIndexes.contains(randomNumber)) {
+        if(usedWordsToGuessIndexes.contains(randomNumber)) {
             return true;
         }
         return false;
