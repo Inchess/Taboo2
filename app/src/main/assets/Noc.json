@@ -47,7 +47,7 @@
       "AAA": {
         "word1": "BBB",
         "word2": "CC",
-        "word3": "D",
+        "REQ_word3": "D",
         "word4": "a",
         "word5": "EEE",
         "word6": "assagfasga"

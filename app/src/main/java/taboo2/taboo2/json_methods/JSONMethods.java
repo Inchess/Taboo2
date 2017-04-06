@@ -1,6 +1,7 @@
 package taboo2.taboo2.json_methods;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -10,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -106,6 +108,17 @@ public class JSONMethods {
             int numOfForbiddenWords = jsonWithForbiddenWords.length();
             List<Integer> forbiddenWordsAlreadyUsed = new ArrayList<Integer>();
             List<String> listOfKeysToForbiddenWords = new ArrayList<String>();
+            Iterator<?> keys = jsonWithForbiddenWords.keys();
+            List<String> aaaa = new ArrayList<>();
+
+            while( keys.hasNext() ) {
+                String key = (String)keys.next();
+                aaaa.add(key);
+                Log.i("", aaaa.toString());
+                if ( jsonWithForbiddenWords.get(key) instanceof JSONObject ) {
+
+                }
+            }
             for(int i = 0; i < numOfForbiddenWords; i++) {
                 listOfKeysToForbiddenWords.add(arrayWithWordToGuess.keys().next());
                 int b = listOfKeysToForbiddenWords.size();
