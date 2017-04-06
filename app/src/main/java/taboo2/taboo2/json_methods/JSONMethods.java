@@ -101,11 +101,22 @@ public class JSONMethods {
         return json;
     }
 
+    public void generateArrayWithKeyToForbiddenWords(TextView[] textViewsForForbiddenWords) {
+        int numOfTextViewForForbiddenWords = textViewsForForbiddenWords.length;
+        JSONObject jsonWithForbiddenWords = null;
+        try {
+            jsonWithForbiddenWords = arrayWithWordToGuess.getJSONObject(wordToGuess);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        int numOfForbiddenWords = jsonWithForbiddenWords.length();
+        Iterator<?> keys = jsonWi
+    }
+
     public void addTextToFields(TextView textViewForWordToGuess,
                                 TextView[] textViewsForForbiddenWords) {
         try {
             JSONObject jsonWithForbiddenWords = arrayWithWordToGuess.getJSONObject(wordToGuess);
-            int numOfForbiddenWords = jsonWithForbiddenWords.length();
             List<Integer> forbiddenWordsAlreadyUsed = new ArrayList<Integer>();
             List<String> listOfKeysToForbiddenWords = new ArrayList<String>();
             Iterator<?> keys = jsonWithForbiddenWords.keys();
@@ -132,7 +143,7 @@ public class JSONMethods {
                 String forbiddenWordNum = "word" + random;
                 field.setText(jsonWithForbiddenWords.getString(forbiddenWordNum));
             }
-            textViewForWordToGuess.setText(wordToGuess);
+            textViewForWordToGuess.setText(aaaa.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
