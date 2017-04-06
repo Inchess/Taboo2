@@ -25,7 +25,8 @@ public class PlayGameActivity extends AppCompatActivity {
         addMarginsToTextViews();
         addColorAndRadius();
         setTextHeight();
-        addTextToFields();
+        createListWithKeys();
+        //addTextToFields();
     }
 
     /* ==========================================
@@ -80,6 +81,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
     }
 
+    public void createListWithKeys() {
+        jsonMethods.createListWithKeys(textViews);
+    }
+
     private void addTextHeightAndLocationToTextViews() {
         designs.views_textHeightAndLocation(textViews, textHeight);
     }
@@ -96,9 +101,9 @@ public class PlayGameActivity extends AppCompatActivity {
         designs.textViews_textHeight(textViews, fieldHeight);
     }
 
-    public void addTextToFields() {
+/*    public void addTextToFields() {
         jsonMethods.addTextToFields(searchingWord, textViews);
-    }
+    }*/
 
     public void nextWord(View view) {
         super.recreate();

@@ -2,9 +2,9 @@
   "Taboo_Easy": [
     {
       "Noc": {
-        "REQ_word1": "Ciemność",
-        "REQ_word2": "Księżyc",
-        "REQ_word3": "Dzień",
+        "REQ_word1": "--Ciemność",
+        "REQ_word2": "--Księżyc",
+        "REQ_word3": "--Dzień",
         "word4": "Spać",
         "word5": "Słońce",
         "word6": "Łóżko",
@@ -14,17 +14,17 @@
     {
       "Dzień": {
         "word1": "A",
-        "REQ_word2": "B",
-        "REQ_word3": "C",
+        "REQ_word2": "--B",
+        "REQ_word3": "--C",
         "word4": "D",
         "word5": "E",
-        "REQ_word6": "F",
+        "REQ_word6": "--F",
         "word7": "G"
       }
     },
     {
       "Imiona": {
-        "REQ_word1": "Kasia",
+        "REQ_word1": "--Kasia",
         "word2": "Tomek",
         "word3": "Ania",
         "word4": "Maciek",
@@ -37,8 +37,8 @@
       "Praca": {
         "word1": "Ciężka",
         "word2": "Przyjemna",
-        "REQ_word3": "Codziennie",
-        "REQ_word4": "Robota",
+        "REQ_word3": "--Codziennie",
+        "REQ_word4": "--Robota",
         "word5": "Harówka",
         "word6": "Zapieprz"
       }
@@ -47,7 +47,7 @@
       "AAA": {
         "word1": "BBB",
         "word2": "CC",
-        "REQ_word3": "D",
+        "REQ_word3": "--D",
         "word4": "a",
         "word5": "EEE",
         "word6": "assagfasga"
@@ -57,8 +57,8 @@
       "Kubity": {
         "word1": "Janusz",
         "word2": "Bożena",
-        "REQ_word3": "Kasia",
-        "REQ_word4": "Tomek",
+        "REQ_word3": "--Kasia",
+        "REQ_word4": "--Tomek",
         "word5": "Bartek",
         "word6": "Kasia2"
       }
