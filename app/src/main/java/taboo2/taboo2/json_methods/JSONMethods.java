@@ -1,13 +1,11 @@
 package taboo2.taboo2.json_methods;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -160,6 +158,10 @@ public class JSONMethods {
             textView.setText(some);
             //listWithForbiddenWords.remove(number);
         }
+    }
+
+    public void addWordToGuess(TextView textView) {
+        textView.setText(wordToGuess);
     }
 
 /*    public void generateArrayWithKeyToForbiddenWords(TextView[] textViewsForForbiddenWords) {

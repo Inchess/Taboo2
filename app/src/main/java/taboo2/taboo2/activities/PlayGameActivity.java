@@ -26,6 +26,7 @@ public class PlayGameActivity extends AppCompatActivity {
         addColorAndRadius();
         setTextHeight();
         createListWithKeys();
+        addWordToGuess();
         //addTextToFields();
     }
 
@@ -79,6 +80,10 @@ public class PlayGameActivity extends AppCompatActivity {
         jsonMethods = new JSONMethods(this);
         correctAnswer.setText("OK");
 
+    }
+
+    public void addWordToGuess() {
+        jsonMethods.addWordToGuess(searchingWord);
     }
 
     public void createListWithKeys() {
