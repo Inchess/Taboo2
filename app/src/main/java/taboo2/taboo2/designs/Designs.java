@@ -11,9 +11,6 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by tomaszkubit on 27/03/2017.
- */
 
 public class Designs {
 

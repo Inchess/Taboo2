@@ -1,13 +1,11 @@
 package taboo2.taboo2.json_methods;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,9 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by y50-70 on 28.03.2017.
- */
 
 public class JSONMethods {
 
@@ -134,7 +129,7 @@ public class JSONMethods {
         int numOfTextViews = textViews.length;
         int numOfTextViewsLeft = numOfTextViews - listWithWordsToPlay.size();
         for(int i = 0; i < numOfTextViewsLeft; i++) {
-            int number = -1;
+            int number;
             do {
                 number = (int)(Math.random()*listOfKeys.size());
             } while(listWithWordsToPlay.contains(listOfKeys.get(number)));
@@ -158,57 +153,8 @@ public class JSONMethods {
                 e.printStackTrace();
             }
             textView.setText(some);
-            //listWithForbiddenWords.remove(number);
         }
     }
-
-/*    public void generateArrayWithKeyToForbiddenWords(TextView[] textViewsForForbiddenWords) {
-        int numOfTextViewForForbiddenWords = textViewsForForbiddenWords.length;
-        JSONObject jsonWithForbiddenWords = null;
-        try {
-            jsonWithForbiddenWords = arrayWithWordToGuess.getJSONObject(wordToGuess);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        int numOfForbiddenWords = jsonWithForbiddenWords.length();
-        Iterator<?> keys = jsonWi
-    }
-
-    public void addTextToFields(TextView textViewForWordToGuess,
-                                TextView[] textViewsForForbiddenWords) {
-        try {
-            JSONObject jsonWithForbiddenWords = arrayWithWordToGuess.getJSONObject(wordToGuess);
-            List<Integer> forbiddenWordsAlreadyUsed = new ArrayList<Integer>();
-            List<String> listOfKeysToForbiddenWords = new ArrayList<String>();
-            Iterator<?> keys = jsonWithForbiddenWords.keys();
-            List<String> aaaa = new ArrayList<>();
-
-            while( keys.hasNext() ) {
-                String key = (String)keys.next();
-                aaaa.add(key);
-                Log.i("", aaaa.toString());
-                if ( jsonWithForbiddenWords.get(key) instanceof JSONObject ) {
-
-                }
-            }
-            for(int i = 0; i < numOfForbiddenWords; i++) {
-                listOfKeysToForbiddenWords.add(arrayWithWordToGuess.keys().next());
-                int b = listOfKeysToForbiddenWords.size();
-            }
-            for(TextView field: textViewsForForbiddenWords) {
-                int random;
-                do {
-                    random = (int) (Math.random() * numOfForbiddenWords) + 1;
-                } while (forbiddenWordsAlreadyUsed.contains(random));
-                forbiddenWordsAlreadyUsed.add(random);
-                String forbiddenWordNum = "word" + random;
-                field.setText(jsonWithForbiddenWords.getString(forbiddenWordNum));
-            }
-            textViewForWordToGuess.setText(aaaa.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     public boolean checkIfWordWasAlreadySearched(int randomNumber) {
         if(indexes_usedWordsToGuess.contains(randomNumber)) {

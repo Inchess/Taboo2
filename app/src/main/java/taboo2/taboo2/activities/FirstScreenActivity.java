@@ -92,12 +92,12 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void changeDpToPx() {
-        paramMarginBorder = global.dpToPx(paramMarginBorder);
-        textHeight = global.dpToPx(textHeight);
-        marginParameter = global.dpToPx(marginParameter);
-        buttonsHeight = global.dpToPx(buttonsHeight);
-        marginsTopBottom = global.dpToPx(marginsTopBottom);
-        radius = global.dpToPx(radius);
+        paramMarginBorder = Global.dpToPx(paramMarginBorder);
+        textHeight = Global.dpToPx(textHeight);
+        marginParameter = Global.dpToPx(marginParameter);
+        buttonsHeight = Global.dpToPx(buttonsHeight);
+        marginsTopBottom = Global.dpToPx(marginsTopBottom);
+        radius = Global.dpToPx(radius);
         marginsFromBorders = phoneWidth / paramMarginBorder;
     }
 

@@ -45,14 +45,10 @@ public class PlayGameActivity extends AppCompatActivity {
     ------------------VARIABLES------------------
     ========================================== */
 
-    private int searchedWordNum;
     private String searchedWord;
-    private Global global;
     private Designs designs;
     private Button correctAnswer;
     private static JSONMethods jsonMethods;
-    private Random random;
-    private TextView searchingWord;
     private TextView word1;
     private TextView word2;
     private TextView word3;
@@ -65,8 +61,6 @@ public class PlayGameActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        global = new Global();
-        searchingWord = (TextView) findViewById(R.id.searchingWord);
         word1 = (TextView) findViewById(R.id.word1);
         word2 = (TextView) findViewById(R.id.word2);
         word3 = (TextView) findViewById(R.id.word3);
@@ -74,7 +68,6 @@ public class PlayGameActivity extends AppCompatActivity {
         word5 = (TextView) findViewById(R.id.word5);
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
-        random = new Random();
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         correctAnswer.setText("OK");
@@ -100,10 +93,6 @@ public class PlayGameActivity extends AppCompatActivity {
     public void setTextHeight() {
         designs.textViews_textHeight(textViews, fieldHeight);
     }
-
-/*    public void addTextToFields() {
-        jsonMethods.addTextToFields(searchingWord, textViews);
-    }*/
 
     public void nextWord(View view) {
         super.recreate();
