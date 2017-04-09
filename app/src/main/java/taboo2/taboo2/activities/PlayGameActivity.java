@@ -75,6 +75,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addForbiddenWords() {
+        jsonMethods.initWordToGuess();
         jsonMethods.createJSONWithForbiddenWords();
         jsonMethods.createListWithKeysToForbiddenWords();
         jsonMethods.addRequiredWords();

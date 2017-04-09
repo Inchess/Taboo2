@@ -25,7 +25,7 @@ public class JSONMethods {
     private JSONObject wholeJSON;
     private JSONObject array_wordToGuess;
     private Random random;
-    private static InputStream inputStream;;
+    private static InputStream inputStream;
     private String fileName = "Noc.json";
     private String arrayName = "Taboo_Easy";
     private static JSONArray array_AllWordsToGuess;
@@ -34,7 +34,7 @@ public class JSONMethods {
     private List<String> list_notRequiredWords;
     private List<String> list_keysToWordsToTextViews;
     private List<String> list_wordsToTextViews;
-    JSONObject jsonWithForbiddenWords = null;
+    private JSONObject json_ForbiddenWords = null;
 
     public JSONMethods(Context context) {
         try {
@@ -45,17 +45,16 @@ public class JSONMethods {
         init();
     }
 
-    public void init() {
+    private void init() {
         random = new Random();
         if(array_AllWordsToGuess == null) {
-            indexes_usedWordsToGuess = new ArrayList<Integer>();
+            indexes_usedWordsToGuess = new ArrayList<>();
             createJSONObject();
             createArrayWithAllWordsToGuess();
         }
-        initWordToGuess();
     }
 
-    public void createJSONObject() {
+    private void createJSONObject() {
         try {
             wholeJSON = new JSONObject(convertJSONFileToObject());
         } catch (JSONException e) {
@@ -64,7 +63,7 @@ public class JSONMethods {
 
     }
 
-    public void createArrayWithAllWordsToGuess() {
+    private void createArrayWithAllWordsToGuess() {
         try {
             array_AllWordsToGuess = wholeJSON.getJSONArray(arrayName);
         } catch (JSONException e) {
@@ -87,7 +86,7 @@ public class JSONMethods {
         string_wordToGuess = array_wordToGuess.keys().next();
     }
 
-    public String convertJSONFileToObject() {
+    private String convertJSONFileToObject() {
         String json;
         try {
             int size = inputStream.available();
@@ -104,14 +103,14 @@ public class JSONMethods {
 
     public void createJSONWithForbiddenWords() {
         try {
-            jsonWithForbiddenWords = array_wordToGuess.getJSONObject(string_wordToGuess);
+            json_ForbiddenWords = array_wordToGuess.getJSONObject(string_wordToGuess);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public void createListWithKeysToForbiddenWords() {
-        Iterator<?> keys = jsonWithForbiddenWords.keys();
+        Iterator<?> keys = json_ForbiddenWords.keys();
         list_keysToForbiddenWords = new ArrayList<>();
         while( keys.hasNext() ) {
             String key = (String)keys.next();
@@ -149,7 +148,7 @@ public class JSONMethods {
         String forbiddenWord = null;
         for(String key: list_keysToWordsToTextViews) {
             try {
-                forbiddenWord = jsonWithForbiddenWords.getString(key);
+                forbiddenWord = json_ForbiddenWords.getString(key);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -187,4 +186,7 @@ public class JSONMethods {
          */
     }
 
+    /* ==========================================
+    -------------------SETTERS-------------------
+    ========================================== */
 }
