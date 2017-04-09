@@ -6,7 +6,6 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,19 +21,19 @@ public class JSONMethods {
     ------------------VARIABLES------------------
     ========================================== */
 
-    private int wordToGuessIndex;
-    private String wordToGuess;
-    private JSONObject obj;
-    private JSONObject arrayWithWordToGuess;
+    private String string_wordToGuess;
+    private JSONObject wholeJSON;
+    private JSONObject array_wordToGuess;
     private Random random;
     private static InputStream inputStream;;
     private String fileName = "Noc.json";
     private String arrayName = "Taboo_Easy";
-    private static JSONArray arrayWithAllWordsToGuess;
+    private static JSONArray array_AllWordsToGuess;
     private static List<Integer> indexes_usedWordsToGuess;
-    private List<String> listOfKeysToForbiddenWords;
-    private List<String> listOfKeys;
-    private List<String> listWithWordsToPlay;
+    private List<String> list_keysToForbiddenWords;
+    private List<String> list_notRequiredWords;
+    private List<String> list_keysToWordsToTextViews;
+    private List<String> list_wordsToTextViews;
     JSONObject jsonWithForbiddenWords = null;
 
     public JSONMethods(Context context) {
@@ -48,7 +47,7 @@ public class JSONMethods {
 
     public void init() {
         random = new Random();
-        if(arrayWithAllWordsToGuess == null) {
+        if(array_AllWordsToGuess == null) {
             indexes_usedWordsToGuess = new ArrayList<Integer>();
             createJSONObject();
             createArrayWithAllWordsToGuess();
@@ -58,7 +57,7 @@ public class JSONMethods {
 
     public void createJSONObject() {
         try {
-            obj = new JSONObject(convertJSONFileToObject());
+            wholeJSON = new JSONObject(convertJSONFileToObject());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -67,24 +66,25 @@ public class JSONMethods {
 
     public void createArrayWithAllWordsToGuess() {
         try {
-            arrayWithAllWordsToGuess = obj.getJSONArray(arrayName);
+            array_AllWordsToGuess = wholeJSON.getJSONArray(arrayName);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public void initWordToGuess() {
-        int numOfKeyWords = arrayWithAllWordsToGuess.length();
+        int index_wordToGuess;
+        int numOfWordsToGuess = array_AllWordsToGuess.length();
         do {
-            wordToGuessIndex = random.nextInt(numOfKeyWords);
-        } while(checkIfWordWasAlreadySearched(wordToGuessIndex));
-        indexes_usedWordsToGuess.add(wordToGuessIndex);
+            index_wordToGuess = random.nextInt(numOfWordsToGuess);
+        } while(checkIfWordWasAlreadySearched(index_wordToGuess));
+        indexes_usedWordsToGuess.add(index_wordToGuess);
         try {
-            arrayWithWordToGuess = arrayWithAllWordsToGuess.getJSONObject(wordToGuessIndex);
+            array_wordToGuess = array_AllWordsToGuess.getJSONObject(index_wordToGuess);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        wordToGuess = arrayWithWordToGuess.keys().next();
+        string_wordToGuess = array_wordToGuess.keys().next();
     }
 
     public String convertJSONFileToObject() {
@@ -104,67 +104,74 @@ public class JSONMethods {
 
     public void createJSONWithForbiddenWords() {
         try {
-            jsonWithForbiddenWords = arrayWithWordToGuess.getJSONObject(wordToGuess);
+            jsonWithForbiddenWords = array_wordToGuess.getJSONObject(string_wordToGuess);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void createListWithKeysToForbiddenWords(TextView[] textViews) {
+    public void createListWithKeysToForbiddenWords() {
         Iterator<?> keys = jsonWithForbiddenWords.keys();
-        listOfKeysToForbiddenWords = new ArrayList<>();
+        list_keysToForbiddenWords = new ArrayList<>();
         while( keys.hasNext() ) {
             String key = (String)keys.next();
-            listOfKeysToForbiddenWords.add(key);
+            list_keysToForbiddenWords.add(key);
         }
     }
 
     public void addRequiredWords() {
-        listOfKeys = new ArrayList<>();
-        int numOfForbiddenWords = listOfKeysToForbiddenWords.size();
-        listWithWordsToPlay = new ArrayList<>();
-        for(int i = 0; i < numOfForbiddenWords; i++) {
-            if(listOfKeysToForbiddenWords.get(i).contains("REQ")) {
-                listWithWordsToPlay.add(listOfKeysToForbiddenWords.get(i));
+        list_notRequiredWords = new ArrayList<>();
+        list_keysToWordsToTextViews = new ArrayList<>();
+        for(String key: list_keysToForbiddenWords) {
+            if(key.contains("REQ")) {
+                list_keysToWordsToTextViews.add(key);
             }
             else {
-                listOfKeys.add(listOfKeysToForbiddenWords.get(i));
+                list_notRequiredWords.add(key);
             }
         }
     }
 
     public void addRestofWords(TextView[] forbiddenWordstextViews) {
         int numOfTextViews = forbiddenWordstextViews.length;
-        int numOfTextViewsLeft = numOfTextViews - listWithWordsToPlay.size();
+        int numOfTextViewsLeft = numOfTextViews - list_keysToWordsToTextViews.size();
         for(int i = 0; i < numOfTextViewsLeft; i++) {
             int number;
             do {
-                number = (int)(Math.random()*listOfKeys.size());
-            } while(listWithWordsToPlay.contains(listOfKeys.get(number)));
-            listWithWordsToPlay.add(listOfKeys.get(number));
+                number = (int)(Math.random()* list_notRequiredWords.size());
+            } while(list_keysToWordsToTextViews.contains(list_notRequiredWords.get(number)));
+            list_keysToWordsToTextViews.add(list_notRequiredWords.get(number));
+        }
+    }
+
+    public void modifyKeysToForbiddenWords(){
+        list_wordsToTextViews = new ArrayList<>();
+        String forbiddenWord = null;
+        for(String key: list_keysToWordsToTextViews) {
+            try {
+                forbiddenWord = jsonWithForbiddenWords.getString(key);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            list_wordsToTextViews.add(forbiddenWord);
         }
     }
 
     public void addForbiddenWordsToFields(TextView[] textViews) {
-        List<Integer> a = new ArrayList<>();
+        List<Integer> indexesAlreadyUsed = new ArrayList<>();
         for(TextView textView: textViews) {
             int number;
             do {
                 number = (int) (Math.random() * textViews.length);
-            } while(a.contains(number));
-            a.add(number);
-            String some = null;
-            try {
-                some = jsonWithForbiddenWords.getString(listWithWordsToPlay.get(number));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            textView.setText(some);
+            } while(indexesAlreadyUsed.contains(number));
+            indexesAlreadyUsed.add(number);
+            String forbiddenWord = list_wordsToTextViews.get(number);
+            textView.setText(forbiddenWord);
         }
     }
 
     public void addWordToGuessToField(TextView wordToGuessTextView) {
-        wordToGuessTextView.setText(wordToGuess);
+        wordToGuessTextView.setText(string_wordToGuess);
     }
 
     public boolean checkIfWordWasAlreadySearched(int randomNumber) {
