@@ -7,12 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Random;
+import org.w3c.dom.Text;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.json_methods.JSONMethods;
-import taboo2.taboo2.phone_params.Global;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -25,8 +24,7 @@ public class PlayGameActivity extends AppCompatActivity {
         addMarginsToTextViews();
         addColorAndRadius();
         setTextHeight();
-        createListWithKeys();
-        //addTextToFields();
+        addForbiddenWords();
     }
 
     /* ==========================================
@@ -54,6 +52,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView word3;
     private TextView word4;
     private TextView word5;
+    private TextView wordToGuess;
     private TextView[] textViews;
 
     /* ==========================================
@@ -66,6 +65,7 @@ public class PlayGameActivity extends AppCompatActivity {
         word3 = (TextView) findViewById(R.id.word3);
         word4 = (TextView) findViewById(R.id.word4);
         word5 = (TextView) findViewById(R.id.word5);
+        wordToGuess = (TextView) findViewById(R.id.searchingWord) ;
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
@@ -74,8 +74,13 @@ public class PlayGameActivity extends AppCompatActivity {
 
     }
 
-    public void createListWithKeys() {
-        jsonMethods.createListWithKeys(textViews);
+    public void addForbiddenWords() {
+        jsonMethods.createJSONWithForbiddenWords();
+        jsonMethods.createListWithKeysToForbiddenWords(textViews);
+        jsonMethods.addRequiredWords();
+        jsonMethods.addRestofWords(textViews);
+        jsonMethods.addForbiddenWordsToFields(textViews);
+        jsonMethods.addWordToGuessToField(wordToGuess);
     }
 
     private void addTextHeightAndLocationToTextViews() {
