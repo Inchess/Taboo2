@@ -7,12 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Random;
-
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.json_methods.JSONMethods;
-import taboo2.taboo2.phone_params.Global;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -25,9 +22,7 @@ public class PlayGameActivity extends AppCompatActivity {
         addMarginsToTextViews();
         addColorAndRadius();
         setTextHeight();
-        createListWithKeys();
-        addWordToGuess();
-        //addTextToFields();
+        addForbiddenWords();
     }
 
     /* ==========================================
@@ -46,19 +41,16 @@ public class PlayGameActivity extends AppCompatActivity {
     ------------------VARIABLES------------------
     ========================================== */
 
-    private int searchedWordNum;
     private String searchedWord;
-    private Global global;
     private Designs designs;
     private Button correctAnswer;
     private static JSONMethods jsonMethods;
-    private Random random;
-    private TextView searchingWord;
     private TextView word1;
     private TextView word2;
     private TextView word3;
     private TextView word4;
     private TextView word5;
+    private TextView wordToGuess;
     private TextView[] textViews;
 
     /* ==========================================
@@ -66,28 +58,29 @@ public class PlayGameActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        global = new Global();
-        searchingWord = (TextView) findViewById(R.id.searchingWord);
         word1 = (TextView) findViewById(R.id.word1);
         word2 = (TextView) findViewById(R.id.word2);
         word3 = (TextView) findViewById(R.id.word3);
         word4 = (TextView) findViewById(R.id.word4);
         word5 = (TextView) findViewById(R.id.word5);
+        wordToGuess = (TextView) findViewById(R.id.searchingWord) ;
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
-        random = new Random();
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         correctAnswer.setText("OK");
 
     }
 
-    public void addWordToGuess() {
-        jsonMethods.addWordToGuess(searchingWord);
-    }
-
-    public void createListWithKeys() {
-        jsonMethods.createListWithKeys(textViews);
+    public void addForbiddenWords() {
+        jsonMethods.initWordToGuess();
+        jsonMethods.createJSONWithForbiddenWords();
+        jsonMethods.createListWithKeysToForbiddenWords();
+        jsonMethods.addRequiredWords();
+        jsonMethods.addRestofWords(textViews);
+        jsonMethods.modifyKeysToForbiddenWords();
+        jsonMethods.addForbiddenWordsToFields(textViews);
+        jsonMethods.addWordToGuessToField(wordToGuess);
     }
 
     private void addTextHeightAndLocationToTextViews() {
@@ -105,10 +98,6 @@ public class PlayGameActivity extends AppCompatActivity {
     public void setTextHeight() {
         designs.textViews_textHeight(textViews, fieldHeight);
     }
-
-/*    public void addTextToFields() {
-        jsonMethods.addTextToFields(searchingWord, textViews);
-    }*/
 
     public void nextWord(View view) {
         super.recreate();
