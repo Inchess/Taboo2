@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
-import taboo2.taboo2.phone_params.Global;
+import taboo2.taboo2.global.PhoneParams;
 
 public class FirstScreenActivity extends AppCompatActivity {
 
@@ -40,7 +40,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     ========================================== */
 
     private Designs designs;
-    private Global global;
+    private PhoneParams global;
 
     private int marginsFromBorders;
     private int marginFromTop;
@@ -79,7 +79,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        global = new Global();
+        global = new PhoneParams();
         designs = new Designs();
         phoneHeight = global.getPhoneHeight();
         phoneWidth = global.getPhoneWidth();
@@ -92,12 +92,12 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void changeDpToPx() {
-        paramMarginBorder = Global.dpToPx(paramMarginBorder);
-        textHeight = Global.dpToPx(textHeight);
-        marginParameter = Global.dpToPx(marginParameter);
-        buttonsHeight = Global.dpToPx(buttonsHeight);
-        marginsTopBottom = Global.dpToPx(marginsTopBottom);
-        radius = Global.dpToPx(radius);
+        paramMarginBorder = PhoneParams.dpToPx(paramMarginBorder);
+        textHeight = PhoneParams.dpToPx(textHeight);
+        marginParameter = PhoneParams.dpToPx(marginParameter);
+        buttonsHeight = PhoneParams.dpToPx(buttonsHeight);
+        marginsTopBottom = PhoneParams.dpToPx(marginsTopBottom);
+        radius = PhoneParams.dpToPx(radius);
         marginsFromBorders = phoneWidth / paramMarginBorder;
     }
 

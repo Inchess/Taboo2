@@ -14,15 +14,15 @@ public class ScoresVariables {
         return redTeamScore;
     }
 
-    static int getgreenTeamScore() {
+    static int getGreenTeamScore() {
         return greenTeamScore;
     }
 
     static void setRedTeamScore(int redTeamScore) {
-        ScoresVariables.redTeamScore = redTeamScore;
+        ScoresVariables.redTeamScore += redTeamScore;
     }
 
-    static void setgreenTeamScore(int greenTeamScore) {
-        ScoresVariables.greenTeamScore = greenTeamScore;
+    static void setGreenTeamScore(int greenTeamScore) {
+        ScoresVariables.greenTeamScore += greenTeamScore;
     }
 }

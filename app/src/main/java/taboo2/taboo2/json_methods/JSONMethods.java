@@ -74,9 +74,9 @@ public class JSONMethods {
     public void initWordToGuess() {
         int index_wordToGuess;
         int numOfWordsToGuess = array_AllWordsToGuess.length();
-        do {
+        //do {
             index_wordToGuess = random.nextInt(numOfWordsToGuess);
-        } while(checkIfWordWasAlreadySearched(index_wordToGuess));
+        //} while(checkIfWordWasAlreadySearched(index_wordToGuess));
         indexes_usedWordsToGuess.add(index_wordToGuess);
         try {
             array_wordToGuess = array_AllWordsToGuess.getJSONObject(index_wordToGuess);

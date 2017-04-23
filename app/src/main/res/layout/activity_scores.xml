@@ -15,7 +15,8 @@
         android:id="@+id/score_red_team"
         android:background="@drawable/team_scores_left_corners_rounded"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/holo_red_light" />
 
 
 </RelativeLayout>

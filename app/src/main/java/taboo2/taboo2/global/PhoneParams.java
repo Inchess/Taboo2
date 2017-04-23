@@ -1,4 +1,4 @@
-package taboo2.taboo2.phone_params;
+package taboo2.taboo2.global;
 
 import android.content.res.Resources;
 
@@ -6,12 +6,12 @@ import android.content.res.Resources;
  * Created by y50-70 on 02.03.2017.
  */
 
-public class Global {
+public class PhoneParams {
 
     private int phoneWidth;
     private int phoneHeight;
 
-    public Global() {
+    public PhoneParams() {
         init();
     }
 

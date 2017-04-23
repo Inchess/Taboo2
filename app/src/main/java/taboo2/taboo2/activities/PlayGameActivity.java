@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
+import taboo2.taboo2.global.Global;
 import taboo2.taboo2.json_methods.JSONMethods;
-import taboo2.taboo2.scores.ScoresMethods;
+import taboo2.taboo2.scores.GreenTeamScores;
+import taboo2.taboo2.scores.IScoresMethods;
+import taboo2.taboo2.scores.RedTeamScores;
 import taboo2.taboo2.scores.ScoresVariables;
 
 public class PlayGameActivity extends AppCompatActivity {
@@ -46,7 +49,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private int points_correctAnswer = 1;
     private int points_incorrectAnswer = -1;
-    private ScoresMethods scoresMethods;
+    private GreenTeamScores greenTeamScores;
+    private RedTeamScores redTeamScores;
     private ScoresVariables scoresVariables;
     private Designs designs;
     private Button correctAnswer;
@@ -83,7 +87,8 @@ public class PlayGameActivity extends AppCompatActivity {
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         scoresVariables = new ScoresVariables();
-        scoresMethods = new ScoresMethods();
+        greenTeamScores = new GreenTeamScores();
+        redTeamScores = new RedTeamScores();
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
         changeTeam.setText("Change team");
@@ -102,8 +107,10 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addScores() {
-        scoresGreen.setText(String.format("%d", scoresMethods.getgreenTeamScore()));
-        scoresRed.setText(String.format("%d", scoresMethods.getRedTeamScore()));
+        scoresGreen.setText(String.format("%d", greenTeamScores.getTeamScore()));
+        scoresRed.setText(String.format("%d", redTeamScores.getTeamScore()));
+        scoresGreen.setBackgroundColor(Color.GREEN);
+        scoresRed.setBackgroundColor(Color.RED);
         //scoresRed.setText(Integer.toString(scoresMethods.getRedTeamScore()));
     }
 
@@ -124,17 +131,19 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void correctAnswer(View view) {
-        scoresMethods.addPointTogreenTeamScore(points_correctAnswer);
+        Global.getCurrentPlayingTeam().addPointToTeamScore(points_correctAnswer);
         super.recreate();
     }
 
     public void incorrectAnswer(View view) {
-        scoresMethods.addPointTogreenTeamScore(points_incorrectAnswer);
+        Global.getCurrentPlayingTeam().addPointToTeamScore(points_incorrectAnswer);
         super.recreate();
     }
 
     public void changeTeam(View view) {
-
+        IScoresMethods spareVariable = Global.getCurrentPlayingTeam();
+        Global.setCurrentPlayingTeam(Global.getNotPlayingTeam());
+        Global.setNotPlayingTeam(spareVariable);
     }
 
 }
