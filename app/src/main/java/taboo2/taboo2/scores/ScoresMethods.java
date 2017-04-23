@@ -17,7 +17,7 @@ public class ScoresMethods {
 
     public void addPointToRedTeamScore(int points) {
 
-        ScoresVariables.setBlueTeamScore(ScoresVariables.getRedTeamScore() + points);
+        ScoresVariables.setRedTeamScore(ScoresVariables.getRedTeamScore() + points);
     }
 
     public void getBlueTeamScore() {

@@ -100,6 +100,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void nextWord(View view) {
+
         super.recreate();
     }
 
