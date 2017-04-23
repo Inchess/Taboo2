@@ -65,6 +65,12 @@
         android:id="@+id/correct_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="nextWord" />
+        android:onClick="correctAnswer" />
+
+    <Button
+        android:id="@+id/incorrect_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="incorrectAnswer" />
 
 </LinearLayout>

@@ -44,11 +44,14 @@ public class PlayGameActivity extends AppCompatActivity {
     ------------------VARIABLES------------------
     ========================================== */
 
+    private int points_correctAnswer = 1;
+    private int points_incorrectAnswer = -1;
     private ScoresMethods scoresMethods;
     private ScoresVariables scoresVariables;
     private String searchedWord;
     private Designs designs;
     private Button correctAnswer;
+    private Button incorrectAnswer;
     private static JSONMethods jsonMethods;
     private TextView scoresBlue;
     private TextView scoresRed;
@@ -74,12 +77,14 @@ public class PlayGameActivity extends AppCompatActivity {
         word5 = (TextView) findViewById(R.id.word5);
         wordToGuess = (TextView) findViewById(R.id.searchingWord) ;
         correctAnswer = (Button) findViewById(R.id.correct_answer);
+        incorrectAnswer = (Button) findViewById(R.id.incorrect_answer);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         scoresVariables = new ScoresVariables();
         scoresMethods = new ScoresMethods();
-        correctAnswer.setText("OK");
+        correctAnswer.setText("Correct");
+        incorrectAnswer.setText("Incorrect");
 
     }
 
@@ -116,8 +121,13 @@ public class PlayGameActivity extends AppCompatActivity {
         designs.textViews_textHeight(textViews, fieldHeight);
     }
 
-    public void nextWord(View view) {
+    public void correctAnswer(View view) {
+        scoresMethods.addPointToBlueTeamScore(points_correctAnswer);
+        super.recreate();
+    }
 
+    public void incorrectAnswer(View view) {
+        scoresMethods.addPointToBlueTeamScore(points_incorrectAnswer);
         super.recreate();
     }
 
