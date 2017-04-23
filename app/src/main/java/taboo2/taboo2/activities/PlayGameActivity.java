@@ -140,6 +140,7 @@ public class PlayGameActivity extends AppCompatActivity {
         super.recreate();
     }
 
+    // To remove at the end
     public void changeTeam(View view) {
         Global.changeTeam(view);
     }

@@ -72,6 +72,7 @@
         android:layout_height="wrap_content"
         android:onClick="incorrectAnswer" />
 
+    <!--To remove at the end-->
     <Button
         android:id="@+id/change_team"
         android:layout_width="match_parent"
