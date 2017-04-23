@@ -10,6 +10,8 @@ import android.widget.TextView;
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.json_methods.JSONMethods;
+import taboo2.taboo2.scores.ScoresMethods;
+import taboo2.taboo2.scores.ScoresVariables;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class PlayGameActivity extends AppCompatActivity {
         addColorAndRadius();
         setTextHeight();
         addForbiddenWords();
+        addScores();
     }
 
     /* ==========================================
@@ -41,10 +44,14 @@ public class PlayGameActivity extends AppCompatActivity {
     ------------------VARIABLES------------------
     ========================================== */
 
+    private ScoresMethods scoresMethods;
+    private ScoresVariables scoresVariables;
     private String searchedWord;
     private Designs designs;
     private Button correctAnswer;
     private static JSONMethods jsonMethods;
+    private TextView scoresBlue;
+    private TextView scoresRed;
     private TextView word1;
     private TextView word2;
     private TextView word3;
@@ -58,6 +65,8 @@ public class PlayGameActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
+        scoresBlue = (TextView) findViewById(R.id.score_blue_team);
+        scoresRed = (TextView) findViewById(R.id.score_red_team);
         word1 = (TextView) findViewById(R.id.word1);
         word2 = (TextView) findViewById(R.id.word2);
         word3 = (TextView) findViewById(R.id.word3);
@@ -68,6 +77,8 @@ public class PlayGameActivity extends AppCompatActivity {
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
+        scoresVariables = new ScoresVariables();
+        scoresMethods = new ScoresMethods();
         correctAnswer.setText("OK");
 
     }
@@ -81,6 +92,12 @@ public class PlayGameActivity extends AppCompatActivity {
         jsonMethods.modifyKeysToForbiddenWords();
         jsonMethods.addForbiddenWordsToFields(textViews);
         jsonMethods.addWordToGuessToField(wordToGuess);
+    }
+
+    public void addScores() {
+        scoresBlue.setText(String.format("%d", scoresMethods.getBlueTeamScore()));
+        scoresRed.setText(String.format("%d", scoresMethods.getRedTeamScore()));
+        //scoresRed.setText(Integer.toString(scoresMethods.getRedTeamScore()));
     }
 
     private void addTextHeightAndLocationToTextViews() {

@@ -17,14 +17,14 @@ public class ScoresMethods {
         ScoresVariables.setRedTeamScore(ScoresVariables.getRedTeamScore() + points);
     }
 
-    public void getBlueTeamScore() {
+    public int getBlueTeamScore() {
 
-        ScoresVariables.getBlueTeamScore();
+        return ScoresVariables.getBlueTeamScore();
     }
 
-    public void getRedTeamScore() {
+    public int getRedTeamScore() {
 
-        ScoresVariables.getRedTeamScore();
+        return ScoresVariables.getRedTeamScore();
     }
 
 }
