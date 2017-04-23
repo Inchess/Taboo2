@@ -7,9 +7,9 @@ public class ScoresMethods {
     ----------------------METHODS---------------------
     =============================================== */
 
-    public void addPointToBlueTeamScore(int points) {
+    public void addPointTogreenTeamScore(int points) {
 
-        ScoresVariables.setBlueTeamScore(ScoresVariables.getBlueTeamScore() + points);
+        ScoresVariables.setgreenTeamScore(ScoresVariables.getgreenTeamScore() + points);
     }
 
     public void addPointToRedTeamScore(int points) {
@@ -17,9 +17,9 @@ public class ScoresMethods {
         ScoresVariables.setRedTeamScore(ScoresVariables.getRedTeamScore() + points);
     }
 
-    public int getBlueTeamScore() {
+    public int getgreenTeamScore() {
 
-        return ScoresVariables.getBlueTeamScore();
+        return ScoresVariables.getgreenTeamScore();
     }
 
     public int getRedTeamScore() {

@@ -4,7 +4,7 @@ package taboo2.taboo2.scores;
 public class ScoresVariables {
 
     private static int redTeamScore = 0;
-    private static int blueTeamScore = 0;
+    private static int greenTeamScore = 0;
 
     /* ===============================================
     ----------------GETTERS AND SETTERS---------------
@@ -14,15 +14,15 @@ public class ScoresVariables {
         return redTeamScore;
     }
 
-    static int getBlueTeamScore() {
-        return blueTeamScore;
+    static int getgreenTeamScore() {
+        return greenTeamScore;
     }
 
     static void setRedTeamScore(int redTeamScore) {
         ScoresVariables.redTeamScore = redTeamScore;
     }
 
-    static void setBlueTeamScore(int blueTeamScore) {
-        ScoresVariables.blueTeamScore = blueTeamScore;
+    static void setgreenTeamScore(int greenTeamScore) {
+        ScoresVariables.greenTeamScore = greenTeamScore;
     }
 }

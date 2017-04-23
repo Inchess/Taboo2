@@ -48,13 +48,12 @@ public class PlayGameActivity extends AppCompatActivity {
     private int points_incorrectAnswer = -1;
     private ScoresMethods scoresMethods;
     private ScoresVariables scoresVariables;
-    private String searchedWord;
     private Designs designs;
     private Button correctAnswer;
     private Button incorrectAnswer;
     private Button changeTeam;
     private static JSONMethods jsonMethods;
-    private TextView scoresBlue;
+    private TextView scoresGreen;
     private TextView scoresRed;
     private TextView word1;
     private TextView word2;
@@ -69,7 +68,7 @@ public class PlayGameActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        scoresBlue = (TextView) findViewById(R.id.score_blue_team);
+        scoresGreen = (TextView) findViewById(R.id.score_green_team);
         scoresRed = (TextView) findViewById(R.id.score_red_team);
         word1 = (TextView) findViewById(R.id.word1);
         word2 = (TextView) findViewById(R.id.word2);
@@ -103,7 +102,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addScores() {
-        scoresBlue.setText(String.format("%d", scoresMethods.getBlueTeamScore()));
+        scoresGreen.setText(String.format("%d", scoresMethods.getgreenTeamScore()));
         scoresRed.setText(String.format("%d", scoresMethods.getRedTeamScore()));
         //scoresRed.setText(Integer.toString(scoresMethods.getRedTeamScore()));
     }
@@ -125,12 +124,12 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void correctAnswer(View view) {
-        scoresMethods.addPointToBlueTeamScore(points_correctAnswer);
+        scoresMethods.addPointTogreenTeamScore(points_correctAnswer);
         super.recreate();
     }
 
     public void incorrectAnswer(View view) {
-        scoresMethods.addPointToBlueTeamScore(points_incorrectAnswer);
+        scoresMethods.addPointTogreenTeamScore(points_incorrectAnswer);
         super.recreate();
     }
 

@@ -4,7 +4,7 @@
 
     <TextView
         style="@style/StartGame_team_points"
-        android:id="@+id/score_blue_team"
+        android:id="@+id/score_green_team"
         android:background="@drawable/team_scores_right_corners_rounded"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
