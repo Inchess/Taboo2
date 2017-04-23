@@ -1,8 +1,5 @@
 package taboo2.taboo2.scores;
 
-/**
- * Created by tomaszkubit on 13/04/2017.
- */
 
 public class ScoresVariables {
 
