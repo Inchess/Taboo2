@@ -11,12 +11,14 @@ public class Global {
 
     static IScoresMethods currentPlayingTeam = new GreenTeamScores();
     static IScoresMethods notPlayingTeam = new RedTeamScores();
+    private String redTeamName = "Czerwoni";
+    private String greenTeamName = "Zieloni";
 
     /* ===============================================
     ----------------------METHODS---------------------
     ================================================ */
 
-    public static void changeTeam(View view) {
+    public static void changeTeam() {
         IScoresMethods spareVariable = Global.getCurrentPlayingTeam();
         Global.setCurrentPlayingTeam(Global.getNotPlayingTeam());
         Global.setNotPlayingTeam(spareVariable);
@@ -40,5 +42,15 @@ public class Global {
 
     public static void setNotPlayingTeam(IScoresMethods notPlayingTeam) {
         Global.notPlayingTeam = notPlayingTeam;
+    }
+
+    public String getCurrentTeamText() {
+        if (currentPlayingTeam instanceof GreenTeamScores) {
+            return greenTeamName;
+        } else if (currentPlayingTeam instanceof RedTeamScores) {
+            return redTeamName;
+        } else {
+            throw new IllegalArgumentException("Red team and green team are missing");
+        }
     }
 }

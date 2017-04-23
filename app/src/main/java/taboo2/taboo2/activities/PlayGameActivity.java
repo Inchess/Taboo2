@@ -1,5 +1,6 @@
 package taboo2.taboo2.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private Designs designs;
     private Button correctAnswer;
     private Button incorrectAnswer;
+    // To remove
     private Button changeTeam;
     private static JSONMethods jsonMethods;
     private TextView scoresGreen;
@@ -91,8 +93,7 @@ public class PlayGameActivity extends AppCompatActivity {
         redTeamScores = new RedTeamScores();
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
-        changeTeam.setText("Change team");
-
+        changeTeam.setText("End turn");
     }
 
     public void addForbiddenWords() {
@@ -142,7 +143,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
     // To remove at the end
     public void changeTeam(View view) {
-        Global.changeTeam(view);
+        Intent endTurnActivity = new Intent(this, EndTurnActivity.class);
+        startActivity(endTurnActivity);
     }
 
 }

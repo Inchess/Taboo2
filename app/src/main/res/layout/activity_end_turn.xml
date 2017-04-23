@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_end_turn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="taboo2.taboo2.activities.EndTurnActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/end_turn_green_team_scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/team_scores_right_corners_rounded" />
+
+    <TextView
+        android:id="@+id/end_turn_red_team_scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/team_scores_right_corners_rounded" />
+
+    <TextView
+        android:id="@+id/now_plays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/next_round"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="newRound"
+        />
+
+</LinearLayout>
