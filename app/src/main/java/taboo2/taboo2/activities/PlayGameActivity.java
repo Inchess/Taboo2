@@ -141,9 +141,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void changeTeam(View view) {
-        IScoresMethods spareVariable = Global.getCurrentPlayingTeam();
-        Global.setCurrentPlayingTeam(Global.getNotPlayingTeam());
-        Global.setNotPlayingTeam(spareVariable);
+        Global.changeTeam(view);
     }
 
 }
