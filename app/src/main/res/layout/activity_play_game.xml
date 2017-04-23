@@ -27,14 +27,13 @@
 
     </RelativeLayout>
 
-
     <TextView
         android:id="@+id/searchingWord"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
     <View style="@style/Settings_line" />
-
 
     <TextView
         android:id="@+id/word1"
@@ -72,5 +71,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="incorrectAnswer" />
+
+    <Button
+        android:id="@+id/change_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeTeam" />
 
 </LinearLayout>

@@ -52,6 +52,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private Designs designs;
     private Button correctAnswer;
     private Button incorrectAnswer;
+    private Button changeTeam;
     private static JSONMethods jsonMethods;
     private TextView scoresBlue;
     private TextView scoresRed;
@@ -78,6 +79,7 @@ public class PlayGameActivity extends AppCompatActivity {
         wordToGuess = (TextView) findViewById(R.id.searchingWord) ;
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         incorrectAnswer = (Button) findViewById(R.id.incorrect_answer);
+        changeTeam = (Button) findViewById(R.id.change_team);
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
@@ -85,6 +87,7 @@ public class PlayGameActivity extends AppCompatActivity {
         scoresMethods = new ScoresMethods();
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
+        changeTeam.setText("Change team");
 
     }
 
@@ -129,6 +132,10 @@ public class PlayGameActivity extends AppCompatActivity {
     public void incorrectAnswer(View view) {
         scoresMethods.addPointToBlueTeamScore(points_incorrectAnswer);
         super.recreate();
+    }
+
+    public void changeTeam(View view) {
+
     }
 
 }
