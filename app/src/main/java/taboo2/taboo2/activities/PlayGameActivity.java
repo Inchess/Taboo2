@@ -50,6 +50,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private int points_correctAnswer = 1;
     private int points_incorrectAnswer = -1;
+    private int points_toWin = 10;
     private GreenTeamScores greenTeamScores;
     private RedTeamScores redTeamScores;
     private ScoresVariables scoresVariables;
@@ -133,6 +134,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void correctAnswer(View view) {
         Global.getCurrentPlayingTeam().addPointToTeamScore(points_correctAnswer);
+        checkIfTeamWon();
         super.recreate();
     }
 
@@ -141,8 +143,14 @@ public class PlayGameActivity extends AppCompatActivity {
         super.recreate();
     }
 
+    public void checkIfTeamWon() {
+        if(Global.getCurrentPlayingTeam().getTeamScore() == points_toWin) {
+            
+        }
+    }
+
     // To remove at the end
-    public void changeTeam(View view) {
+    public void endTurn(View view) {
         Intent endTurnActivity = new Intent(this, EndTurnActivity.class);
         startActivity(endTurnActivity);
     }

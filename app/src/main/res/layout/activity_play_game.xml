@@ -77,6 +77,6 @@
         android:id="@+id/change_team"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="changeTeam" />
+        android:onClick="endTurn" />
 
 </LinearLayout>
