@@ -95,6 +95,7 @@ public class EndGameActivity extends AppCompatActivity {
 
     public void newGame(View view) {
         resetTeamScores();
+        global.changeTeam();
         Intent playGameActivity = new Intent(this, PlayGameActivity.class);
         startActivity(playGameActivity);
     }
