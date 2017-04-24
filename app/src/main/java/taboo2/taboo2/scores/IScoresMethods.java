@@ -9,4 +9,5 @@ public interface IScoresMethods {
 
     public void addPointToTeamScore(int points);
     public int getTeamScore();
+    public void setTeamScore(int points);
 }

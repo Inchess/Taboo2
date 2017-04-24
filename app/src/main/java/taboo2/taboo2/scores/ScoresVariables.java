@@ -7,6 +7,18 @@ public class ScoresVariables {
     private static int greenTeamScore = 0;
 
     /* ===============================================
+    ----------------------METHODS---------------------
+    ================================================ */
+
+    static void addRedTeamScore(int redTeamScore) {
+        ScoresVariables.redTeamScore += redTeamScore;
+    }
+
+    static void addGreenTeamScore(int greenTeamScore) {
+        ScoresVariables.greenTeamScore += greenTeamScore;
+    }
+
+    /* ===============================================
     ----------------GETTERS AND SETTERS---------------
     ================================================ */
 
@@ -19,10 +31,10 @@ public class ScoresVariables {
     }
 
     static void setRedTeamScore(int redTeamScore) {
-        ScoresVariables.redTeamScore += redTeamScore;
+        ScoresVariables.redTeamScore = redTeamScore;
     }
 
     static void setGreenTeamScore(int greenTeamScore) {
-        ScoresVariables.greenTeamScore += greenTeamScore;
+        ScoresVariables.greenTeamScore = greenTeamScore;
     }
 }

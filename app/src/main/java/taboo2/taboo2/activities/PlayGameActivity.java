@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.InputStream;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
@@ -134,8 +137,12 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void correctAnswer(View view) {
         Global.getCurrentPlayingTeam().addPointToTeamScore(points_correctAnswer);
-        checkIfTeamWon();
-        super.recreate();
+        if(Global.getCurrentPlayingTeam().getTeamScore() >= points_toWin) {
+            teamWon(view);
+        }
+        else {
+            super.recreate();
+        }
     }
 
     public void incorrectAnswer(View view) {
@@ -143,10 +150,9 @@ public class PlayGameActivity extends AppCompatActivity {
         super.recreate();
     }
 
-    public void checkIfTeamWon() {
-        if(Global.getCurrentPlayingTeam().getTeamScore() == points_toWin) {
-            
-        }
+    public void teamWon(View view) {
+        Intent endGameActivity = new Intent(this, EndGameActivity.class);
+        startActivity(endGameActivity);
     }
 
     // To remove at the end
