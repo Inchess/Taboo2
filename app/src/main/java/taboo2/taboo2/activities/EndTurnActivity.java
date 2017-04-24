@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -99,7 +100,7 @@ public class EndTurnActivity extends AppCompatActivity {
         nowPlays.setText(global.getCurrentTeamText());
     }
 
-    public void newRound() {
+    public void newRound(View view) {
         Intent playGameActivity = new Intent(this, PlayGameActivity.class);
         startActivity(playGameActivity);
     }
