@@ -40,7 +40,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     ========================================== */
 
     private Designs designs;
-    private PhoneParams global;
+    private PhoneParams phoneParams;
 
     private int marginsFromBorders;
     private int marginFromTop;
@@ -79,10 +79,10 @@ public class FirstScreenActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        global = new PhoneParams();
+        phoneParams = new PhoneParams();
         designs = new Designs();
-        phoneHeight = global.getPhoneHeight();
-        phoneWidth = global.getPhoneWidth();
+        phoneHeight = phoneParams.getPhoneHeight();
+        phoneWidth = phoneParams.getPhoneWidth();
         startGame = (Button) findViewById(R.id.startGame);
         gameRules = (Button) findViewById(R.id.gameRules);
         settings = (Button) findViewById(R.id.settings);

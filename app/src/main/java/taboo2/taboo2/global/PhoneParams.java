@@ -2,9 +2,6 @@ package taboo2.taboo2.global;
 
 import android.content.res.Resources;
 
-/**
- * Created by y50-70 on 02.03.2017.
- */
 
 public class PhoneParams {
 
@@ -31,7 +28,7 @@ public class PhoneParams {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
-    public static int pxToDp(int px) {
+    private static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 

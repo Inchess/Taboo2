@@ -1,16 +1,13 @@
 package taboo2.taboo2.global;
 
-
-import android.view.View;
-
 import taboo2.taboo2.scores.GreenTeamScores;
 import taboo2.taboo2.scores.IScoresMethods;
 import taboo2.taboo2.scores.RedTeamScores;
 
 public class Global {
 
-    static IScoresMethods currentPlayingTeam = new GreenTeamScores();
-    static IScoresMethods notPlayingTeam = new RedTeamScores();
+    private static IScoresMethods currentPlayingTeam = new GreenTeamScores();
+    private static IScoresMethods notPlayingTeam = new RedTeamScores();
     private String redTeamName = "Czerwoni";
     private String greenTeamName = "Zieloni";
 

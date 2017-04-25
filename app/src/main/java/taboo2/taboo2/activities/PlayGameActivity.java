@@ -56,7 +56,6 @@ public class PlayGameActivity extends AppCompatActivity {
     private int points_toWin = 10;
     private GreenTeamScores greenTeamScores;
     private RedTeamScores redTeamScores;
-    private ScoresVariables scoresVariables;
     private Designs designs;
     private Button correctAnswer;
     private Button incorrectAnswer;
@@ -92,7 +91,6 @@ public class PlayGameActivity extends AppCompatActivity {
         textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
-        scoresVariables = new ScoresVariables();
         greenTeamScores = new GreenTeamScores();
         redTeamScores = new RedTeamScores();
         correctAnswer.setText("Correct");
