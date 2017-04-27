@@ -137,5 +137,10 @@ public class FirstScreenActivity extends AppCompatActivity {
         startActivity(teamNamesIntent);
     }
 
+    public void settings(View view) {
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        startActivity(settingsIntent);
+    }
+
 
 }
