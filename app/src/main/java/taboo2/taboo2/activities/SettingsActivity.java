@@ -13,9 +13,11 @@ import taboo2.taboo2.R;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Spinner spinner2;
+    Spinner spinner_pointsToWin;
     Spinner spinner_forbiddenWords;
     Spinner spinner_correctAnswer;
+    Spinner spinner_incorrectAnswer;
+    Spinner spinner_timePerPlayer;
     String[] points_correctAnswer = new String[]{"1", "2", "3"};
 
 
@@ -34,7 +36,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void init() {
+        spinner_pointsToWin = (Spinner) findViewById(R.id.spinner$_points_to_win);
+        spinner_forbiddenWords = (Spinner) findViewById(R.id.spinner$_forbidden_words);
         spinner_correctAnswer = (Spinner) findViewById(R.id.spinner$_points_correct_answer);
+        spinner_incorrectAnswer = (Spinner) findViewById(R.id.spinner$_points_incorrect_answer);
+        spinner_timePerPlayer = (Spinner) findViewById(R.id.spinner$_time_per_player);
     }
 
     @Override
