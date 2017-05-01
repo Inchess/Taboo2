@@ -18,7 +18,12 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     Spinner spinner_correctAnswer;
     Spinner spinner_incorrectAnswer;
     Spinner spinner_timePerPlayer;
-    String[] points_correctAnswer = new String[]{"1", "2", "3"};
+    String[] array_pointsToWin = new String[]{"1", "2", "3"};
+    String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
+    String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
+    String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
+    String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:15", "01:30"};
+    Spinner[] spinners;
 
 
     @Override
@@ -26,13 +31,20 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         init();
+        addOnItemSelectedListener();
 
         spinner_correctAnswer.setOnItemSelectedListener(this);
         ArrayAdapter adapter_correctAnswer = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, points_correctAnswer);
+                android.R.layout.simple_spinner_item, array_pointsCorrectAnswer);
         adapter_correctAnswer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_correctAnswer.setAdapter(adapter_correctAnswer);
         spinner_correctAnswer.setSelection(1, true);
+    }
+
+    private void addOnItemSelectedListener() {
+        for(Spinner spinner: spinners) {
+            spinner.setOnItemSelectedListener(this);
+        }
     }
 
     private void init() {
@@ -41,6 +53,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner_correctAnswer = (Spinner) findViewById(R.id.spinner$_points_correct_answer);
         spinner_incorrectAnswer = (Spinner) findViewById(R.id.spinner$_points_incorrect_answer);
         spinner_timePerPlayer = (Spinner) findViewById(R.id.spinner$_time_per_player);
+        spinners = new Spinner[]{spinner_pointsToWin, spinner_forbiddenWords, spinner_correctAnswer,
+                spinner_incorrectAnswer, spinner_timePerPlayer};
+        
     }
 
     @Override
