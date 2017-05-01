@@ -61,7 +61,7 @@ public class EndTurnActivity extends AppCompatActivity {
     -------------------METHODS-------------------
     ========================================== */
 
-    public void init() {
+    private void init() {
         nextRound = (Button) findViewById(R.id.next_round);
         designs = new Designs();
         greenScores = (TextView) findViewById(R.id.end_turn_green_team_scores);

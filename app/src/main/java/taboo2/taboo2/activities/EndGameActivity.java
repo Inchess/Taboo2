@@ -58,7 +58,7 @@ public class EndGameActivity extends AppCompatActivity {
     -------------------METHODS-------------------
     ========================================== */
 
-    public void init() {
+    private void init() {
         newGame = (Button) findViewById(R.id.new_game);
         designs = new Designs();
         greenScores = (TextView) findViewById(R.id.end_game_green_team_scores);
