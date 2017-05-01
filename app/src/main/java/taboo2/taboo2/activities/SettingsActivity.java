@@ -24,6 +24,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
     String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:15", "01:30"};
     Spinner[] spinners;
+    ArrayAdapter adapter_pointsToWin;
+    ArrayAdapter adapter_forbiddenWords;
+    ArrayAdapter adapter_correctAnswer;
+    ArrayAdapter adapter_incorrectAnswer;
+    ArrayAdapter adapter_timePerPlayer;
 
 
     @Override
@@ -32,19 +37,12 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_settings);
         init();
         addOnItemSelectedListener();
+        createArrayAdapters();
 
-        spinner_correctAnswer.setOnItemSelectedListener(this);
-        ArrayAdapter adapter_correctAnswer = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, array_pointsCorrectAnswer);
+
         adapter_correctAnswer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_correctAnswer.setAdapter(adapter_correctAnswer);
         spinner_correctAnswer.setSelection(1, true);
-    }
-
-    private void addOnItemSelectedListener() {
-        for(Spinner spinner: spinners) {
-            spinner.setOnItemSelectedListener(this);
-        }
     }
 
     private void init() {
@@ -55,7 +53,25 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner_timePerPlayer = (Spinner) findViewById(R.id.spinner$_time_per_player);
         spinners = new Spinner[]{spinner_pointsToWin, spinner_forbiddenWords, spinner_correctAnswer,
                 spinner_incorrectAnswer, spinner_timePerPlayer};
-        
+    }
+
+    private void addOnItemSelectedListener() {
+        for(Spinner spinner: spinners) {
+            spinner.setOnItemSelectedListener(this);
+        }
+    }
+
+    private void createArrayAdapters() {
+        adapter_pointsToWin = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, array_pointsToWin);
+        adapter_forbiddenWords = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, array_forbiddenWords);
+        adapter_correctAnswer = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, array_pointsCorrectAnswer);
+        adapter_incorrectAnswer = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, array_pointsIncorrectAnswer);
+        adapter_timePerPlayer = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, array_timePerPlayer);
     }
 
     @Override
