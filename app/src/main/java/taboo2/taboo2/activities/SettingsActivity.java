@@ -13,6 +13,12 @@ import taboo2.taboo2.R;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    int global_pointsToWin;
+    int global_forbiddenWords;
+    int global_correctAnswer;
+    int global_incorrectAnswer;
+    String global_timePerPlayer;
+
     Spinner spinner_pointsToWin;
     Spinner spinner_forbiddenWords;
     Spinner spinner_correctAnswer;
@@ -23,6 +29,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
     String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
     String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:15", "01:30"};
+    int position_pointsToWin = 2;
+    int position_forbiddenWords = 2;
+    int position_pointsCorrectAnswer = 0;
+    int position_pointsIncorrectAnswer = 2;
+    int position_timePerPlayer = 2;
     Spinner[] spinners;
     ArrayAdapter adapter_pointsToWin;
     ArrayAdapter adapter_forbiddenWords;
@@ -89,29 +100,34 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void setFirstVisibleElement() {
-        spinner_pointsToWin.setSelection(2, true);
-        spinner_forbiddenWords.setSelection(2, true);
-        spinner_correctAnswer.setSelection(0, true);
-        spinner_incorrectAnswer.setSelection(2, true);
-        spinner_timePerPlayer.setSelection(2, true);
+        spinner_pointsToWin.setSelection(position_pointsToWin, true);
+        spinner_forbiddenWords.setSelection(position_forbiddenWords, true);
+        spinner_correctAnswer.setSelection(position_pointsCorrectAnswer, true);
+        spinner_incorrectAnswer.setSelection(position_pointsIncorrectAnswer, true);
+        spinner_timePerPlayer.setSelection(position_timePerPlayer, true);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(parent.toString().contains("spinner$_points_to_win")) {
-            Toast.makeText(this, array_pointsToWin[position], Toast.LENGTH_SHORT).show();
+            global_pointsToWin = Integer.parseInt(array_pointsToWin[position]);
+            Toast.makeText(this, "" + global_pointsToWin, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_forbidden_words")) {
-            Toast.makeText(this, array_forbiddenWords[position], Toast.LENGTH_SHORT).show();
+            global_forbiddenWords = Integer.parseInt(array_forbiddenWords[position]);
+            Toast.makeText(this, "" + global_forbiddenWords, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_points_correct_answer")) {
-            Toast.makeText(this, array_pointsCorrectAnswer[position], Toast.LENGTH_SHORT).show();
+            global_correctAnswer = Integer.parseInt(array_pointsCorrectAnswer[position]);
+            Toast.makeText(this, "" + global_correctAnswer, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_points_incorrect_answer")) {
-            Toast.makeText(this, array_pointsIncorrectAnswer[position], Toast.LENGTH_SHORT).show();
+            global_incorrectAnswer = Integer.parseInt(array_pointsIncorrectAnswer[position]);
+            Toast.makeText(this, "" + global_incorrectAnswer, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_time_per_player")) {
-            Toast.makeText(this, array_timePerPlayer[position], Toast.LENGTH_SHORT).show();
+            global_timePerPlayer = array_timePerPlayer[position];
+            Toast.makeText(this, global_timePerPlayer, Toast.LENGTH_SHORT).show();
         }
 
     }
