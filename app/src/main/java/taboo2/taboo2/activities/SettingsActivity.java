@@ -18,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     Spinner spinner_correctAnswer;
     Spinner spinner_incorrectAnswer;
     Spinner spinner_timePerPlayer;
-    String[] array_pointsToWin = new String[]{"1", "2", "3"};
+    String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
     String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
     String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
@@ -38,11 +38,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         init();
         addOnItemSelectedListener();
         createArrayAdapters();
-
-
-        adapter_correctAnswer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_correctAnswer.setAdapter(adapter_correctAnswer);
-        spinner_correctAnswer.setSelection(1, true);
+        addSpinnersView();
+        setAdapters();
+        setFirstVisibleElement();
     }
 
     private void init() {
@@ -74,10 +72,47 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 android.R.layout.simple_spinner_item, array_timePerPlayer);
     }
 
+    private void addSpinnersView() {
+        adapter_pointsToWin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_forbiddenWords.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_correctAnswer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_incorrectAnswer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_timePerPlayer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    }
+
+    public void setAdapters() {
+        spinner_pointsToWin.setAdapter(adapter_pointsToWin);
+        spinner_forbiddenWords.setAdapter(adapter_forbiddenWords);
+        spinner_correctAnswer.setAdapter(adapter_correctAnswer);
+        spinner_incorrectAnswer.setAdapter(adapter_incorrectAnswer);
+        spinner_timePerPlayer.setAdapter(adapter_timePerPlayer);
+    }
+
+    private void setFirstVisibleElement() {
+        spinner_pointsToWin.setSelection(2, true);
+        spinner_forbiddenWords.setSelection(2, true);
+        spinner_correctAnswer.setSelection(0, true);
+        spinner_incorrectAnswer.setSelection(2, true);
+        spinner_timePerPlayer.setSelection(2, true);
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView myText = (TextView) view;
-        Toast.makeText(this, "You " + myText.getText() + " " + position, Toast.LENGTH_SHORT).show();
+        if(parent.toString().contains("spinner$_points_to_win")) {
+            Toast.makeText(this, array_pointsToWin[position], Toast.LENGTH_SHORT).show();
+        }
+        if(parent.toString().contains("spinner$_forbidden_words")) {
+            Toast.makeText(this, array_forbiddenWords[position], Toast.LENGTH_SHORT).show();
+        }
+        if(parent.toString().contains("spinner$_points_correct_answer")) {
+            Toast.makeText(this, array_pointsCorrectAnswer[position], Toast.LENGTH_SHORT).show();
+        }
+        if(parent.toString().contains("spinner$_points_incorrect_answer")) {
+            Toast.makeText(this, array_pointsIncorrectAnswer[position], Toast.LENGTH_SHORT).show();
+        }
+        if(parent.toString().contains("spinner$_time_per_player")) {
+            Toast.makeText(this, array_timePerPlayer[position], Toast.LENGTH_SHORT).show();
+        }
 
     }
 
