@@ -10,10 +10,10 @@ public class Global {
     private static IScoresMethods notPlayingTeam = new RedTeamScores();
     private String redTeamName = "Czerwoni";
     private String greenTeamName = "Zieloni";
-    private int pointsToWin;
-    private int numberOfForbiddenWords;
-    private int points_correctAnswer;
-    private int points_incorrectAnswer;
+    private static int pointsToWin = 30;
+    private static int numberOfForbiddenWords = 5;
+    private static int points_correctAnswer = 1;
+    private static int points_incorrectAnswer = -1;
 
     /* ===============================================
     ----------------------METHODS---------------------
