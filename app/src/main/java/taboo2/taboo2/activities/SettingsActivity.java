@@ -1,15 +1,16 @@
 package taboo2.taboo2.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import taboo2.taboo2.R;
+import taboo2.taboo2.global.Global;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -19,6 +20,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     int global_incorrectAnswer;
     String global_timePerPlayer;
 
+    Button saveChanges;
+    Global global;
     Spinner spinner_pointsToWin;
     Spinner spinner_forbiddenWords;
     Spinner spinner_correctAnswer;
@@ -52,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         addSpinnersView();
         setAdapters();
         setFirstVisibleElement();
+        saveValues();
     }
 
     private void init() {
@@ -62,6 +66,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner_timePerPlayer = (Spinner) findViewById(R.id.spinner$_time_per_player);
         spinners = new Spinner[]{spinner_pointsToWin, spinner_forbiddenWords, spinner_correctAnswer,
                 spinner_incorrectAnswer, spinner_timePerPlayer};
+        global = new Global();
+        saveChanges = (Button) findViewById(R.id.button_save_changes);
     }
 
     private void addOnItemSelectedListener() {
@@ -129,11 +135,21 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             global_timePerPlayer = array_timePerPlayer[position];
             Toast.makeText(this, global_timePerPlayer, Toast.LENGTH_SHORT).show();
         }
+    }
 
+    public void saveValues() {
+        global.setNumberOfForbiddenWords(global_forbiddenWords);
+        global.setPoints_correctAnswer(global_correctAnswer);
+        global.setPoints_incorrectAnswer(global_incorrectAnswer);
+        global.setPointsToWin(global_pointsToWin);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void saveChanges() {
+        saveValues();
     }
 }

@@ -4,21 +4,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.InputStream;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.global.Global;
 import taboo2.taboo2.json_methods.JSONMethods;
 import taboo2.taboo2.scores.GreenTeamScores;
-import taboo2.taboo2.scores.IScoresMethods;
 import taboo2.taboo2.scores.RedTeamScores;
-import taboo2.taboo2.scores.ScoresVariables;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -33,6 +28,7 @@ public class PlayGameActivity extends AppCompatActivity {
         setTextHeight();
         addForbiddenWords();
         addScores();
+        getGlobalValues();
     }
 
     /* ==========================================
@@ -51,9 +47,10 @@ public class PlayGameActivity extends AppCompatActivity {
     ------------------VARIABLES------------------
     ========================================== */
 
-    private int points_correctAnswer = 1;
-    private int points_incorrectAnswer = -1;
-    private int points_toWin = 10;
+    private int points_correctAnswer;
+    private int points_incorrectAnswer;
+    private int points_toWin;
+    private Global global;
     private GreenTeamScores greenTeamScores;
     private RedTeamScores redTeamScores;
     private Designs designs;
@@ -96,6 +93,7 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
         changeTeam.setText("End turn");
+        global = new Global();
     }
 
     public void addForbiddenWords() {
@@ -151,6 +149,12 @@ public class PlayGameActivity extends AppCompatActivity {
     public void teamWon(View view) {
         Intent endGameActivity = new Intent(this, EndGameActivity.class);
         startActivity(endGameActivity);
+    }
+
+    public void getGlobalValues() {
+        points_correctAnswer = global.getPoints_correctAnswer();
+        points_incorrectAnswer = global.getPoints_incorrectAnswer();
+        points_toWin = global.getPointsToWin();
     }
 
     // To remove at the end

@@ -149,10 +149,11 @@
         style="@style/Settings_line"/>
 
     <Button
-        android:id="@+id/btnDisplay"
+        android:id="@+id/button_save_changes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Zapisz ustawienia"
+        android:onClick="saveChanges"
         />
 
 </LinearLayout>
