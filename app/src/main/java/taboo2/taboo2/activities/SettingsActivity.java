@@ -1,5 +1,6 @@
 package taboo2.taboo2.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -149,5 +150,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     public void saveChanges(View view) {
         saveValues();
+        Intent firstScreen = new Intent(this, FirstScreenActivity.class);
+        startActivity(firstScreen);
     }
 }

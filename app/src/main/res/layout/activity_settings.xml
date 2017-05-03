@@ -152,7 +152,7 @@
         android:id="@+id/button_save_changes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zapisz ustawienia"
+        android:text="Zapisz i wróć"
         android:onClick="saveChanges"
         />
 
