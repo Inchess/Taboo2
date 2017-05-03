@@ -8,6 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.global.Global;
@@ -31,11 +36,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
     String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
-    String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:15", "01:30"};
-    int position_pointsToWin = 2;
-    int position_forbiddenWords = 2;
-    int position_pointsCorrectAnswer = 0;
-    int position_pointsIncorrectAnswer = 2;
+    String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:30", "02:00"};
+    int position_pointsToWin;
+    int position_forbiddenWords;
+    int position_pointsCorrectAnswer;
+    int position_pointsIncorrectAnswer;
     int position_timePerPlayer = 2;
     Spinner[] spinners;
     ArrayAdapter adapter_pointsToWin;
@@ -67,6 +72,19 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 spinner_incorrectAnswer, spinner_timePerPlayer};
         global = new Global();
         saveChanges = (Button) findViewById(R.id.button_save_changes);
+        findIndexesOfElements();
+    }
+
+    public void findIndexesOfElements() {
+        position_pointsToWin = Arrays.asList(array_pointsToWin).
+                indexOf(Integer.toString(global.getPointsToWin()));
+        position_forbiddenWords = Arrays.asList(array_forbiddenWords).
+                indexOf(Integer.toString(global.getNumberOfForbiddenWords()));
+        position_pointsCorrectAnswer = Arrays.asList(array_pointsCorrectAnswer).
+                indexOf(Integer.toString(global.getPoints_correctAnswer()));
+        position_pointsIncorrectAnswer = Arrays.asList(array_pointsIncorrectAnswer).
+                indexOf(Integer.toString(global.getPoints_incorrectAnswer()));
+
     }
 
     private void addOnItemSelectedListener() {
@@ -116,23 +134,18 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(parent.toString().contains("spinner$_points_to_win")) {
             global_pointsToWin = Integer.parseInt(array_pointsToWin[position]);
-            //Toast.makeText(this, "" + global_pointsToWin, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_forbidden_words")) {
             global_forbiddenWords = Integer.parseInt(array_forbiddenWords[position]);
-            //Toast.makeText(this, "" + global_forbiddenWords, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_points_correct_answer")) {
             global_correctAnswer = Integer.parseInt(array_pointsCorrectAnswer[position]);
-            //Toast.makeText(this, "" + global_correctAnswer, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_points_incorrect_answer")) {
             global_incorrectAnswer = Integer.parseInt(array_pointsIncorrectAnswer[position]);
-            //Toast.makeText(this, "" + global_incorrectAnswer, Toast.LENGTH_SHORT).show();
         }
         if(parent.toString().contains("spinner$_time_per_player")) {
             global_timePerPlayer = array_timePerPlayer[position];
-            //Toast.makeText(this, global_timePerPlayer, Toast.LENGTH_SHORT).show();
         }
     }
 
