@@ -85,8 +85,8 @@ public class PlayGameActivity extends AppCompatActivity {
         global = new Global();
         numberForbiddenWords = global.getNumberOfForbiddenWords();
         TextView temp;
-        for (int i = 0; i < numberForbiddenWords; i++)
-        {
+        textViews = new TextView[numberForbiddenWords];
+        for(int i = 0; i < numberForbiddenWords; i++) {
             temp = new TextView(this);
             playGame.addView(temp);
             textViews[i] = temp;
