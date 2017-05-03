@@ -15,14 +15,8 @@ import taboo2.taboo2.global.PhoneParams;
 public class FirstScreenActivity extends AppCompatActivity {
 
     /* ==========================================
-    ------PARAMS TO CHANGE ELEMENT LOCATION------
+    -------------HARDCODED VARIABLES-------------
     ========================================== */
-
-    /* There are 3 type of values depending on screen width
-    1. 240 - 600px
-    2. 601 - 800px
-    3. 801 - infinity
-     */
 
     // margin from border is ("phone width" / paramMarginBorder)
     private int paramMarginBorder = 1;

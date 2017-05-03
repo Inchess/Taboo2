@@ -19,12 +19,25 @@ import taboo2.taboo2.global.Global;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    /* ==========================================
+    -------------HARDCODED VARIABLES-------------
+    ========================================== */
+
+    String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
+    String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
+    String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
+    String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
+    String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:30", "02:00"};
+
+    /* ==========================================
+    ------------------VARIABLES------------------
+    ========================================== */
+
     int global_pointsToWin;
     int global_forbiddenWords;
     int global_correctAnswer;
     int global_incorrectAnswer;
     String global_timePerPlayer;
-
     Button saveChanges;
     Global global;
     Spinner spinner_pointsToWin;
@@ -32,16 +45,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     Spinner spinner_correctAnswer;
     Spinner spinner_incorrectAnswer;
     Spinner spinner_timePerPlayer;
-    String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
-    String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
-    String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
-    String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
-    String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:30", "02:00"};
     int position_pointsToWin;
     int position_forbiddenWords;
     int position_pointsCorrectAnswer;
     int position_pointsIncorrectAnswer;
-    int position_timePerPlayer = 2;
+    int position_timePerPlayer;
     Spinner[] spinners;
     ArrayAdapter adapter_pointsToWin;
     ArrayAdapter adapter_forbiddenWords;
@@ -84,6 +92,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 indexOf(Integer.toString(global.getPoints_correctAnswer()));
         position_pointsIncorrectAnswer = Arrays.asList(array_pointsIncorrectAnswer).
                 indexOf(Integer.toString(global.getPoints_incorrectAnswer()));
+        position_timePerPlayer = Arrays.asList(array_timePerPlayer).
+                indexOf(global.getTimePerPlayer());
 
     }
 
@@ -154,6 +164,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         global.setPoints_correctAnswer(global_correctAnswer);
         global.setPoints_incorrectAnswer(global_incorrectAnswer);
         global.setPointsToWin(global_pointsToWin);
+        global.setTimePerPlayer(global_timePerPlayer);
     }
 
     @Override

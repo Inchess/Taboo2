@@ -32,7 +32,7 @@ public class EndTurnActivity extends AppCompatActivity {
     }
 
     /* ==========================================
-    --------------HARDCODE VARIABLES-------------
+    -------------HARDCODED VARIABLES-------------
     ========================================== */
 
     private int fieldsColor = Color.rgb(120, 120, 120);

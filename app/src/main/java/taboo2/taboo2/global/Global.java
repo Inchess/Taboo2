@@ -14,6 +14,7 @@ public class Global {
     private static int numberOfForbiddenWords = 5;
     private static int points_correctAnswer = 1;
     private static int points_incorrectAnswer = -1;
+    private static String timePerPlayer = "01:00";
 
     /* ===============================================
     ----------------------METHODS---------------------
@@ -85,5 +86,13 @@ public class Global {
 
     public void setPoints_incorrectAnswer(int points_incorrectAnswer) {
         this.points_incorrectAnswer = points_incorrectAnswer;
+    }
+
+    public String getTimePerPlayer() {
+        return timePerPlayer;
+    }
+
+    public void setTimePerPlayer(String timePerPlayer) {
+        Global.timePerPlayer = timePerPlayer;
     }
 }

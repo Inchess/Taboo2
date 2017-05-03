@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.global.Global;
@@ -35,7 +33,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     /* ==========================================
-    --------------HARDCODE VARIABLES-------------
+    -------------HARDCODED VARIABLES-------------
     ========================================== */
 
     private int fieldsColor = Color.rgb(120, 120, 120);
