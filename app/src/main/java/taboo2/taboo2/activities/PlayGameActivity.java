@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
@@ -61,31 +64,38 @@ public class PlayGameActivity extends AppCompatActivity {
     private static JSONMethods jsonMethods;
     private TextView scoresGreen;
     private TextView scoresRed;
-    private TextView word1;
-    private TextView word2;
-    private TextView word3;
-    private TextView word4;
-    private TextView word5;
+//    private TextView word1;
+//    private TextView word2;
+//    private TextView word3;
+//    private TextView word4;
+//    private TextView word5;
     private TextView wordToGuess;
     private TextView[] textViews;
+    private int numberForbiddenWords;
+    private LinearLayout playGame;
 
     /* ==========================================
     -------------------METHODS-------------------
     ========================================== */
 
     private void init() {
+        playGame = (LinearLayout) findViewById(R.id.activity_play_game);
         scoresGreen = (TextView) findViewById(R.id.score_green_team);
         scoresRed = (TextView) findViewById(R.id.score_red_team);
-        word1 = (TextView) findViewById(R.id.word1);
-        word2 = (TextView) findViewById(R.id.word2);
-        word3 = (TextView) findViewById(R.id.word3);
-        word4 = (TextView) findViewById(R.id.word4);
-        word5 = (TextView) findViewById(R.id.word5);
+        global = new Global();
+        numberForbiddenWords = global.getNumberOfForbiddenWords();
+        TextView temp;
+        for (int i = 0; i < numberForbiddenWords; i++)
+        {
+            temp = new TextView(this);
+            playGame.addView(temp);
+            textViews[i] = temp;
+        }
         wordToGuess = (TextView) findViewById(R.id.searchingWord) ;
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         incorrectAnswer = (Button) findViewById(R.id.incorrect_answer);
         changeTeam = (Button) findViewById(R.id.change_team);
-        textViews = new TextView[]{word1, word2, word3, word4, word5};
+        //textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         greenTeamScores = new GreenTeamScores();
@@ -93,7 +103,6 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
         changeTeam.setText("End turn");
-        global = new Global();
     }
 
     public void addForbiddenWords() {
