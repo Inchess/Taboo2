@@ -64,11 +64,6 @@ public class PlayGameActivity extends AppCompatActivity {
     private static JSONMethods jsonMethods;
     private TextView scoresGreen;
     private TextView scoresRed;
-//    private TextView word1;
-//    private TextView word2;
-//    private TextView word3;
-//    private TextView word4;
-//    private TextView word5;
     private TextView wordToGuess;
     private TextView[] textViews;
     private int numberForbiddenWords;
@@ -79,7 +74,7 @@ public class PlayGameActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        playGame = (LinearLayout) findViewById(R.id.activity_play_game);
+        playGame = (LinearLayout) findViewById(R.id.layout$_forbidden_words);
         scoresGreen = (TextView) findViewById(R.id.score_green_team);
         scoresRed = (TextView) findViewById(R.id.score_red_team);
         global = new Global();
@@ -88,6 +83,9 @@ public class PlayGameActivity extends AppCompatActivity {
         textViews = new TextView[numberForbiddenWords];
         for(int i = 0; i < numberForbiddenWords; i++) {
             temp = new TextView(this);
+            temp.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
             playGame.addView(temp);
             textViews[i] = temp;
         }
@@ -95,7 +93,6 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         incorrectAnswer = (Button) findViewById(R.id.incorrect_answer);
         changeTeam = (Button) findViewById(R.id.change_team);
-        //textViews = new TextView[]{word1, word2, word3, word4, word5};
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         greenTeamScores = new GreenTeamScores();
