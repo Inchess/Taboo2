@@ -131,7 +131,7 @@ public class JSONMethods {
         }
     }
 
-    public void addRestofWords(TextView[] forbiddenWordstextViews) {
+    public void addRestOfWords(TextView[] forbiddenWordstextViews) {
         int numOfTextViews = forbiddenWordstextViews.length;
         int numOfTextViewsLeft = numOfTextViews - list_keysToWordsToTextViews.size();
         for(int i = 0; i < numOfTextViewsLeft; i++) {

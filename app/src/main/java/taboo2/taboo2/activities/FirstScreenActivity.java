@@ -125,6 +125,4 @@ public class FirstScreenActivity extends AppCompatActivity {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
     }
-
-
 }

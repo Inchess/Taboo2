@@ -23,6 +23,7 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
         init();
+        createTextViews();
         addTextHeightAndLocationToTextViews();
         addMarginsToTextViews();
         addColorAndRadius();
@@ -38,7 +39,6 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private int fieldsColor = Color.rgb(120, 120, 120);
     private int all_marginTop = 20;
-    private int all_marginBottom = 30;
     private int all_marginSide = 50;
     private int radius = 10;
     private int fieldHeight = 150;
@@ -77,16 +77,6 @@ public class PlayGameActivity extends AppCompatActivity {
         scoresRed = (TextView) findViewById(R.id.score_red_team);
         global = new Global();
         numberForbiddenWords = global.getNumberOfForbiddenWords();
-        TextView temp;
-        textViews = new TextView[numberForbiddenWords];
-        for(int i = 0; i < numberForbiddenWords; i++) {
-            temp = new TextView(this);
-            temp.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            playGame.addView(temp);
-            textViews[i] = temp;
-        }
         wordToGuess = (TextView) findViewById(R.id.searchingWord) ;
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         incorrectAnswer = (Button) findViewById(R.id.incorrect_answer);
@@ -100,12 +90,25 @@ public class PlayGameActivity extends AppCompatActivity {
         changeTeam.setText("End turn");
     }
 
+    private void createTextViews() {
+        TextView temp;
+        textViews = new TextView[numberForbiddenWords];
+        for(int i = 0; i < numberForbiddenWords; i++) {
+            temp = new TextView(this);
+            temp.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            playGame.addView(temp);
+            textViews[i] = temp;
+        }
+    }
+
     public void addForbiddenWords() {
         jsonMethods.initWordToGuess();
         jsonMethods.createJSONWithForbiddenWords();
         jsonMethods.createListWithKeysToForbiddenWords();
         jsonMethods.addRequiredWords();
-        jsonMethods.addRestofWords(textViews);
+        jsonMethods.addRestOfWords(textViews);
         jsonMethods.modifyKeysToForbiddenWords();
         jsonMethods.addForbiddenWordsToFields(textViews);
         jsonMethods.addWordToGuessToField(wordToGuess);
