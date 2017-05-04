@@ -14,6 +14,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import taboo2.taboo2.global.Global;
+
 
 public class JSONMethods {
 
@@ -35,6 +37,7 @@ public class JSONMethods {
     private List<String> list_keysToWordsToTextViews;
     private List<String> list_wordsToTextViews;
     private JSONObject json_ForbiddenWords = null;
+    private static Global global;
 
     public JSONMethods(Context context) {
         try {
@@ -51,6 +54,7 @@ public class JSONMethods {
             indexes_usedWordsToGuess = new ArrayList<>();
             createJSONObject();
             createArrayWithAllWordsToGuess();
+            global = new Global();
         }
     }
 
@@ -188,6 +192,14 @@ public class JSONMethods {
     }
 
     /* ==========================================
-    -------------------SETTERS-------------------
+    -------------------GETTERS-------------------
     ========================================== */
+
+    public List<String> getList_wordsToTextViews() {
+        return list_wordsToTextViews;
+    }
+
+    public List<String> getList_keysToForbiddenWords() {
+        return list_keysToForbiddenWords;
+    }
 }

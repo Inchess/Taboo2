@@ -12,14 +12,12 @@
       }
     },
     {
-      "Dzień 3": {
+      "Dzień 2": {
         "word1": "A",
         "REQ_word2": "--B",
         "REQ_word3": "--C",
         "word4": "D",
-        "word5": "E",
-        "REQ_word6": "--F",
-        "word7": "G"
+        "word5": "E"
       }
     },
     {

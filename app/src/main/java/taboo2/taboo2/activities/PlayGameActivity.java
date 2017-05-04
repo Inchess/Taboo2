@@ -23,12 +23,13 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
         init();
+        getValuesFromJSON();
         createTextViews();
+        addWordsToTextViews();
         addTextHeightAndLocationToTextViews();
         addMarginsToTextViews();
         addColorAndRadius();
         setTextHeight();
-        addForbiddenWords();
         addScores();
         getGlobalValues();
     }
@@ -92,8 +93,10 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void createTextViews() {
         TextView temp;
+        int numOfForbiddenWords = Math.max(jsonMethods.getList_keysToForbiddenWords().size(),
+                global.getNumberOfForbiddenWords());
         textViews = new TextView[numberForbiddenWords];
-        for(int i = 0; i < numberForbiddenWords; i++) {
+        for(int i = 0; i < numOfForbiddenWords; i++) {
             temp = new TextView(this);
             temp.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -103,10 +106,13 @@ public class PlayGameActivity extends AppCompatActivity {
         }
     }
 
-    public void addForbiddenWords() {
+    public void getValuesFromJSON() {
         jsonMethods.initWordToGuess();
         jsonMethods.createJSONWithForbiddenWords();
         jsonMethods.createListWithKeysToForbiddenWords();
+    }
+
+    public void addWordsToTextViews() {
         jsonMethods.addRequiredWords();
         jsonMethods.addRestOfWords(textViews);
         jsonMethods.modifyKeysToForbiddenWords();
