@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
@@ -35,14 +34,10 @@ public class FirstScreenActivity extends AppCompatActivity {
     ========================================== */
 
     private Designs designs;
-    private PhoneParams phoneParams;
-    private Global global;
 
     private int marginsFromBorders;
     private int marginFromTop;
-    private int phoneHeight;
     private int phoneWidth;
-    private LinearLayout firstLayout;
     private Button startGame;
     private Button gameRules;
     private Button settings;
@@ -70,17 +65,14 @@ public class FirstScreenActivity extends AppCompatActivity {
     ========================================== */
 
     private void init() {
-        phoneParams = new PhoneParams();
+        PhoneParams phoneParams = new PhoneParams();
         designs = new Designs();
-        phoneHeight = phoneParams.getPhoneHeight();
         phoneWidth = phoneParams.getPhoneWidth();
         startGame = (Button) findViewById(R.id.startGame);
         gameRules = (Button) findViewById(R.id.gameRules);
         settings = (Button) findViewById(R.id.settings);
         about = (Button) findViewById(R.id.about);
         startButtons = new Button[]{startGame, gameRules, settings, about};
-        firstLayout = (LinearLayout) findViewById(R.id.activity_first_screen);
-        global = new Global();
     }
 
     private void changeDpToPx() {
