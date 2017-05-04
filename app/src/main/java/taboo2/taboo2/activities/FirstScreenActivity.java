@@ -56,7 +56,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         setMarginToFirstButton();
         addTextToFields();
         textHeightAndLocation();
-        addDesignToButtons();
+        addColorAndRadius();
 
     }
 
@@ -112,7 +112,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         designs.views_textHeightAndLocation(startButtons, textHeight);
     }
 
-    private void addDesignToButtons() {
+    private void addColorAndRadius() {
         designs.views_addColorAndRadius(startButtons, buttonsColor, radius);
     }
 
