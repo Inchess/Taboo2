@@ -34,7 +34,6 @@ public class EndGameActivity extends AppCompatActivity {
 
     private int fieldsColor = Color.rgb(120, 120, 120);
     private int all_marginTop = 50;
-    private int all_marginBottom = 30;
     private int all_marginSide = 50;
     private int radius = 20;
     private int fieldHeight = 150;

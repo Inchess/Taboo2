@@ -8,11 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.global.Global;
@@ -98,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void addOnItemSelectedListener() {
-        for(Spinner spinner: spinners) {
+        for (Spinner spinner : spinners) {
             spinner.setOnItemSelectedListener(this);
         }
     }
@@ -142,19 +139,19 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.toString().contains("spinner$_points_to_win")) {
+        if (parent.toString().contains("spinner$_points_to_win")) {
             global_pointsToWin = Integer.parseInt(array_pointsToWin[position]);
         }
-        if(parent.toString().contains("spinner$_forbidden_words")) {
+        if (parent.toString().contains("spinner$_forbidden_words")) {
             global_forbiddenWords = Integer.parseInt(array_forbiddenWords[position]);
         }
-        if(parent.toString().contains("spinner$_points_correct_answer")) {
+        if (parent.toString().contains("spinner$_points_correct_answer")) {
             global_correctAnswer = Integer.parseInt(array_pointsCorrectAnswer[position]);
         }
-        if(parent.toString().contains("spinner$_points_incorrect_answer")) {
+        if (parent.toString().contains("spinner$_points_incorrect_answer")) {
             global_incorrectAnswer = Integer.parseInt(array_pointsIncorrectAnswer[position]);
         }
-        if(parent.toString().contains("spinner$_time_per_player")) {
+        if (parent.toString().contains("spinner$_time_per_player")) {
             global_timePerPlayer = array_timePerPlayer[position];
         }
     }
