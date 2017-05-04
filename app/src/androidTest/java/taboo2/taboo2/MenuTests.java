@@ -1,6 +1,5 @@
 package taboo2.taboo2;
 
-import android.support.test.espresso.Espresso;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -10,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import taboo2.taboo2.activities.FirstScreenActivity;
+import taboo2.taboo2.global.Global;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -29,14 +29,19 @@ public class MenuTests {
     private static final String RULES_PAGE = "Rules page";
     private static final String SETTINGS_PAGE = "Settings page";
     private static final String AUTHOR_PAGE = "Author page";
+    private Global global = new Global();
 
     @Rule
     public ActivityTestRule<FirstScreenActivity> mActivityRule = new ActivityTestRule(FirstScreenActivity.class);
 
     @Test
     public void shouldCheckAboutButton() {
+        System.out.println(global.getSTRING_ABOUT());
+        System.out.println(onView(withId(R.id.about)));
+        String a = global.getSTRING_ABOUT();
+        String b = onView(withId(R.id.about)).toString();
         onView(withId(R.id.about))
-                .check(matches(withText(ABOUT_AUTHOR)));
+                .check(matches(withText(global.getSTRING_ABOUT())));
     }
 
     @Test

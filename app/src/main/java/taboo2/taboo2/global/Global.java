@@ -8,13 +8,17 @@ public class Global {
 
     private static IScoresMethods currentPlayingTeam = new GreenTeamScores();
     private static IScoresMethods notPlayingTeam = new RedTeamScores();
-    private String redTeamName = "Czerwoni";
-    private String greenTeamName = "Zieloni";
     private static int pointsToWin = 30;
     private static int numberOfForbiddenWords = 5;
     private static int points_correctAnswer = 1;
     private static int points_incorrectAnswer = -1;
     private static String timePerPlayer = "01:00";
+    public static final String NAME_RED_TEAM = "Czerwoni";
+    public static final String NAME_GREEN_TEAM = "Zieloni";
+    public static final String STRING_START = "Rozpocznij grę";
+    public static final String STRING_RULES = "Zasady gry";
+    public static final String STRING_SETTINGS = "Ustawienia";
+    public static final String STRING_ABOUT = "O autorze";
 
     /* ===============================================
     ----------------------METHODS---------------------
@@ -48,9 +52,9 @@ public class Global {
 
     public String getCurrentTeamText() {
         if (currentPlayingTeam instanceof GreenTeamScores) {
-            return greenTeamName;
+            return NAME_GREEN_TEAM;
         } else if (currentPlayingTeam instanceof RedTeamScores) {
-            return redTeamName;
+            return NAME_RED_TEAM;
         } else {
             throw new IllegalArgumentException("Red team and green team are missing");
         }

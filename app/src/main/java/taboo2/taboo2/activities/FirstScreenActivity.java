@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
+import taboo2.taboo2.global.Global;
 import taboo2.taboo2.global.PhoneParams;
 
 public class FirstScreenActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class FirstScreenActivity extends AppCompatActivity {
 
     private Designs designs;
     private PhoneParams phoneParams;
+    private Global global;
 
     private int marginsFromBorders;
     private int marginFromTop;
@@ -46,11 +48,6 @@ public class FirstScreenActivity extends AppCompatActivity {
     private Button settings;
     private Button about;
     private Button[] startButtons;
-
-    private String string_startGame = "Rozpocznij grę";
-    private String string_gameRules = "Zasady gry";
-    private String string_settings = "Ustawienia";
-    private String string_about = "O autorze";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +80,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         about = (Button) findViewById(R.id.about);
         startButtons = new Button[]{startGame, gameRules, settings, about};
         firstLayout = (LinearLayout) findViewById(R.id.activity_first_screen);
+        global = new Global();
     }
 
     private void changeDpToPx() {
@@ -112,10 +110,10 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void addTextToFields() {
-        startGame.setText(string_startGame);
-        gameRules.setText(string_gameRules);
-        settings.setText(string_settings);
-        about.setText(string_about);
+        startGame.setText(Global.STRING_START);
+        gameRules.setText(Global.STRING_RULES);
+        settings.setText(Global.STRING_SETTINGS);
+        about.setText(Global.STRING_ABOUT);
     }
 
     private void textHeightAndLocation() {
