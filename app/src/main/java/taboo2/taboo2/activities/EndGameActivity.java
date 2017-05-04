@@ -82,7 +82,7 @@ public class EndGameActivity extends AppCompatActivity {
     }
 
     public void setTextHeight() {
-        designs.textViews_textHeight(textViews, fieldHeight);
+        designs.textViews_buttonsHeight(textViews, fieldHeight);
     }
 
     public void addText() {

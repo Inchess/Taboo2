@@ -40,9 +40,9 @@ public class Designs {
 
     //================================== Set textViews text height
 
-    public void textViews_textHeight(TextView[] textViews, int textHeight) {
+    public void textViews_buttonsHeight(TextView[] textViews, int buttonsHeight) {
         for(TextView textView: textViews) {
-            textView.setHeight(textHeight);
+            textView.setHeight(buttonsHeight);
         }
     }
 

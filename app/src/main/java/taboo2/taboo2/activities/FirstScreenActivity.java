@@ -51,7 +51,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         init();
         changeDpToPx();
         fieldLocationFromTop();
-        setButtonTextHeight();
+        setButtonHeight();
         setButtonsMargins();
         setMarginToFirstButton();
         addTextToFields();
@@ -89,8 +89,8 @@ public class FirstScreenActivity extends AppCompatActivity {
         marginFromTop = marginParameter;
     }
 
-    private void setButtonTextHeight() {
-        designs.textViews_textHeight(startButtons, buttonsHeight);
+    private void setButtonHeight() {
+        designs.textViews_buttonsHeight(startButtons, buttonsHeight);
     }
 
     private void setButtonsMargins() {
