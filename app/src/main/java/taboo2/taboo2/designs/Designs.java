@@ -8,15 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
-
 
 public class Designs {
 
     //================================== Add color to views
 
-    public void views_addColorAndRadius(List<View> views, int color, int radius) {
+    public void views_addColorAndRadius(View[] views, int color, int radius) {
         for(View view: views) {
             RoundRectShape rect = new RoundRectShape(
                     new float[] {radius,radius, radius,radius, radius,radius, radius,radius},
@@ -31,55 +28,33 @@ public class Designs {
             }
         }
     }
-    public void views_addColor(List<View> views, int color) {
-        views_addColorAndRadius(views, color, 0);
-    }
-    public void views_addColorAndRadius(View[] viewsArray, int color, int radius) {
-        List<View> views = Arrays.asList(viewsArray);
-        views_addColorAndRadius(views, color, radius);
-    }
-    public void views_addColor(View[] viewsArray, int color) {
-        views_addColorAndRadius(viewsArray, color, 0);
-    }
 
     //================================== Add text height and location to textViews
 
-    public void views_textHeightAndLocation(List<TextView> views, int height) {
+    public void views_textHeightAndLocation(TextView[] views, int height) {
         for(TextView view: views) {
             view.setGravity(Gravity.CENTER);
             view.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
         }
     }
-    public void views_textHeightAndLocation(TextView[] viewsArray, int height) {
-        List<TextView> views = Arrays.asList(viewsArray);
-        views_textHeightAndLocation(views, height);
-    }
 
     //================================== Set textViews text height
 
-    public void textViews_textHeight(List<TextView> textViews, int textHeight) {
+    public void textViews_textHeight(TextView[] textViews, int textHeight) {
         for(TextView textView: textViews) {
             textView.setHeight(textHeight);
         }
     }
-    public void textViews_textHeight(TextView[] textViewsArray, int textHeight) {
-        List<TextView> textViews = Arrays.asList(textViewsArray);
-        textViews_textHeight(textViews, textHeight);
-    }
 
     //================================== Add margins to views
 
-    public void views_setMargins(List<View> views, int marginTopBottom, int marginSide) {
+    public void views_setMargins(View[] views, int marginTopBottom, int marginSide) {
         for(View view: views) {
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) view
                     .getLayoutParams();
             mlp.setMargins(marginSide, marginTopBottom,
                     marginSide, marginTopBottom);
         }
-    }
-    public void views_setMargins(View[] viewsArray, int marginTopBottom, int marginSide) {
-        List<View> views = Arrays.asList(viewsArray);
-        views_setMargins(views, marginTopBottom, marginSide);
     }
 
     //================================== Add margin to only one view
@@ -91,10 +66,4 @@ public class Designs {
         params.setMargins(marginSide, marginTop,
                 marginSide, marginBottom);
     }
-
-    //==================================
-
-    //==================================
-
-
 }
