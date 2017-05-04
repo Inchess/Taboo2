@@ -93,7 +93,7 @@ public class PlayGameActivity extends AppCompatActivity {
 
     private void createTextViews() {
         TextView temp;
-        int numOfForbiddenWords = Math.max(jsonMethods.getList_keysToForbiddenWords().size(),
+        int numOfForbiddenWords = Math.min(jsonMethods.getList_keysToForbiddenWords().size(),
                 global.getNumberOfForbiddenWords());
         textViews = new TextView[numberForbiddenWords];
         for(int i = 0; i < numOfForbiddenWords; i++) {
