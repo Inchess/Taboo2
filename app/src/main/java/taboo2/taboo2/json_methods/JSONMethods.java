@@ -20,12 +20,13 @@ import taboo2.taboo2.activities.PlayGameActivity;
 import taboo2.taboo2.global.Global;
 
 
-public class JSONMethods extends Activity{
+public class JSONMethods{
 
     /* ==========================================
     ------------------VARIABLES------------------
     ========================================== */
 
+    private static Context context;
     private String string_wordToGuess;
     private JSONObject wholeJSON;
     private JSONObject array_wordToGuess;
@@ -43,6 +44,7 @@ public class JSONMethods extends Activity{
     private static Global global;
 
     public JSONMethods(Context context) {
+        this.context = context;
         try {
             inputStream = context.getAssets().open(fileName);
         } catch (IOException e) {
@@ -185,7 +187,7 @@ public class JSONMethods extends Activity{
         System.out.println(indexes_usedWordsToGuess.size());
         System.out.println(list_keysToForbiddenWords.size());
         if(indexes_usedWordsToGuess.size() == array_AllWordsToGuess.length()) {
-            Toast.makeText(getApplicationContext(), "A", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Hasła zostały zresetowane", Toast.LENGTH_LONG).show();
             indexes_usedWordsToGuess.clear();
         }
 
