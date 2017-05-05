@@ -16,10 +16,32 @@ import taboo2.taboo2.global.Global;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+        init();
+        addOnItemSelectedListener();
+        createArrayAdapters();
+        addSpinnersView();
+        setAdapters();
+        setFirstVisibleElement();
+    }
+
     /* ==========================================
     -------------HARDCODED VARIABLES-------------
     ========================================== */
 
+    String pointsToWin = "Punkty do wygrania";
+    String forbiddenWords = "Zakazane słowa";
+    String points_correctAnswer = "Prawidłowa odpowiedź";
+    String points_incorrectAnswer = "Nieprawidłowa odpowiedź";
+    String timePerPlayer = "Czas na gracza";
+    String questionsLevel = "Poziom trudności";
+    String easy = "Łatwy";
+    String average = "Średni";
+    String difficult = "Trudny";
+    String very_difficult = "Bardzo trudny";
     String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
     String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
@@ -53,19 +75,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     ArrayAdapter adapter_correctAnswer;
     ArrayAdapter adapter_incorrectAnswer;
     ArrayAdapter adapter_timePerPlayer;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        init();
-        addOnItemSelectedListener();
-        createArrayAdapters();
-        addSpinnersView();
-        setAdapters();
-        setFirstVisibleElement();
-    }
 
     private void init() {
         spinner_pointsToWin = (Spinner) findViewById(R.id.spinner$_points_to_win);

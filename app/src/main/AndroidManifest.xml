@@ -19,7 +19,8 @@
         <activity android:name=".activities.EndTurnActivity" />
         <activity android:name=".activities.EndGameActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.RulesActivity"></activity>
+        <activity android:name=".activities.RulesActivity" />
+        <activity android:name=".activities.AboutAuthorActivity"></activity>
     </application>
 
 </manifest>
