@@ -1,7 +1,9 @@
 package taboo2.taboo2.json_methods;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,10 +16,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import taboo2.taboo2.activities.PlayGameActivity;
 import taboo2.taboo2.global.Global;
 
 
-public class JSONMethods {
+public class JSONMethods extends Activity{
 
     /* ==========================================
     ------------------VARIABLES------------------
@@ -50,6 +53,7 @@ public class JSONMethods {
 
     private void init() {
         random = new Random();
+        list_keysToForbiddenWords = new ArrayList<>();
         if(array_AllWordsToGuess == null) {
             indexes_usedWordsToGuess = new ArrayList<>();
             createJSONObject();
@@ -115,7 +119,6 @@ public class JSONMethods {
 
     public void createListWithKeysToForbiddenWords() {
         Iterator<?> keys = json_ForbiddenWords.keys();
-        list_keysToForbiddenWords = new ArrayList<>();
         while( keys.hasNext() ) {
             String key = (String)keys.next();
             list_keysToForbiddenWords.add(key);
@@ -179,6 +182,13 @@ public class JSONMethods {
     }
 
     public boolean checkIfWordWasAlreadySearched(int randomNumber) {
+        System.out.println(indexes_usedWordsToGuess.size());
+        System.out.println(list_keysToForbiddenWords.size());
+        if(indexes_usedWordsToGuess.size() == array_AllWordsToGuess.length()) {
+            Toast.makeText(getApplicationContext(), "A", Toast.LENGTH_LONG).show();
+            indexes_usedWordsToGuess.clear();
+        }
+
         if(indexes_usedWordsToGuess.contains(randomNumber)) {
             return true;
         }
