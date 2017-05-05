@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
     android:orientation="vertical"
-    tools:context="taboo2.taboo2.activities.FirstScreenActivity">
+    tools:context="taboo2.taboo2.activities.StartScreenActivity">
 
     <Button
         android:id="@+id/startGame"

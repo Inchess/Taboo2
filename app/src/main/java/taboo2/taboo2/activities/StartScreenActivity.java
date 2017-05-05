@@ -12,7 +12,7 @@ import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.global.Global;
 import taboo2.taboo2.global.PhoneParams;
 
-public class FirstScreenActivity extends AppCompatActivity {
+public class StartScreenActivity extends AppCompatActivity {
 
     /* ==========================================
     -------------HARDCODED VARIABLES-------------
@@ -47,7 +47,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_screen);
+        setContentView(R.layout.activity_start_screen);
         init();
         changeDpToPx();
         fieldLocationFromTop();

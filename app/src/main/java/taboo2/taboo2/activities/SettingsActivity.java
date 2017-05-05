@@ -171,7 +171,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     public void saveChanges(View view) {
         saveValues();
-        Intent firstScreen = new Intent(this, FirstScreenActivity.class);
+        Intent firstScreen = new Intent(this, StartScreenActivity.class);
         startActivity(firstScreen);
     }
 }

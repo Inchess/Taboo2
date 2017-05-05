@@ -8,7 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import taboo2.taboo2.activities.FirstScreenActivity;
+import taboo2.taboo2.activities.StartScreenActivity;
 import taboo2.taboo2.global.Global;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -32,16 +32,12 @@ public class MenuTests {
     private Global global = new Global();
 
     @Rule
-    public ActivityTestRule<FirstScreenActivity> mActivityRule = new ActivityTestRule(FirstScreenActivity.class);
+    public ActivityTestRule<StartScreenActivity> mActivityRule = new ActivityTestRule(StartScreenActivity.class);
 
     @Test
     public void shouldCheckAboutButton() {
-        System.out.println(global.getSTRING_ABOUT());
-        System.out.println(onView(withId(R.id.about)));
-        String a = global.getSTRING_ABOUT();
-        String b = onView(withId(R.id.about)).toString();
         onView(withId(R.id.about))
-                .check(matches(withText(global.getSTRING_ABOUT())));
+                .check(matches(withText(ABOUT_AUTHOR)));
     }
 
     @Test
