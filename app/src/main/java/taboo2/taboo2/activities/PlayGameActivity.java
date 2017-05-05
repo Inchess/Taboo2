@@ -95,7 +95,7 @@ public class PlayGameActivity extends AppCompatActivity {
         TextView temp;
         int numOfForbiddenWords = Math.min(jsonMethods.getList_keysToForbiddenWords().size(),
                 global.getNumberOfForbiddenWords());
-        textViews = new TextView[numberForbiddenWords];
+        textViews = new TextView[numOfForbiddenWords];
         for(int i = 0; i < numOfForbiddenWords; i++) {
             temp = new TextView(this);
             temp.setLayoutParams(new LinearLayout.LayoutParams(
