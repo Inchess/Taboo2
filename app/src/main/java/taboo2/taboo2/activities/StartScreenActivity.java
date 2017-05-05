@@ -117,11 +117,16 @@ public class StartScreenActivity extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-        Intent teamNamesIntent = new Intent(this, PlayGameActivity.class);
-        startActivity(teamNamesIntent);
+        Intent startGameIntent = new Intent(this, PlayGameActivity.class);
+        startActivity(startGameIntent);
     }
 
-    public void settings(View view) {
+    public void openRules(View view) {
+        Intent rulesIntent = new Intent(this, RulesActivity.class);
+        startActivity(rulesIntent);
+    }
+
+    public void openSettings(View view) {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
         startActivity(settingsIntent);
     }
