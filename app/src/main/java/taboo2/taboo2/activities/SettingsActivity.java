@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Arrays;
 
@@ -26,22 +27,23 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         addSpinnersView();
         setAdapters();
         setFirstVisibleElement();
+        addText();
     }
 
     /* ==========================================
     -------------HARDCODED VARIABLES-------------
     ========================================== */
 
-    String pointsToWin = "Punkty do wygrania";
-    String forbiddenWords = "Zakazane słowa";
-    String points_correctAnswer = "Prawidłowa odpowiedź";
-    String points_incorrectAnswer = "Nieprawidłowa odpowiedź";
-    String timePerPlayer = "Czas na gracza";
-    String questionsLevel = "Poziom trudności";
-    String easy = "Łatwy";
-    String average = "Średni";
-    String difficult = "Trudny";
-    String very_difficult = "Bardzo trudny";
+    String string_pointsToWin = "Punkty do wygrania";
+    String string_forbiddenWords = "Zakazane słowa";
+    String string_points_correctAnswer = "Prawidłowa odpowiedź";
+    String string_points_incorrectAnswer = "Nieprawidłowa odpowiedź";
+    String string_timePerPlayer = "Czas na gracza";
+    String string_questionsLevel = "Poziom trudności:";
+    String string_easy = "Łatwy";
+    String string_average = "Średni";
+    String string_difficult = "Trudny";
+    String string_very_difficult = "Bardzo trudny";
     String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
     String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
@@ -75,8 +77,22 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     ArrayAdapter adapter_correctAnswer;
     ArrayAdapter adapter_incorrectAnswer;
     ArrayAdapter adapter_timePerPlayer;
+    TextView view_pointsToWin;
+    TextView view_forbiddenWords;
+    TextView view_correctAnswer;
+    TextView view_incorrectAnswer;
+    TextView view_timePerPlayer;
+    TextView view_questionLevel;
 
     private void init() {
+        initSpinners();
+        global = new Global();
+        saveChanges = (Button) findViewById(R.id.button_save_changes);
+        initTextViews();
+        findIndexesOfElements();
+    }
+
+    public void initSpinners() {
         spinner_pointsToWin = (Spinner) findViewById(R.id.spinner$_points_to_win);
         spinner_forbiddenWords = (Spinner) findViewById(R.id.spinner$_forbidden_words);
         spinner_correctAnswer = (Spinner) findViewById(R.id.spinner$_points_correct_answer);
@@ -84,9 +100,15 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner_timePerPlayer = (Spinner) findViewById(R.id.spinner$_time_per_player);
         spinners = new Spinner[]{spinner_pointsToWin, spinner_forbiddenWords, spinner_correctAnswer,
                 spinner_incorrectAnswer, spinner_timePerPlayer};
-        global = new Global();
-        saveChanges = (Button) findViewById(R.id.button_save_changes);
-        findIndexesOfElements();
+    }
+
+    public void initTextViews() {
+        view_pointsToWin = (TextView) findViewById(R.id.textView$_points_to_win);
+        view_forbiddenWords = (TextView) findViewById(R.id.textView$_forbidder_words);
+        view_correctAnswer = (TextView) findViewById(R.id.textView$_points_correct_answer);
+        view_incorrectAnswer = (TextView) findViewById(R.id.textView$_points_incorrect_answer);
+        view_timePerPlayer = (TextView) findViewById(R.id.textView$_time_per_player);
+        view_questionLevel = (TextView) findViewById(R.id.textView$_question_level);
     }
 
     public void findIndexesOfElements() {
@@ -176,6 +198,15 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void addText() {
+        view_pointsToWin.setText(string_pointsToWin);
+        view_forbiddenWords.setText(string_forbiddenWords);
+        view_correctAnswer.setText(string_points_correctAnswer);
+        view_incorrectAnswer.setText(string_points_incorrectAnswer);
+        view_timePerPlayer.setText(string_timePerPlayer);
+        view_questionLevel.setText(string_questionsLevel);
     }
 
     public void saveChanges(View view) {
