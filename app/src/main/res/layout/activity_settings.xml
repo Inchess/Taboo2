@@ -15,8 +15,7 @@
 
         <TextView
             android:id="@+id/textView$_points_to_win"
-            style="@style/Settings_textViews"
-            android:text="Points to win" />
+            style="@style/Settings_textViews" />
 
         <Spinner
             android:id="@+id/spinner$_points_to_win"
@@ -34,8 +33,7 @@
 
         <TextView
             android:id="@+id/textView$_forbidder_words"
-            style="@style/Settings_textViews"
-            android:text="Forbidden words"/>
+            style="@style/Settings_textViews"/>
 
         <Spinner
             android:id="@+id/spinner$_forbidden_words"
@@ -54,8 +52,7 @@
 
         <TextView
             android:id="@+id/textView$_points_correct_answer"
-            style="@style/Settings_textViews"
-            android:text="Correct answer"/>
+            style="@style/Settings_textViews"/>
 
         <Spinner
             android:id="@+id/spinner$_points_correct_answer"
@@ -74,8 +71,7 @@
 
         <TextView
             android:id="@+id/textView$_points_incorrect_answer"
-            style="@style/Settings_textViews"
-            android:text="Incorrect answer"/>
+            style="@style/Settings_textViews"/>
 
         <Spinner
             android:id="@+id/spinner$_points_incorrect_answer"
@@ -94,8 +90,7 @@
 
         <TextView
             android:id="@+id/textView$_time_per_player"
-            style="@style/Settings_textViews"
-            android:text="Time per player"/>
+            style="@style/Settings_textViews"/>
 
         <Spinner
             android:id="@+id/spinner$_time_per_player"
@@ -116,32 +111,27 @@
 
         <TextView
             android:id="@+id/textView$_question_level"
-            style="@style/Settings_textViews"
-            android:text="Questions level"/>
+            style="@style/Settings_textViews"/>
 
         <CheckBox
             android:id="@+id/level_easy"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Łatwy" />
+            android:layout_height="wrap_content" />
 
         <CheckBox
             android:id="@+id/level_average"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Średni"/>
+            android:layout_height="wrap_content"/>
 
         <CheckBox
             android:id="@+id/level_difficult"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Trudny" />
+            android:layout_height="wrap_content" />
 
         <CheckBox
             android:id="@+id/level_very_difficult"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bardzo trudny" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -152,7 +142,6 @@
         android:id="@+id/button_save_changes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zapisz i wróć"
         android:onClick="saveChanges"
         />
 

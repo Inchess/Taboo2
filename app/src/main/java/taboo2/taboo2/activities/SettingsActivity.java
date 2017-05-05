@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -43,7 +44,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     String string_easy = "Łatwy";
     String string_average = "Średni";
     String string_difficult = "Trudny";
-    String string_very_difficult = "Bardzo trudny";
+    String string_veryDifficult = "Bardzo trudny";
+    String string_saveAndQuit = "Zapisz i wróć";
     String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
     String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
@@ -83,12 +85,17 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     TextView view_incorrectAnswer;
     TextView view_timePerPlayer;
     TextView view_questionLevel;
+    CheckBox checkbox_easy;
+    CheckBox checkbox_average;
+    CheckBox checkbox_difficult;
+    CheckBox checkbox_veryDifficult;
 
     private void init() {
         initSpinners();
+        initCheckboxes();
+        initTextViews();
         global = new Global();
         saveChanges = (Button) findViewById(R.id.button_save_changes);
-        initTextViews();
         findIndexesOfElements();
     }
 
@@ -100,6 +107,13 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner_timePerPlayer = (Spinner) findViewById(R.id.spinner$_time_per_player);
         spinners = new Spinner[]{spinner_pointsToWin, spinner_forbiddenWords, spinner_correctAnswer,
                 spinner_incorrectAnswer, spinner_timePerPlayer};
+    }
+
+    public void initCheckboxes() {
+        checkbox_easy = (CheckBox) findViewById(R.id.level_easy);
+        checkbox_average = (CheckBox) findViewById(R.id.level_average);
+        checkbox_difficult = (CheckBox) findViewById(R.id.level_difficult);
+        checkbox_veryDifficult = (CheckBox) findViewById(R.id.level_very_difficult);
     }
 
     public void initTextViews() {
@@ -207,6 +221,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         view_incorrectAnswer.setText(string_points_incorrectAnswer);
         view_timePerPlayer.setText(string_timePerPlayer);
         view_questionLevel.setText(string_questionsLevel);
+        checkbox_easy.setText(string_easy);
+        checkbox_average.setText(string_average);
+        checkbox_difficult.setText(string_difficult);
+        checkbox_veryDifficult.setText(string_veryDifficult);
+        saveChanges.setText(string_saveAndQuit);
     }
 
     public void saveChanges(View view) {
