@@ -9,10 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import taboo2.taboo2.activities.StartScreenActivity;
-import taboo2.taboo2.global.Global;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -32,6 +30,10 @@ public class StartScreenTests {
 
     @Rule
     public ActivityTestRule<StartScreenActivity> mActivityRule = new ActivityTestRule(StartScreenActivity.class);
+
+    /* ==========================================
+    -----------------CHECK TEXT------------------
+    ========================================== */
 
     @Test
     public void shouldCheckTextAboutButton() {
@@ -56,6 +58,10 @@ public class StartScreenTests {
         onView(withId(R.id.startGame))
                 .check(matches(withText(START_GAME)));
     }
+
+    /* ==========================================
+    ---------------CHECK DISPLAYED---------------
+    ========================================== */
 
     @Test
     public void shouldCheckDisplayedGameButton() {

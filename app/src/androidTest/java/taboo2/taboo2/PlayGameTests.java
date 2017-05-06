@@ -23,6 +23,10 @@ public class PlayGameTests {
     @Rule
     public ActivityTestRule<PlayGameActivity> mActivityRule = new ActivityTestRule(PlayGameActivity.class);
 
+    /* ==========================================
+    ---------------CHECK DISPLAYED---------------
+    ========================================== */
+
     @Test
     public void shouldContainButtonCorrectAnswer() {
         onView(withId(R.id.correct_answer))
@@ -40,6 +44,10 @@ public class PlayGameTests {
         onView(withId(R.id.change_team))
                 .check(matches(isDisplayed()));
     }
+
+    /* ==========================================
+    -----------------CHECK TEXT------------------
+    ========================================== */
 
     @Test
     public void shouldCheckTextCorrectAnswer() {
