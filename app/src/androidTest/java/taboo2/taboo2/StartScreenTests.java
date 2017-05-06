@@ -34,53 +34,77 @@ public class StartScreenTests {
     public ActivityTestRule<StartScreenActivity> mActivityRule = new ActivityTestRule(StartScreenActivity.class);
 
     @Test
-    public void shouldCheckAboutButton() {
+    public void shouldCheckTextAboutButton() {
         onView(withId(R.id.about))
                 .check(matches(withText(ABOUT_AUTHOR)));
     }
 
     @Test
-    public void shouldCheckSettingsButton() {
+    public void shouldCheckTextSettingsButton() {
         onView(withId(R.id.settings))
                 .check(matches(withText(SETTINGS)));
     }
 
     @Test
-    public void shouldCheckRulesButton() {
+    public void shouldCheckTextRulesButton() {
         onView(withId(R.id.gameRules))
                 .check(matches(withText(GAME_RULES)));
     }
 
     @Test
-    public void shouldCheckStartGameButton() {
+    public void shouldCheckTextStartGameButton() {
         onView(withId(R.id.startGame))
                 .check(matches(withText(START_GAME)));
     }
 
+    @Test
+    public void shouldCheckDisplayedGameButton() {
+        onView(withId(R.id.startGame))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldCheckDisplayedGameRules() {
+        onView(withId(R.id.gameRules))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldCheckDisplayedSettings() {
+        onView(withId(R.id.settings))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldCheckDisplayedAboutAuthor() {
+        onView(withId(R.id.about))
+                .check(matches(isDisplayed()));
+    }
+
     //----------------------
 
-    @Test
-    public void shouldOpenGameRulesActivity() {
-        onView(withId(R.id.gameRules))
-                .perform(click());
-        onView(withText(RULES_PAGE))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void shouldOpenSettingsActivity() {
-        onView(withId(R.id.settings))
-                .perform(click());
-        onView(withText(SETTINGS_PAGE))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void shouldOpenAboutAuthorActivity() {
-        onView(withId(R.id.about))
-                .perform(click());
-        onView(withText(AUTHOR_PAGE))
-                .check(matches(isDisplayed()));
-    }
+//    @Test
+//    public void shouldOpenGameRulesActivity() {
+//        onView(withId(R.id.gameRules))
+//                .perform(click());
+//        onView(withText(RULES_PAGE))
+//                .check(matches(isDisplayed()));
+//    }
+//
+//    @Test
+//    public void shouldOpenSettingsActivity() {
+//        onView(withId(R.id.settings))
+//                .perform(click());
+//        onView(withText(SETTINGS_PAGE))
+//                .check(matches(isDisplayed()));
+//    }
+//
+//    @Test
+//    public void shouldOpenAboutAuthorActivity() {
+//        onView(withId(R.id.about))
+//                .perform(click());
+//        onView(withText(AUTHOR_PAGE))
+//                .check(matches(isDisplayed()));
+//    }
 
 }

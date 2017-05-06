@@ -39,4 +39,7 @@ public class PlayGameTests {
         onView(withId(R.id.change_team))
                 .check(matches(isDisplayed()));
     }
+
+//    @Test
+//    public void
 }
