@@ -36,62 +36,62 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     -------------HARDCODED VARIABLES-------------
     ========================================== */
 
-    String string_pointsToWin = "Punkty do wygrania";
-    String string_forbiddenWords = "Zakazane słowa";
-    String string_points_correctAnswer = "Prawidłowa odpowiedź";
-    String string_points_incorrectAnswer = "Nieprawidłowa odpowiedź";
-    String string_timePerPlayer = "Czas na gracza";
-    String string_questionsLevel = "Poziom trudności:";
-    String string_easy = "Łatwy";
-    String string_average = "Średni";
-    String string_difficult = "Trudny";
-    String string_veryDifficult = "Bardzo trudny";
-    String string_saveAndQuit = "Zapisz i wróć";
-    String string_backToDefault = "Cofnij do ustawień domyślnych";
-    String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
-    String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
-    String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
-    String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
-    String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:30", "02:00"};
+    private final String string_pointsToWin = "Punkty do wygrania";
+    private final String string_forbiddenWords = "Zakazane słowa";
+    private final String string_points_correctAnswer = "Prawidłowa odpowiedź";
+    private final String string_points_incorrectAnswer = "Nieprawidłowa odpowiedź";
+    private final String string_timePerPlayer = "Czas na gracza";
+    private final String string_questionsLevel = "Poziom trudności:";
+    private final String string_easy = "Łatwy";
+    private final String string_average = "Średni";
+    private final String string_difficult = "Trudny";
+    private final String string_veryDifficult = "Bardzo trudny";
+    private final String string_saveAndQuit = "Zapisz i wróć";
+    private final String string_backToDefault = "Cofnij do ustawień domyślnych";
+    private String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
+    private String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
+    private String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
+    private String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
+    private String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:30", "02:00"};
 
     /* ==========================================
     ------------------VARIABLES------------------
     ========================================== */
 
-    int global_pointsToWin;
-    int global_forbiddenWords;
-    int global_correctAnswer;
-    int global_incorrectAnswer;
-    String global_timePerPlayer;
-    Button saveChanges;
-    Button backToDefault;
-    Global global;
-    Spinner spinner_pointsToWin;
-    Spinner spinner_forbiddenWords;
-    Spinner spinner_correctAnswer;
-    Spinner spinner_incorrectAnswer;
-    Spinner spinner_timePerPlayer;
-    int position_pointsToWin;
-    int position_forbiddenWords;
-    int position_pointsCorrectAnswer;
-    int position_pointsIncorrectAnswer;
-    int position_timePerPlayer;
-    Spinner[] spinners;
-    ArrayAdapter adapter_pointsToWin;
-    ArrayAdapter adapter_forbiddenWords;
-    ArrayAdapter adapter_correctAnswer;
-    ArrayAdapter adapter_incorrectAnswer;
-    ArrayAdapter adapter_timePerPlayer;
-    TextView view_pointsToWin;
-    TextView view_forbiddenWords;
-    TextView view_correctAnswer;
-    TextView view_incorrectAnswer;
-    TextView view_timePerPlayer;
-    TextView view_questionLevel;
-    CheckBox checkbox_easy;
-    CheckBox checkbox_average;
-    CheckBox checkbox_difficult;
-    CheckBox checkbox_veryDifficult;
+    private int global_pointsToWin;
+    private int global_forbiddenWords;
+    private int global_correctAnswer;
+    private int global_incorrectAnswer;
+    private String global_timePerPlayer;
+    private Button saveChanges;
+    private Button backToDefault;
+    private Global global;
+    private Spinner spinner_pointsToWin;
+    private Spinner spinner_forbiddenWords;
+    private Spinner spinner_correctAnswer;
+    private Spinner spinner_incorrectAnswer;
+    private Spinner spinner_timePerPlayer;
+    private int position_pointsToWin;
+    private int position_forbiddenWords;
+    private int position_pointsCorrectAnswer;
+    private int position_pointsIncorrectAnswer;
+    private int position_timePerPlayer;
+    private Spinner[] spinners;
+    private ArrayAdapter adapter_pointsToWin;
+    private ArrayAdapter adapter_forbiddenWords;
+    private ArrayAdapter adapter_correctAnswer;
+    private ArrayAdapter adapter_incorrectAnswer;
+    private ArrayAdapter adapter_timePerPlayer;
+    private TextView view_pointsToWin;
+    private TextView view_forbiddenWords;
+    private TextView view_correctAnswer;
+    private TextView view_incorrectAnswer;
+    private TextView view_timePerPlayer;
+    private TextView view_questionLevel;
+    private CheckBox checkbox_easy;
+    private CheckBox checkbox_average;
+    private CheckBox checkbox_difficult;
+    private CheckBox checkbox_veryDifficult;
 
     private void init() {
         initSpinners();
