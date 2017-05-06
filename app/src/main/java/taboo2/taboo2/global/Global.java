@@ -25,6 +25,20 @@ public class Global {
     public static final String STRING_ABOUT = "O autorze";
 
     /* ===============================================
+    ------------------DEFAULT VALUES------------------
+    ================================================ */
+
+    public static final int DEFAULT_POINTS_TO_WIN = 30;
+    public static final int DEFAULT_NUMBER_OF_FORBIDDEN_WORDS = 5;
+    public static final int DEFAULT_POINTS_CORRECT_ANSWER = 1;
+    public static final int DEFAULT_POINTS_INCORRECT_ANSWER = -1;
+    public static final String DEFAULT_TIME_PER_PLAYER = "01:00";
+    public static final boolean DEFAULT_EASY_LEVEL_CHECKED = false;
+    public static final boolean DEFAULT_AVERAGE_LEVEL_CHECKED = true;
+    public static final boolean DEFAULT_DIFFICULT_LEVEL_CHECKED = false;
+    public static final boolean DEFAULT_VERY_DIFFICULT_LEVEL_CHECKED = false;
+
+    /* ===============================================
     ----------------------METHODS---------------------
     ================================================ */
 

@@ -47,6 +47,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     String string_difficult = "Trudny";
     String string_veryDifficult = "Bardzo trudny";
     String string_saveAndQuit = "Zapisz i wróć";
+    String string_backToDefault = "Cofnij do ustawień domyślnych";
     String[] array_pointsToWin = new String[]{"20", "25", "30", "35", "40", "50"};
     String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
@@ -63,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     int global_incorrectAnswer;
     String global_timePerPlayer;
     Button saveChanges;
+    Button backToDefault;
     Global global;
     Spinner spinner_pointsToWin;
     Spinner spinner_forbiddenWords;
@@ -97,6 +99,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         initTextViews();
         global = new Global();
         saveChanges = (Button) findViewById(R.id.button_save_changes);
+        backToDefault = (Button) findViewById(R.id.button_back_to_default);
         findIndexesOfElements();
     }
 
@@ -210,10 +213,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void saveValues() {
+        global.setPointsToWin(global_pointsToWin);
         global.setNumberOfForbiddenWords(global_forbiddenWords);
         global.setPoints_correctAnswer(global_correctAnswer);
         global.setPoints_incorrectAnswer(global_incorrectAnswer);
-        global.setPointsToWin(global_pointsToWin);
         global.setTimePerPlayer(global_timePerPlayer);
         Global.setEasyLevelChecked(checkbox_easy.isChecked());
         Global.setAverageLevelChecked(checkbox_average.isChecked());
@@ -238,11 +241,25 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         checkbox_difficult.setText(string_difficult);
         checkbox_veryDifficult.setText(string_veryDifficult);
         saveChanges.setText(string_saveAndQuit);
+        backToDefault.setText(string_backToDefault);
     }
 
     public void saveChanges(View view) {
         saveValues();
         Intent firstScreen = new Intent(this, StartScreenActivity.class);
         startActivity(firstScreen);
+    }
+
+    public void backToDefault(View view) {
+        global.setPointsToWin(Global.DEFAULT_POINTS_TO_WIN);
+        global.setNumberOfForbiddenWords(Global.DEFAULT_NUMBER_OF_FORBIDDEN_WORDS);
+        global.setPoints_correctAnswer(Global.DEFAULT_POINTS_CORRECT_ANSWER);
+        global.setPoints_incorrectAnswer(Global.DEFAULT_POINTS_INCORRECT_ANSWER);
+        global.setTimePerPlayer(Global.DEFAULT_TIME_PER_PLAYER);
+        Global.setEasyLevelChecked(Global.DEFAULT_EASY_LEVEL_CHECKED);
+        Global.setAverageLevelChecked(Global.DEFAULT_AVERAGE_LEVEL_CHECKED);
+        Global.setDifficultLevelChecked(Global.DEFAULT_DIFFICULT_LEVEL_CHECKED);
+        Global.setVeryDifficultLevelChecked(Global.DEFAULT_VERY_DIFFICULT_LEVEL_CHECKED);
+        super.recreate();
     }
 }

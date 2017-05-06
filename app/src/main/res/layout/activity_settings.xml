@@ -145,4 +145,11 @@
         android:onClick="saveChanges"
         />
 
+    <Button
+        android:id="@+id/button_back_to_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="backToDefault"
+        />
+
 </LinearLayout>
