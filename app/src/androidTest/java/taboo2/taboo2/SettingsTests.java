@@ -41,6 +41,7 @@ public class SettingsTests {
     private static final String DIFFICULT_LEVEL = "Trudny";
     private static final String VERY_DIFFICULT_LEVEL = "Bardzo trudny";
     private static final String SAVE_AND_QUIT = "Zapisz i wróć";
+    private static final String BACK_TO_DEFAULT = "Cofnij do ustawień domyślnych";
     private static final String DEFAULT_POINTS_TO_WIN = "30";
     private static final String DEFAULT_FORBIDDEN_WORDS = "5";
     private static final String DEFAULT_CORRECT_ANSWER = "1";
@@ -150,6 +151,12 @@ public class SettingsTests {
                 .check(matches(isDisplayed()));
     }
 
+    @Test
+    public void shouldContainTextViewBackToDefault() {
+        onView(withId(R.id.button_back_to_default))
+                .check(matches(isDisplayed()));
+    }
+
     /* ==========================================
     -----------------CHECK TEXT------------------
     ========================================== */
@@ -221,6 +228,12 @@ public class SettingsTests {
     }
 
     @Test
+    public void shouldCheckTextBackToDefault() {
+        onView(withId(R.id.button_back_to_default))
+                .check(matches(withText(BACK_TO_DEFAULT)));
+    }
+
+    @Test
     public void shouldCheckTextSpinnerPointsToWin() {
         onView(withId(R.id.spinner$_points_to_win))
                 .check(matches(withSpinnerText(containsString(DEFAULT_POINTS_TO_WIN))));
@@ -251,7 +264,7 @@ public class SettingsTests {
     }
 
     /* ==========================================
-    -----------CHANGE VALUE IN SPINNER-----------
+    ----------CHANGE VALUE IN SPINNERS-----------
     ========================================== */
 
     @Test
@@ -373,7 +386,7 @@ public class SettingsTests {
     ========================================== */
 
     @Test
-    public void changeValues_saveAndClose_goBack_checkIfChanged() {
+    public void changeValues_saveAndClose_goBack_checkIfChanged_clickDefault_checkIfDefault() {
         onView(withId(R.id.spinner$_points_to_win))
                 .perform(click());
         onData(allOf(is(instanceOf(String.class)), is("50")))
@@ -424,6 +437,27 @@ public class SettingsTests {
                 .check(matches(isChecked()));
         onView(withId(R.id.level_very_difficult))
                 .check(matches(isChecked()));
+        onView(withId(R.id.button_back_to_default))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_to_win))
+                .check(matches(withSpinnerText(containsString("30"))));
+        onView(withId(R.id.spinner$_forbidden_words))
+                .check(matches(withSpinnerText(containsString("5"))));
+        onView(withId(R.id.spinner$_points_correct_answer))
+                .check(matches(withSpinnerText(containsString("1"))));
+        onView(withId(R.id.spinner$_points_incorrect_answer))
+                .check(matches(withSpinnerText(containsString("-1"))));
+        onView(withId(R.id.spinner$_time_per_player))
+                .check(matches(withSpinnerText(containsString("01:00"))));
+        onView(withId(R.id.level_easy))
+                .check(matches(isNotChecked()));
+        onView(withId(R.id.level_average))
+                .check(matches(isChecked()));
+        onView(withId(R.id.level_difficult))
+                .check(matches(isNotChecked()));
+        onView(withId(R.id.level_very_difficult))
+                .check(matches(isNotChecked()));
+
     }
 
 }
