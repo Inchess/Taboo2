@@ -16,8 +16,10 @@ import taboo2.taboo2.activities.SettingsActivity;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.isNotChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -253,15 +255,85 @@ public class SettingsTests {
     }
 
     /* ==========================================
-    -----------------IS SELECTED-----------------
+    -----------CHANGE VALUE IN SPINNER-----------
     ========================================== */
 
     @Test
-    public void checkEasyLevelSelected() {
+    public void checkChangeValueSpinnerPointsToWin() {
         onView(withId(R.id.spinner$_points_to_win))
                 .perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("25"))).perform(click());
-        onView(withId(R.id.spinner$_points_to_win)).check(matches(withSpinnerText(containsString("25"))));
+        onData(allOf(is(instanceOf(String.class)), is("25")))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_to_win))
+                .check(matches(withSpinnerText(containsString("25"))));
+    }
+
+    @Test
+    public void checkChangeValueSpinnerForbiddenWords() {
+        onView(withId(R.id.spinner$_forbidden_words))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("3")))
+                .perform(click());
+        onView(withId(R.id.spinner$_forbidden_words))
+                .check(matches(withSpinnerText(containsString("3"))));
+    }
+
+    @Test
+    public void checkChangeValueSpinnerCorrectAnswer() {
+        onView(withId(R.id.spinner$_points_correct_answer))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("2")))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_correct_answer))
+                .check(matches(withSpinnerText(containsString("2"))));
+    }
+
+    @Test
+    public void checkChangeValueSpinnerIncorrectAnswer() {
+        onView(withId(R.id.spinner$_points_incorrect_answer))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("0")))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_incorrect_answer))
+                .check(matches(withSpinnerText(containsString("0"))));
+    }
+
+    @Test
+    public void checkChangeValueSpinnerTimePerPlayer() {
+        onView(withId(R.id.spinner$_time_per_player))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("02:00")))
+                .perform(click());
+        onView(withId(R.id.spinner$_time_per_player))
+                .check(matches(withSpinnerText(containsString("02:00"))));
+    }
+
+    /* ==========================================
+    -----------------IS CHECKED------------------
+    ========================================== */
+
+    @Test
+    public void checkEasyLevelNotChecked() {
+        onView(withId(R.id.level_easy)).
+                check(matches(isNotChecked()));
+    }
+
+    @Test
+    public void checkAverageLevelNotChecked() {
+        onView(withId(R.id.level_average)).
+                check(matches(isNotChecked()));
+    }
+
+    @Test
+    public void checkDifficultLevelNotChecked() {
+        onView(withId(R.id.level_difficult)).
+                check(matches(isNotChecked()));
+    }
+
+    @Test
+    public void checkVeryDifficultLevelNotChecked() {
+        onView(withId(R.id.level_very_difficult)).
+                check(matches(isNotChecked()));
     }
 
 }
