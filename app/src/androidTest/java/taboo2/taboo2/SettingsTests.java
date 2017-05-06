@@ -20,6 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isNotChecked;
+import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -309,7 +310,7 @@ public class SettingsTests {
     }
 
     /* ==========================================
-    -----------------IS CHECKED------------------
+    ---------------IS NOT CHECKED----------------
     ========================================== */
 
     @Test
@@ -334,6 +335,100 @@ public class SettingsTests {
     public void checkVeryDifficultLevelNotChecked() {
         onView(withId(R.id.level_very_difficult)).
                 check(matches(isNotChecked()));
+    }
+
+    /* ==========================================
+    ------------IS POSSIBLE TO CHECK-------------
+    ========================================== */
+
+    @Test
+    public void possibleToCheckEasyLevel() {
+        onView(withId(R.id.level_easy))
+                .perform(click());
+        onView(withId(R.id.level_easy))
+                .check(matches(isChecked()));
+    }
+
+    @Test
+    public void possibleToCheckAverageLevel() {
+        onView(withId(R.id.level_average))
+                .perform(click());
+        onView(withId(R.id.level_average))
+                .check(matches(isChecked()));
+    }
+
+    @Test
+    public void possibleToCheckDifficultLevel() {
+        onView(withId(R.id.level_difficult))
+                .perform(click());
+        onView(withId(R.id.level_difficult))
+                .check(matches(isChecked()));
+    }
+
+    @Test
+    public void possibleToCheckVeryDifficultLevel() {
+        onView(withId(R.id.level_very_difficult))
+                .perform(click());
+        onView(withId(R.id.level_very_difficult))
+                .check(matches(isChecked()));
+    }
+
+    /* ==========================================
+    ------CHANGE VALUES AND CHECK IF CHANGED-----
+    ========================================== */
+
+    @Test
+    public void changeValues_saveAndClose_goBack_checkIfChanged() {
+        onView(withId(R.id.spinner$_points_to_win))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("50")))
+                .perform(click());
+        onView(withId(R.id.spinner$_forbidden_words))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("7")))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_correct_answer))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("3")))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_incorrect_answer))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("-3")))
+                .perform(click());
+        onView(withId(R.id.spinner$_time_per_player))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("01:30")))
+                .perform(click());
+        onView(withId(R.id.level_easy))
+                .perform(click());
+        onView(withId(R.id.level_average))
+                .perform(click());
+        onView(withId(R.id.level_difficult))
+                .perform(click());
+        onView(withId(R.id.level_very_difficult))
+                .perform(click());
+        onView(withId(R.id.button_save_changes))
+                .perform(click());
+        onView(withId(R.id.settings))
+                .perform(click());
+        onView(withId(R.id.spinner$_points_to_win))
+                .check(matches(withSpinnerText(containsString("50"))));
+        onView(withId(R.id.spinner$_forbidden_words))
+                .check(matches(withSpinnerText(containsString("7"))));
+        onView(withId(R.id.spinner$_points_correct_answer))
+                .check(matches(withSpinnerText(containsString("3"))));
+        onView(withId(R.id.spinner$_points_incorrect_answer))
+                .check(matches(withSpinnerText(containsString("-3"))));
+        onView(withId(R.id.spinner$_time_per_player))
+                .check(matches(withSpinnerText(containsString("01:30"))));
+        onView(withId(R.id.level_easy))
+                .check(matches(isChecked()));
+        onView(withId(R.id.level_average))
+                .check(matches(isChecked()));
+        onView(withId(R.id.level_difficult))
+                .check(matches(isChecked()));
+        onView(withId(R.id.level_very_difficult))
+                .check(matches(isChecked()));
     }
 
 }
