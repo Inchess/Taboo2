@@ -3,20 +3,29 @@ package taboo2.taboo2;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.SoundEffectConstants;
 
+import org.hamcrest.Matchers;
+import org.hamcrest.core.AllOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import taboo2.taboo2.activities.SettingsActivity;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.action.*;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -34,6 +43,11 @@ public class SettingsTests {
     private static final String DIFFICULT_LEVEL = "Trudny";
     private static final String VERY_DIFFICULT_LEVEL = "Bardzo trudny";
     private static final String SAVE_AND_QUIT = "Zapisz i wróć";
+    private static final String DEFAULT_POINTS_TO_WIN = "30";
+    private static final String DEFAULT_FORBIDDEN_WORDS = "5";
+    private static final String DEFAULT_CORRECT_ANSWER = "1";
+    private static final String DEFAULT_INCORRECT_ANSWER = "-1";
+    private static final String DEFAULT_TIME_PER_PLAYER = "01:00";
 
     @Rule
     public ActivityTestRule<SettingsActivity> mActivityRule = new ActivityTestRule(SettingsActivity.class);
@@ -208,16 +222,46 @@ public class SettingsTests {
                 .check(matches(withText(SAVE_AND_QUIT)));
     }
 
+    @Test
+    public void shouldCheckTextSpinnerPointsToWin() {
+        onView(withId(R.id.spinner$_points_to_win))
+                .check(matches(withSpinnerText(containsString(DEFAULT_POINTS_TO_WIN))));
+    }
+
+    @Test
+    public void shouldCheckTextSpinnerForbiddenWords() {
+        onView(withId(R.id.spinner$_forbidden_words))
+                .check(matches(withSpinnerText(containsString(DEFAULT_FORBIDDEN_WORDS))));
+    }
+
+    @Test
+    public void shouldCheckTextSpinnerCorrectAnswer() {
+        onView(withId(R.id.spinner$_points_correct_answer))
+                .check(matches(withSpinnerText(containsString(DEFAULT_CORRECT_ANSWER))));
+    }
+
+    @Test
+    public void shouldCheckTextSpinnerIncorrectAnswer() {
+        onView(withId(R.id.spinner$_points_incorrect_answer))
+                .check(matches(withSpinnerText(containsString(DEFAULT_INCORRECT_ANSWER))));
+    }
+
+    @Test
+    public void shouldCheckTextSpinnerTimePerPlayer() {
+        onView(withId(R.id.spinner$_time_per_player))
+                .check(matches(withSpinnerText(containsString(DEFAULT_TIME_PER_PLAYER))));
+    }
+
     /* ==========================================
     -----------------IS SELECTED-----------------
     ========================================== */
 
     @Test
     public void checkEasyLevelSelected() {
-        onView(withId(R.id.about))
+        onView(withId(R.id.spinner$_points_to_win))
                 .perform(click());
-        onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
-        onView(withId(spinnerId)).check(matches(withSpinnerText(containsString(selectionText))));
+        onData(allOf(is(instanceOf(String.class)), is("25"))).perform(click());
+        onView(withId(R.id.spinner$_points_to_win)).check(matches(withSpinnerText(containsString("25"))));
     }
 
 }
