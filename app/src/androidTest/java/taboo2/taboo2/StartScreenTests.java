@@ -29,9 +29,6 @@ public class StartScreenTests {
     private static final String RULES_PAGE = "Rules page";
     private static final String SETTINGS_PAGE = "Settings page";
     private static final String AUTHOR_PAGE = "Author page";
-    private static final String CORRECT_ANSWER = "Correct";
-    private static final String INCORRECT_ANSWER = "Incorrect";
-    private static final String CHANGE_TEAM = "End tur";
 
     @Rule
     public ActivityTestRule<StartScreenActivity> mActivityRule = new ActivityTestRule(StartScreenActivity.class);
@@ -59,32 +56,6 @@ public class StartScreenTests {
         onView(withId(R.id.startGame))
                 .check(matches(withText(START_GAME)));
     }
-
-    @Test
-    public void shouldContainButtonCorrectAnswer() {
-        onView(withId(R.id.startGame))
-                .perform(click());
-        onView(withId(R.id.correct_answer))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void shouldContainButtonIncorrectAnswer() {
-        onView(withId(R.id.startGame))
-                .perform(click());
-        onView(withId(R.id.incorrect_answer))
-                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void shouldContainButtonEndTurn() {
-        onView(withId(R.id.startGame))
-                .perform(click());
-        onView(withId(R.id.change_team))
-                .check(matches(isDisplayed()));
-    }
-
-
 
     //----------------------
 
