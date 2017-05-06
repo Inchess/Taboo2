@@ -1,9 +1,12 @@
 package taboo2.taboo2;
 
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import taboo2.taboo2.activities.PlayGameActivity;
 
@@ -14,6 +17,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
+@RunWith(AndroidJUnit4.class)
+@LargeTest
 public class PlayGameTests {
 
     private static final String CORRECT_ANSWER = "Correct";

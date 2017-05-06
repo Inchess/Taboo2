@@ -1,19 +1,26 @@
 package taboo2.taboo2;
 
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import taboo2.taboo2.activities.SettingsActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.action.*;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
+@RunWith(AndroidJUnit4.class)
+@LargeTest
 public class SettingsTests {
 
     private static final String POINTS_TO_WIN = "Punkty do wygrania";
@@ -199,6 +206,18 @@ public class SettingsTests {
     public void shouldCheckTextSaveChanges() {
         onView(withId(R.id.button_save_changes))
                 .check(matches(withText(SAVE_AND_QUIT)));
+    }
+
+    /* ==========================================
+    -----------------IS SELECTED-----------------
+    ========================================== */
+
+    @Test
+    public void checkEasyLevelSelected() {
+        onView(withId(R.id.about))
+                .perform(click());
+        onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
+        onView(withId(spinnerId)).check(matches(withSpinnerText(containsString(selectionText))));
     }
 
 }
