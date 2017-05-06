@@ -260,6 +260,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         Global.setAverageLevelChecked(Global.DEFAULT_AVERAGE_LEVEL_CHECKED);
         Global.setDifficultLevelChecked(Global.DEFAULT_DIFFICULT_LEVEL_CHECKED);
         Global.setVeryDifficultLevelChecked(Global.DEFAULT_VERY_DIFFICULT_LEVEL_CHECKED);
-        super.recreate();
+        Intent settings = new Intent(this, SettingsActivity.class);
+        startActivity(settings);
     }
 }
