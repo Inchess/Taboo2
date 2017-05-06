@@ -20,7 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MenuTests {
+public class StartScreenTests {
 
     private static final String ABOUT_AUTHOR = "O autorze";
     private static final String SETTINGS = "Ustawienia";
@@ -29,7 +29,9 @@ public class MenuTests {
     private static final String RULES_PAGE = "Rules page";
     private static final String SETTINGS_PAGE = "Settings page";
     private static final String AUTHOR_PAGE = "Author page";
-    private Global global = new Global();
+    private static final String CORRECT_ANSWER = "Correct";
+    private static final String INCORRECT_ANSWER = "Incorrect";
+    private static final String CHANGE_TEAM = "End tur";
 
     @Rule
     public ActivityTestRule<StartScreenActivity> mActivityRule = new ActivityTestRule(StartScreenActivity.class);
@@ -59,12 +61,32 @@ public class MenuTests {
     }
 
     @Test
-    public void shouldOpenPlayGameActivity() {
+    public void shouldContainButtonCorrectAnswer() {
         onView(withId(R.id.startGame))
                 .perform(click());
         onView(withId(R.id.correct_answer))
                 .check(matches(isDisplayed()));
     }
+
+    @Test
+    public void shouldContainButtonIncorrectAnswer() {
+        onView(withId(R.id.startGame))
+                .perform(click());
+        onView(withId(R.id.incorrect_answer))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldContainButtonEndTurn() {
+        onView(withId(R.id.startGame))
+                .perform(click());
+        onView(withId(R.id.change_team))
+                .check(matches(isDisplayed()));
+    }
+
+
+
+    //----------------------
 
     @Test
     public void shouldOpenGameRulesActivity() {
