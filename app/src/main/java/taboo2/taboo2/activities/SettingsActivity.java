@@ -29,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         setAdapters();
         setFirstVisibleElement();
         addText();
+        checkCheckboxes();
     }
 
     /* ==========================================
@@ -182,6 +183,13 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         spinner_timePerPlayer.setSelection(position_timePerPlayer, true);
     }
 
+    public void checkCheckboxes() {
+        checkbox_easy.setChecked(Global.isEasyLevelChecked());
+        checkbox_average.setChecked(Global.isAverageLevelChecked());
+        checkbox_difficult.setChecked(Global.isDifficultLevelChecked());
+        checkbox_veryDifficult.setChecked(Global.isVeryDifficultLevelChecked());
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.toString().contains("spinner$_points_to_win")) {
@@ -207,6 +215,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         global.setPoints_incorrectAnswer(global_incorrectAnswer);
         global.setPointsToWin(global_pointsToWin);
         global.setTimePerPlayer(global_timePerPlayer);
+        Global.setEasyLevelChecked(checkbox_easy.isChecked());
+        Global.setAverageLevelChecked(checkbox_average.isChecked());
+        Global.setDifficultLevelChecked(checkbox_difficult.isChecked());
+        Global.setVeryDifficultLevelChecked(checkbox_veryDifficult.isChecked());
     }
 
     @Override

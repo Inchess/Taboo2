@@ -13,6 +13,10 @@ public class Global {
     private static int points_correctAnswer = 1;
     private static int points_incorrectAnswer = -1;
     private static String timePerPlayer = "01:00";
+    private static boolean easyLevelChecked = false;
+    private static boolean averageLevelChecked = true;
+    private static boolean difficultLevelChecked = false;
+    private static boolean veryDifficultLevelChecked = false;
     public static final String NAME_RED_TEAM = "Czerwoni";
     public static final String NAME_GREEN_TEAM = "Zieloni";
     public static final String STRING_START = "Rozpocznij grę";
@@ -98,5 +102,37 @@ public class Global {
 
     public void setTimePerPlayer(String timePerPlayer) {
         Global.timePerPlayer = timePerPlayer;
+    }
+
+    public static boolean isEasyLevelChecked() {
+        return easyLevelChecked;
+    }
+
+    public static void setEasyLevelChecked(boolean easyLevelChecked) {
+        Global.easyLevelChecked = easyLevelChecked;
+    }
+
+    public static boolean isAverageLevelChecked() {
+        return averageLevelChecked;
+    }
+
+    public static void setAverageLevelChecked(boolean averageLevelChecked) {
+        Global.averageLevelChecked = averageLevelChecked;
+    }
+
+    public static boolean isDifficultLevelChecked() {
+        return difficultLevelChecked;
+    }
+
+    public static void setDifficultLevelChecked(boolean difficultLevelChecked) {
+        Global.difficultLevelChecked = difficultLevelChecked;
+    }
+
+    public static boolean isVeryDifficultLevelChecked() {
+        return veryDifficultLevelChecked;
+    }
+
+    public static void setVeryDifficultLevelChecked(boolean veryDifficultLevelChecked) {
+        Global.veryDifficultLevelChecked = veryDifficultLevelChecked;
     }
 }

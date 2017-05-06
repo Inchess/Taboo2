@@ -310,7 +310,7 @@ public class SettingsTests {
     }
 
     /* ==========================================
-    ---------------IS NOT CHECKED----------------
+    -------------CHECKBOXES STATUS---------------
     ========================================== */
 
     @Test
@@ -322,7 +322,7 @@ public class SettingsTests {
     @Test
     public void checkAverageLevelNotChecked() {
         onView(withId(R.id.level_average)).
-                check(matches(isNotChecked()));
+                check(matches(isChecked()));
     }
 
     @Test
@@ -354,7 +354,7 @@ public class SettingsTests {
         onView(withId(R.id.level_average))
                 .perform(click());
         onView(withId(R.id.level_average))
-                .check(matches(isChecked()));
+                .check(matches(isNotChecked()));
     }
 
     @Test
@@ -424,7 +424,7 @@ public class SettingsTests {
         onView(withId(R.id.level_easy))
                 .check(matches(isChecked()));
         onView(withId(R.id.level_average))
-                .check(matches(isChecked()));
+                .check(matches(isNotChecked()));
         onView(withId(R.id.level_difficult))
                 .check(matches(isChecked()));
         onView(withId(R.id.level_very_difficult))
