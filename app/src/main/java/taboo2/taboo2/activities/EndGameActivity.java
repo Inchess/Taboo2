@@ -52,6 +52,7 @@ public class EndGameActivity extends AppCompatActivity {
     private TextView redScores;
     private TextView winningTeam;
     private TextView[] textViews;
+    private final String NEW_GAME = "Nowa gra";
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -86,10 +87,10 @@ public class EndGameActivity extends AppCompatActivity {
     }
 
     public void addText() {
-        newGame.setText("Start new game");
+        newGame.setText(NEW_GAME);
         greenScores.setText(Integer.toString(greenTeamScores.getTeamScore()));
         redScores.setText(Integer.toString(redTeamScores.getTeamScore()));
-        winningTeam.setText(global.getCurrentTeamText() + " has won the game!");
+        winningTeam.setText(global.getCurrentTeamText() + " wygrali!");
     }
 
     public void newGame(View view) {
