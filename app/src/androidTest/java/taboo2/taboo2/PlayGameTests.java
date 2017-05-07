@@ -24,6 +24,8 @@ public class PlayGameTests {
     private static final String CORRECT_ANSWER = "Correct";
     private static final String INCORRECT_ANSWER = "Incorrect";
     private static final String CHANGE_TEAM = "End turn";
+    private static final String GREEN_TEAM_SCORE_AT_BEGINNING = "0";
+    private static final String RED_TEAM_SCORE_AT_BEGINNING = "0";
 
     @Rule
     public ActivityTestRule<PlayGameActivity> mActivityRule = new ActivityTestRule(PlayGameActivity.class);
@@ -50,6 +52,18 @@ public class PlayGameTests {
                 .check(matches(isDisplayed()));
     }
 
+    @Test
+    public void shouldContainGreenTeamScore() {
+        onView(withId(R.id.score_green_team))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldContainRedTeamScore() {
+        onView(withId(R.id.score_red_team))
+                .check(matches(isDisplayed()));
+    }
+
     /* ==========================================
     -----------------CHECK TEXT------------------
     ========================================== */
@@ -70,5 +84,17 @@ public class PlayGameTests {
     public void shouldCheckTextEndTurn() {
         onView(withId(R.id.change_team))
                 .check(matches(withText(CHANGE_TEAM)));
+    }
+
+    @Test
+    public void shouldCheckTextGreenTeam() {
+        onView(withId(R.id.score_green_team))
+                .check(matches(withText(GREEN_TEAM_SCORE_AT_BEGINNING)));
+    }
+
+    @Test
+    public void shouldCheckTextRedTeam() {
+        onView(withId(R.id.score_green_team))
+                .check(matches(withText(RED_TEAM_SCORE_AT_BEGINNING)));
     }
 }
