@@ -54,6 +54,7 @@ public class EndTurnActivity extends AppCompatActivity {
     private TextView redScores;
     private TextView nowPlays;
     private TextView[] textViews;
+    private final String STRING_NEXT_ROUND = "Następna runda";
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -92,7 +93,7 @@ public class EndTurnActivity extends AppCompatActivity {
     }
 
     public void addText() {
-        nextRound.setText("Start next round");
+        nextRound.setText(STRING_NEXT_ROUND);
         greenScores.setText(Integer.toString(greenTeamScores.getTeamScore()));
         redScores.setText(Integer.toString(redTeamScores.getTeamScore()));
         nowPlays.setText(global.getCurrentTeamText());
