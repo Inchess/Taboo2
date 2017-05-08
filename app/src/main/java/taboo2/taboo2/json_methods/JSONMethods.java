@@ -15,16 +15,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import taboo2.taboo2.global.Global;
+
 
 public class JSONMethods{
 
     public JSONMethods(Context context) {
         this.context = context;
-        try {
-            inputStream = context.getAssets().open(fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        createFilesArray();
         init();
     }
 
@@ -33,8 +31,6 @@ public class JSONMethods{
         list_keysToForbiddenWords = new ArrayList<>();
         if(array_AllWordsToGuess == null) {
             indexes_usedWordsToGuess = new ArrayList<>();
-            createJSONObject();
-            createArrayWithAllWordsToGuess();
         }
     }
 
@@ -48,8 +44,9 @@ public class JSONMethods{
     private JSONObject array_wordToGuess;
     private Random random;
     private static InputStream inputStream;
-    private String fileName = "Taboo_easy.json";
-    private String arrayName = "Taboo_Easy";
+    private String fileName;
+    private static List<String> files;
+    private String arrayName;
     private static JSONArray array_AllWordsToGuess;
     private static List<Integer> indexes_usedWordsToGuess;
     private List<String> list_keysToForbiddenWords;
@@ -58,7 +55,7 @@ public class JSONMethods{
     private List<String> list_wordsToTextViews;
     private JSONObject json_ForbiddenWords = null;
 
-    private void createJSONObject() {
+    public void createJSONObject() {
         try {
             wholeJSON = new JSONObject(convertJSONFileToObject());
         } catch (JSONException e) {
@@ -67,10 +64,54 @@ public class JSONMethods{
 
     }
 
-    private void createArrayWithAllWordsToGuess() {
+    public void createArrayWithAllWordsToGuess() {
         try {
             array_AllWordsToGuess = wholeJSON.getJSONArray(arrayName);
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createFilesArray() {
+        files = new ArrayList<>();
+        if(Global.isEasyLevelChecked()) {
+            files.add("Taboo_easy.json");
+        }
+        if(Global.isAverageLevelChecked()) {
+            files.add("Taboo_average.json");
+        }
+        if(Global.isDifficultLevelChecked()) {
+            files.add("Taboo_difficult.json");
+        }
+        if(Global.isVeryDifficultLevelChecked()) {
+            files.add("Taboo_veryDifficult.json");
+        }
+    }
+
+    public void getRandomFile() {
+        int random = (int)(Math.random()*files.size());
+        fileName = files.get(random);
+    }
+
+    public void createCorrectArray() {
+        if(fileName.equals("Taboo_easy.json")) {
+            arrayName = "Taboo_easy";
+        }
+        if(fileName.equals("Taboo_average.json")) {
+            arrayName = "Taboo_average";
+        }
+        if(fileName.equals("Taboo_difficult.json")) {
+            arrayName = "Taboo_difficult";
+        }
+        if(fileName.equals("Taboo_veryDifficult.json")) {
+            arrayName = "Taboo_veryDifficult";
+        }
+    }
+
+    public void createInputStream() {
+        try {
+            inputStream = context.getAssets().open(fileName);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

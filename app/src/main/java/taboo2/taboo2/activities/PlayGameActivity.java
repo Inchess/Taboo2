@@ -107,6 +107,11 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void getValuesFromJSON() {
+        jsonMethods.getRandomFile();
+        jsonMethods.createCorrectArray();
+        jsonMethods.createInputStream();
+        jsonMethods.createJSONObject();
+        jsonMethods.createArrayWithAllWordsToGuess();
         jsonMethods.initWordToGuess();
         jsonMethods.createJSONWithForbiddenWords();
         jsonMethods.createListWithKeysToForbiddenWords();
