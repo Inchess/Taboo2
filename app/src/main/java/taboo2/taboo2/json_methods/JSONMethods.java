@@ -1,6 +1,5 @@
 package taboo2.taboo2.json_methods;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,32 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import taboo2.taboo2.activities.PlayGameActivity;
-import taboo2.taboo2.global.Global;
-
 
 public class JSONMethods{
-
-    /* ==========================================
-    ------------------VARIABLES------------------
-    ========================================== */
-
-    private static Context context;
-    private String string_wordToGuess;
-    private JSONObject wholeJSON;
-    private JSONObject array_wordToGuess;
-    private Random random;
-    private static InputStream inputStream;
-    private String fileName = "Noc.json";
-    private String arrayName = "Taboo_Easy";
-    private static JSONArray array_AllWordsToGuess;
-    private static List<Integer> indexes_usedWordsToGuess;
-    private List<String> list_keysToForbiddenWords;
-    private List<String> list_notRequiredWords;
-    private List<String> list_keysToWordsToTextViews;
-    private List<String> list_wordsToTextViews;
-    private JSONObject json_ForbiddenWords = null;
-    private static Global global;
 
     public JSONMethods(Context context) {
         this.context = context;
@@ -60,9 +35,28 @@ public class JSONMethods{
             indexes_usedWordsToGuess = new ArrayList<>();
             createJSONObject();
             createArrayWithAllWordsToGuess();
-            global = new Global();
         }
     }
+
+    /* ==========================================
+    ------------------VARIABLES------------------
+    ========================================== */
+
+    private static Context context;
+    private String string_wordToGuess;
+    private JSONObject wholeJSON;
+    private JSONObject array_wordToGuess;
+    private Random random;
+    private static InputStream inputStream;
+    private String fileName = "Taboo_Easy.json";
+    private String arrayName = "Taboo_Easy";
+    private static JSONArray array_AllWordsToGuess;
+    private static List<Integer> indexes_usedWordsToGuess;
+    private List<String> list_keysToForbiddenWords;
+    private List<String> list_notRequiredWords;
+    private List<String> list_keysToWordsToTextViews;
+    private List<String> list_wordsToTextViews;
+    private JSONObject json_ForbiddenWords = null;
 
     private void createJSONObject() {
         try {
