@@ -48,7 +48,7 @@ public class JSONMethods{
     private JSONObject array_wordToGuess;
     private Random random;
     private static InputStream inputStream;
-    private String fileName = "Taboo_Easy.json";
+    private String fileName = "Taboo_easy.json";
     private String arrayName = "Taboo_Easy";
     private static JSONArray array_AllWordsToGuess;
     private static List<Integer> indexes_usedWordsToGuess;

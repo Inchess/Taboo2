@@ -1,7 +1,7 @@
 {
-  "Taboo_easy": [
+  "Taboo_difficult": [
     {
-      "Noc 3 easy": {
+      "Noc 3 difficult": {
         "REQ_word1": "--Ciemność",
         "REQ_word2": "--Księżyc",
         "REQ_word3": "--Dzień",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "Dzień 2 easy": {
+      "Dzień 2 difficult": {
         "word1": "A",
         "REQ_word2": "--B",
         "REQ_word3": "--C",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "Imiona 1 easy": {
+      "Imiona 1 difficult": {
         "REQ_word1": "--Kasia",
         "word2": "Tomek",
         "word3": "Ania",
@@ -32,7 +32,7 @@
       }
     },
     {
-      "Praca 2 easy": {
+      "Praca 2 difficult": {
         "word1": "Ciężka",
         "word2": "Przyjemna",
         "REQ_word3": "--Codziennie",
@@ -43,7 +43,7 @@
       }
     },
     {
-      "AAA 1 easy": {
+      "AAA 1 difficult": {
         "word1": "BBB",
         "word2": "CC",
         "REQ_word3": "--D",
@@ -54,7 +54,7 @@
       }
     },
     {
-      "Kubity 2 easy": {
+      "Kubity 2 difficult": {
         "word1": "Janusz",
         "word2": "Bożena",
         "REQ_word3": "--Kasia",
@@ -65,7 +65,7 @@
       }
     },
     {
-      "Rembak 2 easy": {
+      "Rembak 2 difficult": {
         "word1": "Kornel",
         "word2": "Dominika",
         "REQ_word3": "--Alicja",
