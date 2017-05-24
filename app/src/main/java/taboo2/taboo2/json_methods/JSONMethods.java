@@ -83,12 +83,12 @@ public class JSONMethods{
     private void createFilesArray() {
         String content = getJsonFromAssetFile(context, "Taboo_difficult.json");
         JSONObject finalJson = new JSONObject();
-        File file = new File("T.json");
+        File file = new File("C:\\Users\\y50-70\\Desktop\\Taboo2\\app\\src\\main\\assets\\T.json");
         try {
             JSONObject jsonObject = new JSONObject(content);
             JSONArray jsonArray = new JSONArray();
             jsonArray.put(jsonObject);
-            finalJson.put("T", jsonArray);
+            finalJson.put("C:\\Users\\y50-70\\Desktop\\Taboo2\\app\\src\\main\\assets\\T.json", jsonArray);
         } catch(JSONException e) {
             e.printStackTrace();
         }
