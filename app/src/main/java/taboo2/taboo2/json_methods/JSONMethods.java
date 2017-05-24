@@ -8,14 +8,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import taboo2.taboo2.global.Global;
 
 
 public class JSONMethods{
@@ -72,21 +76,67 @@ public class JSONMethods{
         }
     }
 
+    /* ==========================================
+    ------------------AAAAAAAAA------------------
+    ========================================== */
+
     private void createFilesArray() {
-        files = new ArrayList<>();
-        if(Global.isEasyLevelChecked()) {
-            files.add("Taboo_easy.json");
+        String content = getJsonFromAssetFile(context, "Taboo_difficult.json");
+        JSONObject finalJson = new JSONObject();
+        File file = new File("T.json");
+        try {
+            JSONObject jsonObject = new JSONObject(content);
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(jsonObject);
+            finalJson.put("T", jsonArray);
+        } catch(JSONException e) {
+            e.printStackTrace();
         }
-        if(Global.isAverageLevelChecked()) {
-            files.add("Taboo_average.json");
-        }
-        if(Global.isDifficultLevelChecked()) {
-            files.add("Taboo_difficult.json");
-        }
-        if(Global.isVeryDifficultLevelChecked()) {
-            files.add("Taboo_veryDifficult.json");
+        try {
+            writeFile(finalJson.toString().getBytes(), file);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    public static void writeFile(byte[] data, File file) throws IOException{
+        BufferedOutputStream bos = null;
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bos = new BufferedOutputStream(fos);
+            bos.write(data);
+        }
+        finally {
+            if (bos != null) {
+                try {
+                    bos.flush();
+                    bos.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static String getJsonFromAssetFile(Context context, String jsonFileName) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open(jsonFileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    /* ==========================================
+    ------------------AAAAAAAAA------------------
+    ========================================== */
 
     public void getRandomFile() {
         int random = (int)(Math.random()*files.size());
