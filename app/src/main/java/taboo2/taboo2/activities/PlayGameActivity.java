@@ -3,10 +3,13 @@ package taboo2.taboo2.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import taboo2.taboo2.R;
@@ -32,6 +35,7 @@ public class PlayGameActivity extends AppCompatActivity {
         setTextHeight();
         addScores();
         getGlobalValues();
+        addTimer();
     }
 
     /* ==========================================
@@ -65,6 +69,10 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView scoresRed;
     private TextView wordToGuess;
     private TextView[] textViews;
+    private ProgressBar progressBar;
+    private CountDownTimer countDownTimer;
+    private int i = 0;
+    private TextView timer;
     private int numberForbiddenWords;
     private LinearLayout playGame;
 
@@ -82,10 +90,12 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer = (Button) findViewById(R.id.correct_answer);
         incorrectAnswer = (Button) findViewById(R.id.incorrect_answer);
         changeTeam = (Button) findViewById(R.id.change_team);
+        timer = (TextView) findViewById(R.id.timer);
         designs = new Designs();
         jsonMethods = new JSONMethods(this);
         greenTeamScores = new GreenTeamScores();
         redTeamScores = new RedTeamScores();
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
         changeTeam.setText("End turn");
@@ -179,6 +189,27 @@ public class PlayGameActivity extends AppCompatActivity {
     public void endTurn(View view) {
         Intent endTurnActivity = new Intent(this, EndTurnActivity.class);
         startActivity(endTurnActivity);
+    }
+
+    public void addTimer() {
+        progressBar.setMax(60);
+        progressBar.setProgress(i);
+        countDownTimer = new CountDownTimer(100000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.v("Log_tag", "Tick in progress " + i + millisUntilFinished);
+                i++;
+                progressBar.setProgress(i);
+                timer.setText(Integer.toString(progressBar.getProgress()));
+            }
+
+            @Override
+            public void onFinish() {
+                i++;
+                progressBar.setProgress(i);
+            }
+        };
+        countDownTimer.start();
     }
 
 }

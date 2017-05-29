@@ -21,8 +21,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import taboo2.taboo2.global.Global;
 
-public class JSONMethods{
+
+public class JSONMethods {
 
     public JSONMethods(Context context) {
         this.context = context;
@@ -33,7 +35,7 @@ public class JSONMethods{
     private void init() {
         random = new Random();
         list_keysToForbiddenWords = new ArrayList<>();
-        if(array_AllWordsToGuess == null) {
+        if (array_AllWordsToGuess == null) {
             indexes_usedWordsToGuess = new ArrayList<>();
         }
     }
@@ -81,42 +83,58 @@ public class JSONMethods{
     ========================================== */
 
     private void createFilesArray() {
-        String content = getJsonFromAssetFile(context, "Taboo_difficult.json");
-        JSONObject finalJson = new JSONObject();
-        File file = new File("T.json");
-        try {
-            JSONObject jsonObject = new JSONObject(content);
-            JSONArray jsonArray = new JSONArray();
-            jsonArray.put(jsonObject);
-            finalJson.put("T.json", jsonArray);
-        } catch(JSONException e) {
-            e.printStackTrace();
+        files = new ArrayList<>();
+        if (Global.isEasyLevelChecked()) {
+            files.add("Taboo_easy.json");
         }
-        try {
-            writeFile(finalJson.toString().getBytes(), file);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (Global.isAverageLevelChecked()) {
+            files.add("Taboo_average.json");
+        }
+        if (Global.isDifficultLevelChecked()) {
+            files.add("Taboo_difficult.json");
+        }
+        if (Global.isVeryDifficultLevelChecked()) {
+            files.add("Taboo_veryDifficult.json");
         }
     }
 
-    public static void writeFile(byte[] data, File file) throws IOException{
-        BufferedOutputStream bos = null;
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            bos = new BufferedOutputStream(fos);
-            bos.write(data);
-        }
-        finally {
-            if (bos != null) {
-                try {
-                    bos.flush();
-                    bos.close();
-                } catch (Exception e) {
-
-                }
-            }
-        }
-    }
+//    private void createFilesArray() {
+//        String content = getJsonFromAssetFile(context, "Taboo_difficult.json");
+//        JSONObject finalJson = new JSONObject();
+//        File file = new File("T.json");
+//        try {
+//            JSONObject jsonObject = new JSONObject(content);
+//            JSONArray jsonArray = new JSONArray();
+//            jsonArray.put(jsonObject);
+//            finalJson.put("T.json", jsonArray);
+//        } catch(JSONException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            writeFile(finalJson.toString().getBytes(), file);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void writeFile(byte[] data, File file) throws IOException{
+//        BufferedOutputStream bos = null;
+//        try {
+//            FileOutputStream fos = new FileOutputStream(file);
+//            bos = new BufferedOutputStream(fos);
+//            bos.write(data);
+//        }
+//        finally {
+//            if (bos != null) {
+//                try {
+//                    bos.flush();
+//                    bos.close();
+//                } catch (Exception e) {
+//
+//                }
+//            }
+//        }
+//    }
 
     public static String getJsonFromAssetFile(Context context, String jsonFileName) {
         String json = null;
@@ -139,21 +157,21 @@ public class JSONMethods{
     ========================================== */
 
     public void getRandomFile() {
-        int random = (int)(Math.random()*files.size());
+        int random = (int) (Math.random() * files.size());
         fileName = files.get(random);
     }
 
     public void createCorrectArray() {
-        if(fileName.equals("Taboo_easy.json")) {
+        if (fileName.equals("Taboo_easy.json")) {
             arrayName = "Taboo_easy";
         }
-        if(fileName.equals("Taboo_average.json")) {
+        if (fileName.equals("Taboo_average.json")) {
             arrayName = "Taboo_average";
         }
-        if(fileName.equals("Taboo_difficult.json")) {
+        if (fileName.equals("Taboo_difficult.json")) {
             arrayName = "Taboo_difficult";
         }
-        if(fileName.equals("Taboo_veryDifficult.json")) {
+        if (fileName.equals("Taboo_veryDifficult.json")) {
             arrayName = "Taboo_veryDifficult";
         }
     }
@@ -171,7 +189,7 @@ public class JSONMethods{
         int numOfWordsToGuess = array_AllWordsToGuess.length();
         do {
             index_wordToGuess = random.nextInt(numOfWordsToGuess);
-        } while(checkIfWordWasAlreadySearched(index_wordToGuess));
+        } while (checkIfWordWasAlreadySearched(index_wordToGuess));
         indexes_usedWordsToGuess.add(index_wordToGuess);
         try {
             array_wordToGuess = array_AllWordsToGuess.getJSONObject(index_wordToGuess);
@@ -206,8 +224,8 @@ public class JSONMethods{
 
     public void createListWithKeysToForbiddenWords() {
         Iterator<?> keys = json_ForbiddenWords.keys();
-        while( keys.hasNext() ) {
-            String key = (String)keys.next();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
             list_keysToForbiddenWords.add(key);
         }
     }
@@ -215,11 +233,10 @@ public class JSONMethods{
     public void addRequiredWords() {
         list_notRequiredWords = new ArrayList<>();
         list_keysToWordsToTextViews = new ArrayList<>();
-        for(String key: list_keysToForbiddenWords) {
-            if(key.contains("REQ")) {
+        for (String key : list_keysToForbiddenWords) {
+            if (key.contains("REQ")) {
                 list_keysToWordsToTextViews.add(key);
-            }
-            else {
+            } else {
                 list_notRequiredWords.add(key);
             }
         }
@@ -228,19 +245,19 @@ public class JSONMethods{
     public void addRestOfWords(TextView[] forbiddenWordstextViews) {
         int numOfTextViews = forbiddenWordstextViews.length;
         int numOfTextViewsLeft = numOfTextViews - list_keysToWordsToTextViews.size();
-        for(int i = 0; i < numOfTextViewsLeft; i++) {
+        for (int i = 0; i < numOfTextViewsLeft; i++) {
             int number;
             do {
-                number = (int)(Math.random()* list_notRequiredWords.size());
-            } while(list_keysToWordsToTextViews.contains(list_notRequiredWords.get(number)));
+                number = (int) (Math.random() * list_notRequiredWords.size());
+            } while (list_keysToWordsToTextViews.contains(list_notRequiredWords.get(number)));
             list_keysToWordsToTextViews.add(list_notRequiredWords.get(number));
         }
     }
 
-    public void modifyKeysToForbiddenWords(){
+    public void modifyKeysToForbiddenWords() {
         list_wordsToTextViews = new ArrayList<>();
         String forbiddenWord = null;
-        for(String key: list_keysToWordsToTextViews) {
+        for (String key : list_keysToWordsToTextViews) {
             try {
                 forbiddenWord = json_ForbiddenWords.getString(key);
             } catch (JSONException e) {
@@ -253,11 +270,11 @@ public class JSONMethods{
 
     public void addForbiddenWordsToFields(TextView[] textViews) {
         List<Integer> indexesAlreadyUsed = new ArrayList<>();
-        for(TextView textView: textViews) {
+        for (TextView textView : textViews) {
             int number;
             do {
                 number = (int) (Math.random() * textViews.length);
-            } while(indexesAlreadyUsed.contains(number));
+            } while (indexesAlreadyUsed.contains(number));
             indexesAlreadyUsed.add(number);
             String forbiddenWord = list_wordsToTextViews.get(number);
             textView.setText(forbiddenWord);
@@ -271,12 +288,12 @@ public class JSONMethods{
     public boolean checkIfWordWasAlreadySearched(int randomNumber) {
         System.out.println(indexes_usedWordsToGuess.size());
         System.out.println(list_keysToForbiddenWords.size());
-        if(indexes_usedWordsToGuess.size() == array_AllWordsToGuess.length()) {
+        if (indexes_usedWordsToGuess.size() == array_AllWordsToGuess.length()) {
             Toast.makeText(context, "Hasła zostały zresetowane", Toast.LENGTH_LONG).show();
             indexes_usedWordsToGuess.clear();
         }
 
-        if(indexes_usedWordsToGuess.contains(randomNumber)) {
+        if (indexes_usedWordsToGuess.contains(randomNumber)) {
             return true;
         }
         return false;
