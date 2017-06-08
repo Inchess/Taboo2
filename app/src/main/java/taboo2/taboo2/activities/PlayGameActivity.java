@@ -211,5 +211,4 @@ public class PlayGameActivity extends AppCompatActivity {
         };
         countDownTimer.start();
     }
-
 }
