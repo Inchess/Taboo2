@@ -8,14 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -83,15 +77,15 @@ public class JSONMethods {
     ========================================== */
 
     private void createFilesArray() {
-        files = new ArrayList<>();
+        files = new ArrayList<String>();
         if (Global.isEasyLevelChecked()) {
-            files.add("Taboo_easy.json");
+            files.add("Taboo_Easy.json");
         }
         if (Global.isAverageLevelChecked()) {
-            files.add("Taboo_average.json");
+            files.add("Taboo_Average.json");
         }
         if (Global.isDifficultLevelChecked()) {
-            files.add("Taboo_difficult.json");
+            files.add("Taboo_Difficult.json");
         }
         if (Global.isVeryDifficultLevelChecked()) {
             files.add("Taboo_veryDifficult.json");
@@ -162,13 +156,13 @@ public class JSONMethods {
     }
 
     public void createCorrectArray() {
-        if (fileName.equals("Taboo_easy.json")) {
+        if (fileName.equals("Taboo_Easy.json")) {
             arrayName = "Taboo_easy";
         }
-        if (fileName.equals("Taboo_average.json")) {
+        if (fileName.equals("Taboo_Average.json")) {
             arrayName = "Taboo_average";
         }
-        if (fileName.equals("Taboo_difficult.json")) {
+        if (fileName.equals("Taboo_Difficult.json")) {
             arrayName = "Taboo_difficult";
         }
         if (fileName.equals("Taboo_veryDifficult.json")) {
