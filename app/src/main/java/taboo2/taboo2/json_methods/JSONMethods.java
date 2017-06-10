@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -98,43 +99,6 @@ public class JSONMethods {
         }
     }
 
-//    private void createFilesArray() {
-//        String content = getJsonFromAssetFile(context, "Taboo_difficult.json");
-//        JSONObject finalJson = new JSONObject();
-//        File file = new File("T.json");
-//        try {
-//            JSONObject jsonObject = new JSONObject(content);
-//            JSONArray jsonArray = new JSONArray();
-//            jsonArray.put(jsonObject);
-//            finalJson.put("T.json", jsonArray);
-//        } catch(JSONException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            writeFile(finalJson.toString().getBytes(), file);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void writeFile(byte[] data, File file) throws IOException{
-//        BufferedOutputStream bos = null;
-//        try {
-//            FileOutputStream fos = new FileOutputStream(file);
-//            bos = new BufferedOutputStream(fos);
-//            bos.write(data);
-//        }
-//        finally {
-//            if (bos != null) {
-//                try {
-//                    bos.flush();
-//                    bos.close();
-//                } catch (Exception e) {
-//
-//                }
-//            }
-//        }
-//    }
 
     public static String getJsonFromAssetFile(Context context, String jsonFileName) {
         String json = null;

@@ -1,11 +1,14 @@
 package taboo2.taboo2.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import java.io.FileOutputStream;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
@@ -85,6 +88,20 @@ public class StartScreenActivity extends AppCompatActivity {
         marginsFromBorders = phoneWidth / paramMarginBorder;
     }
 
+    private void createFile(Context context) {
+        String fileName = "AllWords";
+        String content = "Hello world and more";
+
+        FileOutputStream outputStream ;
+        try {
+            outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream.write(content.getBytes());
+            outputStream.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void fieldLocationFromTop() {
         marginFromTop = marginParameter;
     }
@@ -118,6 +135,7 @@ public class StartScreenActivity extends AppCompatActivity {
 
     public void startGame(View view) {
         Intent startGameIntent = new Intent(this, PlayGameActivity.class);
+        createFile(this);
         startActivity(startGameIntent);
     }
 
