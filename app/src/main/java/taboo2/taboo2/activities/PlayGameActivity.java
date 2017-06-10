@@ -165,13 +165,20 @@ public class PlayGameActivity extends AppCompatActivity {
             teamWon(view);
         }
         else {
-            super.recreate();
+            recreateJson();
         }
+    }
+
+    private void recreateJson() {
+        jsonMethods = new JSONMethods(this);
+        getValuesFromJSON();
+        addWordsToTextViews();
+        addScores();
     }
 
     public void incorrectAnswer(View view) {
         Global.getCurrentPlayingTeam().addPointToTeamScore(points_incorrectAnswer);
-        super.recreate();
+        recreateJson();
     }
 
     public void teamWon(View view) {
