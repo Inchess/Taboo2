@@ -6,11 +6,18 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.StringBuilderPrinter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
@@ -99,6 +106,28 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
         changeTeam.setText("End turn");
+        readFile();
+    }
+
+    public void readFile() {
+        BufferedReader input = null;
+        File file = null;
+        StringBuilder buffer = null;
+        try {
+            file = new File(getFilesDir(), "AllWords");
+
+            input = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            buffer = new StringBuilder();
+            while ((line = input.readLine()) != null) {
+                buffer.append(line);
+            }
+
+            Log.d("", buffer.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        changeTeam.setText(buffer.toString());
     }
 
     private void createTextViews() {
