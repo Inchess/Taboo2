@@ -2,13 +2,21 @@ package taboo2.taboo2.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
@@ -90,17 +98,62 @@ public class StartScreenActivity extends AppCompatActivity {
 
     private void createFile(Context context) {
         String fileName = "AllWords";
+        String toPath = "/data/data/" + fileName;
         String start = "{Taboo_average:[{";
         String content = "Hello world and more";
+        File dest = new File(getFilesDir() + "/" + fileName);
+        File file = new File("C:\\Users\\y50-70\\Desktop\\Taboo2\\app\\src\\main\\assets\\Taboo_average.txt");
 
         FileOutputStream outputStream ;
         try {
             outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            copyAssets();
             outputStream.write(start.getBytes());
             outputStream.write(content.getBytes());
             outputStream.close();
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    private void copyAssets() {
+        String out = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AllWrods";
+        File dirout = new File(out, "C:\\Users\\y50-70\\Desktop\\Taboo2\\app\\src\\main\\assets\\Taboo_average.txt");
+        AssetManager assetManager = getAssets();
+        String[] files = null;
+        try {
+            files = assetManager.list("");
+        } catch (IOException e) {
+            Log.e("tag", "Failed to get asset file list.", e);
+        }
+        for(String filename : files) {
+            InputStream in = null;
+            OutputStream out = null;
+            try {
+                in = assetManager.open(filename);
+
+                String outDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AllWords" ;
+
+                File outFile = new File(outDir, filename);
+
+                out = new FileOutputStream(outFile);
+                copyFile(in, out);
+                in.close();
+                in = null;
+                out.flush();
+                out.close();
+                out = null;
+            } catch(IOException e) {
+                Log.e("tag", "Failed to copy asset file: " + filename, e);
+            }
+        }
+    }
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
         }
     }
 

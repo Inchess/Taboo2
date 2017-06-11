@@ -8,15 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -89,7 +82,7 @@ public class JSONMethods {
             files.add("Taboo_easy.json");
         }
         if (Global.isAverageLevelChecked()) {
-            files.add("Taboo_average.json");
+            files.add("Taboo_average.txt");
         }
         if (Global.isDifficultLevelChecked()) {
             files.add("Taboo_difficult.json");
@@ -129,7 +122,7 @@ public class JSONMethods {
         if (fileName.equals("Taboo_easy.json")) {
             arrayName = "Taboo_easy";
         }
-        if (fileName.equals("Taboo_average.json")) {
+        if (fileName.equals("Taboo_average.txt")) {
             arrayName = "Taboo_average";
         }
         if (fileName.equals("Taboo_difficult.json")) {
