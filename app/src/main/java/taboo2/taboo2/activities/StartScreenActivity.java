@@ -90,11 +90,13 @@ public class StartScreenActivity extends AppCompatActivity {
 
     private void createFile(Context context) {
         String fileName = "AllWords";
+        String start = "{Taboo_average:[{";
         String content = "Hello world and more";
 
         FileOutputStream outputStream ;
         try {
             outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream.write(start.getBytes());
             outputStream.write(content.getBytes());
             outputStream.close();
         }catch (Exception e) {
