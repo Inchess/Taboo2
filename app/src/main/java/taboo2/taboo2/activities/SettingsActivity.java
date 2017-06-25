@@ -40,7 +40,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private final String string_forbiddenWords = "Zakazane słowa";
     private final String string_points_correctAnswer = "Prawidłowa odpowiedź";
     private final String string_points_incorrectAnswer = "Nieprawidłowa odpowiedź";
-    private final String string_timePerPlayer = "Czas na gracza";
+    private final String string_timePerPlayer = "Czas na gracza (w sekundach)";
     private final String string_questionsLevel = "Poziom trudności:";
     private final String string_easy = "Łatwy";
     private final String string_average = "Średni";
@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private String[] array_forbiddenWords = new String[]{"3", "4", "5", "6", "7"};
     private String[] array_pointsCorrectAnswer = new String[]{"1", "2", "3"};
     private String[] array_pointsIncorrectAnswer = new String[]{"-3", "-2", "-1", "0"};
-    private String[] array_timePerPlayer = new String[]{"00:30", "00:45", "01:00", "01:30", "02:00"};
+    private String[] array_timePerPlayer = new String[]{"30", "45", "60", "75", "90"};
 
     /* ==========================================
     ------------------VARIABLES------------------

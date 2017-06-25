@@ -34,7 +34,7 @@ public class SettingsTests {
     private static final String FORBIDDEN_WORDS = "Zakazane słowa";
     private static final String POINTS_CORRECT_ANSWER = "Prawidłowa odpowiedź";
     private static final String POINTS_INCORRECT_ANSWER = "Nieprawidłowa odpowiedź";
-    private static final String TIME_PER_PLAYER = "Czas na gracza";
+    private static final String TIME_PER_PLAYER = "Czas na gracza (w sekundach)";
     private static final String QUESTIONS_LEVEL = "Poziom trudności:";
     private static final String EASY_LEVEL = "Łatwy";
     private static final String AVERAGE_LEVEL = "Średni";
@@ -46,7 +46,7 @@ public class SettingsTests {
     private static final String DEFAULT_FORBIDDEN_WORDS = "5";
     private static final String DEFAULT_CORRECT_ANSWER = "1";
     private static final String DEFAULT_INCORRECT_ANSWER = "-1";
-    private static final String DEFAULT_TIME_PER_PLAYER = "01:00";
+    private static final String DEFAULT_TIME_PER_PLAYER = "60";
 
     @Rule
     public ActivityTestRule<SettingsActivity> mActivityRule = new ActivityTestRule(SettingsActivity.class);
