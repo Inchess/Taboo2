@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private int global_forbiddenWords;
     private int global_correctAnswer;
     private int global_incorrectAnswer;
-    private String global_timePerPlayer;
+    private int global_timePerPlayer;
     private Button saveChanges;
     private Button backToDefault;
     private Global global;
@@ -139,7 +139,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         position_pointsIncorrectAnswer = Arrays.asList(array_pointsIncorrectAnswer).
                 indexOf(Integer.toString(global.getPoints_incorrectAnswer()));
         position_timePerPlayer = Arrays.asList(array_timePerPlayer).
-                indexOf(global.getTimePerPlayer());
+                indexOf(Integer.toString(global.getTimePerPlayer()));
 
     }
 
@@ -208,7 +208,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             global_incorrectAnswer = Integer.parseInt(array_pointsIncorrectAnswer[position]);
         }
         if (parent.toString().contains("spinner$_time_per_player")) {
-            global_timePerPlayer = array_timePerPlayer[position];
+            global_timePerPlayer = Integer.parseInt(array_timePerPlayer[position]);
         }
     }
 

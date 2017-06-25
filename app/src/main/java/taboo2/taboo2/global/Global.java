@@ -12,7 +12,7 @@ public class Global {
     private static int numberOfForbiddenWords = 5;
     private static int points_correctAnswer = 1;
     private static int points_incorrectAnswer = -1;
-    private static String timePerPlayer = "01:00";
+    private static int timePerPlayer = 60;
     private static boolean easyLevelChecked = false;
     private static boolean averageLevelChecked = true;
     private static boolean difficultLevelChecked = false;
@@ -32,7 +32,7 @@ public class Global {
     public static final int DEFAULT_NUMBER_OF_FORBIDDEN_WORDS = 5;
     public static final int DEFAULT_POINTS_CORRECT_ANSWER = 1;
     public static final int DEFAULT_POINTS_INCORRECT_ANSWER = -1;
-    public static final String DEFAULT_TIME_PER_PLAYER = "01:00";
+    public static final int DEFAULT_TIME_PER_PLAYER = 60;
     public static final boolean DEFAULT_EASY_LEVEL_CHECKED = false;
     public static final boolean DEFAULT_AVERAGE_LEVEL_CHECKED = true;
     public static final boolean DEFAULT_DIFFICULT_LEVEL_CHECKED = false;
@@ -110,11 +110,11 @@ public class Global {
         this.points_incorrectAnswer = points_incorrectAnswer;
     }
 
-    public String getTimePerPlayer() {
+    public int getTimePerPlayer() {
         return timePerPlayer;
     }
 
-    public void setTimePerPlayer(String timePerPlayer) {
+    public void setTimePerPlayer(int timePerPlayer) {
         Global.timePerPlayer = timePerPlayer;
     }
 

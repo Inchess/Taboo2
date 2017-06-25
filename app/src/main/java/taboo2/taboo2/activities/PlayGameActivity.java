@@ -199,7 +199,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addTimer() {
-        progressBar.setMax(60);
+        progressBar.setMax(global.getTimePerPlayer());
         progressBar.setProgress(i);
         countDownTimer = new CountDownTimer(100000, 1000) {
             @Override
