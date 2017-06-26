@@ -215,17 +215,17 @@ public class PlayGameActivity extends AppCompatActivity {
                 while (progressStatus < progressBarMaximumValue) {
                     progressStatus +=1;
                     countDownStatus -=1;
-                    try{
-                        Thread.sleep(1000);
-                    }catch(InterruptedException e){
-                        e.printStackTrace();
-                    }
                     handler.post(new Runnable() {
                         public void run() {
                             progressBar.setProgress(progressStatus);
                             timer.setText(countDownStatus+"");
                         }
                     });
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
                 }
             }
         }).start();
