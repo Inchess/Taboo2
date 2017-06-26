@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -75,6 +76,10 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView timer;
     private int numberForbiddenWords;
     private LinearLayout playGame;
+    private int progressStatus = 0;
+    private Handler handler;
+    private int progressBarMaximumValue;
+    private int countDownStatus;
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -99,6 +104,9 @@ public class PlayGameActivity extends AppCompatActivity {
         correctAnswer.setText("Correct");
         incorrectAnswer.setText("Incorrect");
         changeTeam.setText("End turn");
+        handler = new Handler();
+        progressBarMaximumValue = global.getTimePerPlayer();
+        countDownStatus = progressBarMaximumValue;
     }
 
     private void createTextViews() {
@@ -199,23 +207,27 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void addTimer() {
-        progressBar.setMax(global.getTimePerPlayer());
-        progressBar.setProgress(i);
-        countDownTimer = new CountDownTimer(100000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.v("Log_tag", "Tick in progress " + i + millisUntilFinished);
-                i++;
-                progressBar.setProgress(i);
-                timer.setText(Integer.toString(progressBar.getProgress()));
+        progressBar.setMax(progressBarMaximumValue);
+        progressBar.setProgress(progressStatus);
+        timer.setText(countDownStatus+"");
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < progressBarMaximumValue) {
+                    progressStatus +=1;
+                    countDownStatus -=1;
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(progressStatus);
+                            timer.setText(countDownStatus+"");
+                        }
+                    });
+                }
             }
-
-            @Override
-            public void onFinish() {
-                i++;
-                progressBar.setProgress(i);
-            }
-        };
-        countDownTimer.start();
+        }).start();
     }
 }
