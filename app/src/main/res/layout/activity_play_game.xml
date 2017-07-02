@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context="taboo2.taboo2.activities.PlayGameActivity">
 
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"/>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         style="@android:style/Widget.ProgressBar.Horizontal"
@@ -15,11 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_header_relativelayout"
         />
-
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
