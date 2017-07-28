@@ -153,14 +153,14 @@ public class PlayGameActivity extends AppCompatActivity {
         jsonMethods.createJSONObject();
         jsonMethods.createArrayWithAllWordsToGuess();
         jsonMethods.initWordToGuess();
-        jsonMethods.createJSONWithForbiddenWords();
+//        jsonMethods.createJSONWithForbiddenWords();
         jsonMethods.createListWithKeysToForbiddenWords();
     }
 
     public void addWordsToTextViews() {
         jsonMethods.addRequiredWords();
         jsonMethods.addRestOfWords(textViews);
-        jsonMethods.modifyKeysToForbiddenWords();
+//        jsonMethods.modifyKeysToForbiddenWords();
         jsonMethods.addForbiddenWordsToFields(textViews);
         jsonMethods.addWordToGuessToField(wordToGuess);
     }
