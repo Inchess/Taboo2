@@ -80,70 +80,20 @@ public class JSONMethods {
         files = new ArrayList<>();
         if (Global.isEasyLevelChecked()) {
             files.add("Taboo_easy.json");
+            arrayName = "Taboo_easy";
         }
         if (Global.isAverageLevelChecked()) {
             files.add("Taboo_Average.json");
+            arrayName = "Taboo_average";
         }
         if (Global.isDifficultLevelChecked()) {
             files.add("Taboo_difficult.json");
+            arrayName = "Taboo_difficult";
         }
         if (Global.isVeryDifficultLevelChecked()) {
             files.add("Taboo_veryDifficult.json");
+            arrayName = "Taboo_veryDifficult";
         }
-    }
-
-//    private void createFilesArray() {
-//        String content = getJsonFromAssetFile(context, "Taboo_difficult.json");
-//        JSONObject finalJson = new JSONObject();
-//        File file = new File("T.json");
-//        try {
-//            JSONObject jsonObject = new JSONObject(content);
-//            JSONArray jsonArray = new JSONArray();
-//            jsonArray.put(jsonObject);
-//            finalJson.put("T.json", jsonArray);
-//        } catch(JSONException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            writeFile(finalJson.toString().getBytes(), file);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void writeFile(byte[] data, File file) throws IOException{
-//        BufferedOutputStream bos = null;
-//        try {
-//            FileOutputStream fos = new FileOutputStream(file);
-//            bos = new BufferedOutputStream(fos);
-//            bos.write(data);
-//        }
-//        finally {
-//            if (bos != null) {
-//                try {
-//                    bos.flush();
-//                    bos.close();
-//                } catch (Exception e) {
-//
-//                }
-//            }
-//        }
-//    }
-
-    public static String getJsonFromAssetFile(Context context, String jsonFileName) {
-        String json = null;
-        try {
-            InputStream is = context.getAssets().open(jsonFileName);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
     }
 
     /* ==========================================
@@ -153,21 +103,6 @@ public class JSONMethods {
     public void getRandomFile() {
         int random = (int) (Math.random() * files.size());
         fileName = files.get(random);
-    }
-
-    public void createCorrectArray() {
-        if (fileName.equals("Taboo_easy.json")) {
-            arrayName = "Taboo_easy";
-        }
-        if (fileName.equals("Taboo_Average.json")) {
-            arrayName = "Taboo_average";
-        }
-        if (fileName.equals("Taboo_difficult.json")) {
-            arrayName = "Taboo_difficult";
-        }
-        if (fileName.equals("Taboo_veryDifficult.json")) {
-            arrayName = "Taboo_veryDifficult";
-        }
     }
 
     public void createInputStream() {

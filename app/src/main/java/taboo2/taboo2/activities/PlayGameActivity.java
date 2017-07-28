@@ -13,10 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.Map;
+
 import taboo2.taboo2.R;
 import taboo2.taboo2.designs.Designs;
 import taboo2.taboo2.global.Global;
 import taboo2.taboo2.json_methods.JSONMethods;
+import taboo2.taboo2.levels.Levels;
 import taboo2.taboo2.scores.GreenTeamScores;
 import taboo2.taboo2.scores.RedTeamScores;
 
@@ -27,6 +31,7 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
         init();
+        tryLevels();
         getValuesFromJSON();
         createTextViews();
         addWordsToTextViews();
@@ -37,6 +42,22 @@ public class PlayGameActivity extends AppCompatActivity {
         addScores();
         getGlobalValues();
         addTimer();
+    }
+
+    private void tryLevels() {
+        List<Map<String, String>> a = levels.easyLevel;
+        List<Map<String, String>> b = levels.easyLevel;
+        Map<String, String> c = levels.easyLevel.get(0);
+        String d = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String e = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String f = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String g = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String h = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String i = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String j = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+        String k = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
+
+
     }
 
     /* ==========================================
@@ -62,6 +83,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private RedTeamScores redTeamScores;
     private Designs designs;
     private Button correctAnswer;
+    private Levels levels;
     private Button incorrectAnswer;
     // To remove
     private Button changeTeam;
@@ -107,6 +129,7 @@ public class PlayGameActivity extends AppCompatActivity {
         handler = new Handler();
         progressBarMaximumValue = global.getTimePerPlayer();
         countDownStatus = progressBarMaximumValue;
+        levels = new Levels();
     }
 
     private void createTextViews() {
@@ -126,7 +149,6 @@ public class PlayGameActivity extends AppCompatActivity {
 
     public void getValuesFromJSON() {
         jsonMethods.getRandomFile();
-        jsonMethods.createCorrectArray();
         jsonMethods.createInputStream();
         jsonMethods.createJSONObject();
         jsonMethods.createArrayWithAllWordsToGuess();
