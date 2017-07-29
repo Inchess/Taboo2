@@ -119,7 +119,7 @@ public class PlayGameActivity extends AppCompatActivity {
         changeTeam = (Button) findViewById(R.id.change_team);
         timer = (TextView) findViewById(R.id.timer);
         designs = new Designs();
-        jsonMethods = new JSONMethods(this);
+        jsonMethods = new JSONMethods();
         greenTeamScores = new GreenTeamScores();
         redTeamScores = new RedTeamScores();
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -148,19 +148,15 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     public void getValuesFromJSON() {
-        jsonMethods.getRandomFile();
-        jsonMethods.createInputStream();
-        jsonMethods.createJSONObject();
         jsonMethods.createArrayWithAllWordsToGuess();
         jsonMethods.initWordToGuess();
-//        jsonMethods.createJSONWithForbiddenWords();
         jsonMethods.createListWithKeysToForbiddenWords();
     }
 
     public void addWordsToTextViews() {
         jsonMethods.addRequiredWords();
         jsonMethods.addRestOfWords(textViews);
-//        jsonMethods.modifyKeysToForbiddenWords();
+        jsonMethods.modifyKeysToForbiddenWords();
         jsonMethods.addForbiddenWordsToFields(textViews);
         jsonMethods.addWordToGuessToField(wordToGuess);
     }
@@ -200,7 +196,7 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
     private void recreateJson() {
-        jsonMethods = new JSONMethods(this);
+        jsonMethods = new JSONMethods();
         getValuesFromJSON();
         addWordsToTextViews();
         addScores();

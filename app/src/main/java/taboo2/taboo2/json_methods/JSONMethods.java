@@ -21,60 +21,28 @@ import taboo2.taboo2.levels.Levels;
 
 public class JSONMethods {
 
-    public JSONMethods(Context context) {
-        this.context = context;
+    public JSONMethods() {
         createFilesArray();
         init();
     }
 
     private void init() {
         levels = new Levels();
-        random = new Random();
         list_keysToForbiddenWords = new ArrayList<>();
-        if (array_AllWordsToGuess == null) {
-            indexes_usedWordsToGuess = new ArrayList<>();
-        }
     }
 
     /* ==========================================
     ------------------VARIABLES------------------
     ========================================== */
 
-    private static Context context;
     private String string_wordToGuess;
-    private JSONObject wholeJSON;
-    private JSONObject array_wordToGuess;
-    private Random random;
-    private static InputStream inputStream;
-    private String fileName;
     private static List<String> files;
-    private String arrayName;
-    private static JSONArray array_AllWordsToGuess;
     private static Map<String, String> allWords;
-    private static List<Integer> indexes_usedWordsToGuess;
     private List<String> list_keysToForbiddenWords;
     private List<String> list_notRequiredWords;
     private List<String> list_requiredWords;
     private List<String> list_wordsToTextViews;
-    private JSONObject json_ForbiddenWords = null;
     private Levels levels;
-
-    public void createJSONObject() {
-        try {
-            wholeJSON = new JSONObject(convertJSONFileToObject());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-//    public void createArrayWithAllWordsToGuess() {
-//        try {
-//            array_AllWordsToGuess = wholeJSON.getJSONArray(arrayName);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void createArrayWithAllWordsToGuess() {
         allWords = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size()));
@@ -88,19 +56,15 @@ public class JSONMethods {
         files = new ArrayList<>();
         if (Global.isEasyLevelChecked()) {
             files.add("Taboo_easy.json");
-            arrayName = "Taboo_easy";
         }
         if (Global.isAverageLevelChecked()) {
             files.add("Taboo_Average.json");
-            arrayName = "Taboo_average";
         }
         if (Global.isDifficultLevelChecked()) {
             files.add("Taboo_difficult.json");
-            arrayName = "Taboo_difficult";
         }
         if (Global.isVeryDifficultLevelChecked()) {
             files.add("Taboo_veryDifficult.json");
-            arrayName = "Taboo_veryDifficult";
         }
     }
 
@@ -108,59 +72,8 @@ public class JSONMethods {
     ------------------AAAAAAAAA------------------
     ========================================== */
 
-    public void getRandomFile() {
-        int random = (int) (Math.random() * files.size());
-        fileName = files.get(random);
-    }
-
-    public void createInputStream() {
-        try {
-            inputStream = context.getAssets().open(fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void initWordToGuess() {
         string_wordToGuess = allWords.get("searched");
-    }
-
-//    public void initWordToGuess() {
-//        int index_wordToGuess;
-//        int numOfWordsToGuess = array_AllWordsToGuess.length();
-//        do {
-//            index_wordToGuess = random.nextInt(numOfWordsToGuess);
-//        } while (checkIfWordWasAlreadySearched(index_wordToGuess));
-//        indexes_usedWordsToGuess.add(index_wordToGuess);
-//        try {
-//            array_wordToGuess = array_AllWordsToGuess.getJSONObject(index_wordToGuess);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        string_wordToGuess = array_wordToGuess.keys().next();
-//    }
-
-    private String convertJSONFileToObject() {
-        String json;
-        try {
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
-            inputStream.read(buffer);
-            inputStream.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    public void createJSONWithForbiddenWords() {
-        try {
-            json_ForbiddenWords = array_wordToGuess.getJSONObject(string_wordToGuess);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     public void createListWithKeysToForbiddenWords() {
@@ -168,16 +81,6 @@ public class JSONMethods {
             list_keysToForbiddenWords.add(key);
         }
     }
-
-/*
-    public void createListWithKeysToForbiddenWords() {
-        Iterator<?> keys = json_ForbiddenWords.keys();
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            list_keysToForbiddenWords.add(key);
-        }
-    }
-*/
 
     public void addRequiredWords() {
         list_notRequiredWords = new ArrayList<>();
@@ -189,20 +92,7 @@ public class JSONMethods {
                 list_notRequiredWords.add(key);
             }
         }
-
     }
-
-/*    public void addRequiredWords() {
-        list_notRequiredWords = new ArrayList<>();
-        list_requiredWords = new ArrayList<>();
-        for (String key : list_keysToForbiddenWords) {
-            if (key.contains("REQ")) {
-                list_requiredWords.add(key);
-            } else {
-                list_notRequiredWords.add(key);
-            }
-        }
-    }*/
 
     public void addRestOfWords(TextView[] forbiddenWordstextViews) {
         int numOfTextViews = forbiddenWordstextViews.length;
@@ -220,11 +110,7 @@ public class JSONMethods {
         list_wordsToTextViews = new ArrayList<>();
         String forbiddenWord = null;
         for (String key : list_requiredWords) {
-            try {
-                forbiddenWord = json_ForbiddenWords.getString(key);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            forbiddenWord = allWords.get(key);
             list_wordsToTextViews.add(forbiddenWord);
         }
     }
@@ -238,33 +124,13 @@ public class JSONMethods {
                 number = (int) (Math.random() * textViews.length);
             } while (indexesAlreadyUsed.contains(number));
             indexesAlreadyUsed.add(number);
-            String forbiddenWord = list_requiredWords.get(number);
+            String forbiddenWord = list_wordsToTextViews.get(number);
             textView.setText(forbiddenWord);
         }
     }
 
     public void addWordToGuessToField(TextView wordToGuessTextView) {
         wordToGuessTextView.setText(string_wordToGuess);
-    }
-
-    public boolean checkIfWordWasAlreadySearched(int randomNumber) {
-        System.out.println(indexes_usedWordsToGuess.size());
-        System.out.println(list_keysToForbiddenWords.size());
-        if (indexes_usedWordsToGuess.size() == array_AllWordsToGuess.length()) {
-            Toast.makeText(context, "Hasła zostały zresetowane", Toast.LENGTH_LONG).show();
-            indexes_usedWordsToGuess.clear();
-        }
-
-        if (indexes_usedWordsToGuess.contains(randomNumber)) {
-            return true;
-        }
-        return false;
-
-        /*
-        Dodać opcję, że jeśli wykorzysta się wszystkie słowa to
-        pojawi się informacja że słowa zostały zresetowane
-        i będą wyświetlane od nowa
-         */
     }
 
     /* ==========================================
