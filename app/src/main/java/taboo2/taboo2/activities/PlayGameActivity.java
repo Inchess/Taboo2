@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +31,6 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
         init();
-        tryLevels();
         getValuesFromJSON();
         createTextViews();
         addWordsToTextViews();
@@ -42,22 +41,6 @@ public class PlayGameActivity extends AppCompatActivity {
         addScores();
         getGlobalValues();
         addTimer();
-    }
-
-    private void tryLevels() {
-        List<Map<String, String>> a = levels.easyLevel;
-        List<Map<String, String>> b = levels.easyLevel;
-        Map<String, String> c = levels.easyLevel.get(0);
-        String d = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String e = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String f = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String g = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String h = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String i = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String j = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-        String k = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size())).get("searched");
-
-
     }
 
     /* ==========================================
@@ -102,6 +85,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private Handler handler;
     private int progressBarMaximumValue;
     private int countDownStatus;
+    private static List<Map<String, String>> listWithAllMaps;
 
     /* ==========================================
     -------------------METHODS-------------------
@@ -130,6 +114,9 @@ public class PlayGameActivity extends AppCompatActivity {
         progressBarMaximumValue = global.getTimePerPlayer();
         countDownStatus = progressBarMaximumValue;
         levels = new Levels();
+        if (listWithAllMaps == null) {
+            listWithAllMaps = new ArrayList<>();
+        }
     }
 
     private void createTextViews() {

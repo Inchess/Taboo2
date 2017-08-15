@@ -1,19 +1,10 @@
 package taboo2.taboo2.json_methods;
 
-import android.content.Context;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import taboo2.taboo2.global.Global;
 import taboo2.taboo2.levels.Levels;
