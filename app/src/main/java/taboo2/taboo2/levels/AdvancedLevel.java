@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class AdvancedLevel {
 
-    public void createList(List<Map<String, String>> listWithAllMaps) {
+    public void addAdvantageLevelWords(List<Map<String, String>> listWithAllMaps) {
         listWithAllMaps.add(new HashMap<String, String>() {{
             put("searched", "Noc 3 average");
             put("REQ_word1", "----Ciemność----");

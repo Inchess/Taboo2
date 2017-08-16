@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class DifficultLevel {
 
-    public void createList(List<Map<String, String>> listWithAllMaps) {
+    public void addDifficultLevelWords(List<Map<String, String>> listWithAllMaps) {
         listWithAllMaps.add(new HashMap<String, String>() {{
-            put("searched", "Noc 3 average");
+            put("searched", "Noc 3 diff");
             put("REQ_word1", "----Ciemność----");
             put("REQ_word2", "----Księżyc----");
             put("REQ_word3", "----Dzień----");
@@ -19,7 +19,7 @@ public class DifficultLevel {
             put("word7", "Duch");
         }});
         listWithAllMaps.add(new HashMap<String, String>() {{
-            put("searched", "Dzień 2 average");
+            put("searched", "Dzień 2 diff");
             put("word1", "Praca");
             put("REQ_word2", "----Noc----");
             put("REQ_word3", "----Słońce----");

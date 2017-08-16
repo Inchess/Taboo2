@@ -5,21 +5,30 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.StringTokenizer;
 
 import taboo2.taboo2.global.Global;
+import taboo2.taboo2.levels.AdvancedLevel;
+import taboo2.taboo2.levels.DifficultLevel;
+import taboo2.taboo2.levels.EasyLevel;
 import taboo2.taboo2.levels.Levels;
+import taboo2.taboo2.levels.VeryDifficultLevel;
 
 
 public class JSONMethods {
 
     public JSONMethods() {
-        createFilesArray();
+        if (allWords == null) {
+            createListWithWordsFromChosenLevels();
+        }
         init();
     }
 
     private void init() {
         levels = new Levels();
         list_keysToForbiddenWords = new ArrayList<>();
+        random = new Random();
     }
 
     /* ==========================================
@@ -27,48 +36,59 @@ public class JSONMethods {
     ========================================== */
 
     private String string_wordToGuess;
-    private static List<String> files;
+    private static List<Map<String, String>> allMaps;
+    private static List<Map<String, String>> allMapsCopy;
     private static Map<String, String> allWords;
     private List<String> list_keysToForbiddenWords;
     private List<String> list_notRequiredWords;
     private List<String> list_requiredWords;
     private List<String> list_wordsToTextViews;
     private Levels levels;
-
-    public void createArrayWithAllWordsToGuess() {
-        allWords = levels.easyLevel.get((int)(Math.random()*levels.easyLevel.size()));
-    }
+    private EasyLevel easyLevel;
+    private AdvancedLevel advancedLevel;
+    private DifficultLevel difficultLevel;
+    private VeryDifficultLevel veryDifficultLevel;
+    private Map<String, String> randomMap;
+    private Random random;
 
     /* ==========================================
     ------------------AAAAAAAAA------------------
     ========================================== */
 
-    private void createFilesArray() {
-        files = new ArrayList<>();
+    private void createListWithWordsFromChosenLevels() {
+        allMaps = new ArrayList<>();
         if (Global.isEasyLevelChecked()) {
-            files.add("Taboo_easy.json");
+            easyLevel = new EasyLevel();
+            easyLevel.addEasyLevelWords(allMaps);
         }
         if (Global.isAverageLevelChecked()) {
-            files.add("Taboo_Average.json");
+            advancedLevel = new AdvancedLevel();
+            advancedLevel.addAdvantageLevelWords(allMaps);
         }
         if (Global.isDifficultLevelChecked()) {
-            files.add("Taboo_difficult.json");
+            difficultLevel = new DifficultLevel();
+            difficultLevel.addDifficultLevelWords(allMaps);
         }
         if (Global.isVeryDifficultLevelChecked()) {
-            files.add("Taboo_veryDifficult.json");
+            veryDifficultLevel = new VeryDifficultLevel();
+            veryDifficultLevel.addVeryDifficultLevelWords(allMaps);
         }
+
+        allMapsCopy = allMaps;
     }
 
-    /* ==========================================
-    ------------------AAAAAAAAA------------------
-    ========================================== */
+    public void getRandomMap() {
+        int randomInt = (int)(Math.random()*allMapsCopy.size());
+        randomMap = allMapsCopy.get(randomInt);
+        allMapsCopy.remove(randomInt);
+    }
 
     public void initWordToGuess() {
-        string_wordToGuess = allWords.get("searched");
+        string_wordToGuess = randomMap.get("searched");
     }
 
     public void createListWithKeysToForbiddenWords() {
-        for ( String key: allWords.keySet() ) {
+        for ( String key: randomMap.keySet() ) {
             list_keysToForbiddenWords.add(key);
         }
     }
@@ -97,11 +117,15 @@ public class JSONMethods {
         }
     }
 
-    public void modifyKeysToForbiddenWords() {
+    /* ==========================================
+    ------------------AAAAAAAAA------------------
+    ========================================== */
+
+    public void getForbiddenWordsFromKeys() {
         list_wordsToTextViews = new ArrayList<>();
         String forbiddenWord = null;
         for (String key : list_requiredWords) {
-            forbiddenWord = allWords.get(key);
+            forbiddenWord = randomMap.get(key);
             list_wordsToTextViews.add(forbiddenWord);
         }
     }
